@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "354252858419",
+    "project_id": "motion-learn",
+    "storage_bucket": "motion-learn.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:354252858419:android:a888cbc4c52abbd034ef46",
+        "android_client_info": {
+          "package_name": "com.nipunamu.motionlearn"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "354252858419-qbmejn95tosideq9mrr8ul48v2q2hspu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBRHOa5496Uy6PXFFBMgZdEunSSZSSktpw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "354252858419-qbmejn95tosideq9mrr8ul48v2q2hspu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
