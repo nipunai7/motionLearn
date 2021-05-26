@@ -77,20 +77,26 @@ class _LoginState extends State<Login>
               ),
               child: Text("Login",style: TextStyle(color: Colors.deepPurple,fontSize:20,),),
             ),
-            SizedBox(height: 22.0,),
+            SizedBox(height: 20.0,),
             Container(
               height: 4.0,
               width: _screenwidth* 0.8,
               color: Colors.white,
             ),
-            SizedBox(height: 10.0,),
-            TextButton(
-                onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => AdminSignInPage())),
-                style: TextButton.styleFrom(
-                  primary: Colors.white,
-                  padding: EdgeInsets.symmetric(horizontal: 50, vertical: 20),
-                ),
-              child: Text("Admin Login",style: TextStyle(color: Colors.deepPurple,fontWeight: FontWeight.bold),),
+            SizedBox(height: 1.0,),
+            Container(
+                child: Column(
+                    children: [
+                      TextButton(
+                        onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => AdminSignInPage())),
+                        style: TextButton.styleFrom(
+                          primary: Colors.white,
+                          padding: EdgeInsets.symmetric(horizontal: 50, vertical: 20),
+                        ),
+                        child: Text("Admin Login",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
+                      ),
+                    ],
+                )
             )
           ],
         ),
