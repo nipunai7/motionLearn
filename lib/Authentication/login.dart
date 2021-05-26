@@ -34,6 +34,7 @@ class _LoginState extends State<Login>
         child: Column(
           mainAxisSize: MainAxisSize.max,
           children: [
+            SizedBox(height: 10.0,),
             Container(
               child: Image.asset("images/login.png",height: 240.0,width: 240.0,),
             ),

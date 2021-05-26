@@ -13,6 +13,7 @@ class AdminSignInPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.deepPurple,
       appBar: AppBar(
         flexibleSpace: Container(
           decoration: new BoxDecoration(
@@ -48,9 +49,7 @@ class _AdminSignInScreenState extends State<AdminSignInScreen>
 
     return SingleChildScrollView(
       child: Container(
-        decoration: new BoxDecoration(
-          color: Colors.deepPurple,
-        ),
+
         child: Column(
           mainAxisSize: MainAxisSize.max,
           children: [
