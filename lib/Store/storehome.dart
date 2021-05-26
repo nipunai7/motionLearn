@@ -46,23 +46,25 @@ class _StoreHomeState extends State<StoreHome> {
                       size: 20.0,
                       color: Colors.grey,
                       ),
-                      // Positioned(
-                      //   top: 3.0,
-                      //   bottom: 4.0,
-                      //   child: Consumer<CartItemCounter>(
-                      //     builder: (context,counter, _){
-                      //       return Text(
-                      //         counter.count.toString(),
-                      //       );
-                      //     },
-                      //   ),
-                      // )
+                      Positioned(
+                        top: 3.0,
+                        bottom: 4.0,
+                        child: Consumer<CartItemCounter>(
+                          builder: (context,counter, _){
+                            return Text(
+                              counter.count.toString(),
+                              style: TextStyle(color: Colors.white,fontSize: 12.0,fontWeight: FontWeight.w400),
+                            );
+                          },
+                        ),
+                      )
                     ],
                   ))
             ],
           )
         ],
       ),
+        drawer: MyDrawer(),
         body: Center(
           child: Text("Registration Success",style: TextStyle(fontSize: 30,fontFamily: "Signatra"),),
         ),

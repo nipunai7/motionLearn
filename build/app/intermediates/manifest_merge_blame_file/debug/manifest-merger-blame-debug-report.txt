@@ -12,14 +12,14 @@
 12         to allow setting breakpoints, to provide hot reload, etc.
 13    -->
 14    <uses-permission android:name="android.permission.INTERNET" />
-14-->F:\Academic\Level 3\Semester 1\Design Project\e_shop\android\app\src\debug\AndroidManifest.xml:6:5-66
-14-->F:\Academic\Level 3\Semester 1\Design Project\e_shop\android\app\src\debug\AndroidManifest.xml:6:22-64
+14-->F:\Academic\Level 3\Semester 1\Design Project\motionLearn\android\app\src\debug\AndroidManifest.xml:6:5-66
+14-->F:\Academic\Level 3\Semester 1\Design Project\motionLearn\android\app\src\debug\AndroidManifest.xml:6:22-64
 15    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-15-->[:image_picker] F:\Academic\Level 3\Semester 1\Design Project\e_shop\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-80
-15-->[:image_picker] F:\Academic\Level 3\Semester 1\Design Project\e_shop\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:7:22-77
+15-->[:image_picker] F:\Academic\Level 3\Semester 1\Design Project\motionLearn\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-80
+15-->[:image_picker] F:\Academic\Level 3\Semester 1\Design Project\motionLearn\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:7:22-77
 16    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- Although the *SdkVersion is captured in gradle build files, this is required for non gradle builds -->
-16-->[:image_picker] F:\Academic\Level 3\Semester 1\Design Project\e_shop\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:8:5-81
-16-->[:image_picker] F:\Academic\Level 3\Semester 1\Design Project\e_shop\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:8:22-78
+16-->[:image_picker] F:\Academic\Level 3\Semester 1\Design Project\motionLearn\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:8:5-81
+16-->[:image_picker] F:\Academic\Level 3\Semester 1\Design Project\motionLearn\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:8:22-78
 17    <!-- <uses-sdk android:minSdkVersion="14" /> -->
 18    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 18-->[com.google.firebase:firebase-firestore:21.3.0] C:\Users\Nipuna Munasinghe\.gradle\caches\transforms-2\files-2.1\3e04be8da688819e335968e524f1ac06\jetified-firebase-firestore-21.3.0\AndroidManifest.xml:13:5-79
@@ -32,30 +32,30 @@
 24         FlutterApplication and put your custom class here.
 25    -->
 26    <application
-26-->F:\Academic\Level 3\Semester 1\Design Project\e_shop\android\app\src\main\AndroidManifest.xml:8:5-46:19
+26-->F:\Academic\Level 3\Semester 1\Design Project\motionLearn\android\app\src\main\AndroidManifest.xml:8:5-46:19
 27        android:name="io.flutter.app.FlutterApplication"
-27-->F:\Academic\Level 3\Semester 1\Design Project\e_shop\android\app\src\main\AndroidManifest.xml:9:9-57
+27-->F:\Academic\Level 3\Semester 1\Design Project\motionLearn\android\app\src\main\AndroidManifest.xml:9:9-57
 28        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
 28-->[androidx.core:core:1.1.0] C:\Users\Nipuna Munasinghe\.gradle\caches\transforms-2\files-2.1\b608c3d8537f54a7ed8ad86b3bfe3664\core-1.1.0\AndroidManifest.xml:24:18-86
 29        android:debuggable="true"
 30        android:icon="@mipmap/ic_launcher"
-30-->F:\Academic\Level 3\Semester 1\Design Project\e_shop\android\app\src\main\AndroidManifest.xml:11:9-43
+30-->F:\Academic\Level 3\Semester 1\Design Project\motionLearn\android\app\src\main\AndroidManifest.xml:11:9-43
 31        android:label="e_shop" >
-31-->F:\Academic\Level 3\Semester 1\Design Project\e_shop\android\app\src\main\AndroidManifest.xml:10:9-31
+31-->F:\Academic\Level 3\Semester 1\Design Project\motionLearn\android\app\src\main\AndroidManifest.xml:10:9-31
 32        <activity
-32-->F:\Academic\Level 3\Semester 1\Design Project\e_shop\android\app\src\main\AndroidManifest.xml:12:9-40:20
+32-->F:\Academic\Level 3\Semester 1\Design Project\motionLearn\android\app\src\main\AndroidManifest.xml:12:9-40:20
 33            android:name="com.muhammadali.e_shop.MainActivity"
-33-->F:\Academic\Level 3\Semester 1\Design Project\e_shop\android\app\src\main\AndroidManifest.xml:13:13-41
+33-->F:\Academic\Level 3\Semester 1\Design Project\motionLearn\android\app\src\main\AndroidManifest.xml:13:13-41
 34            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
-34-->F:\Academic\Level 3\Semester 1\Design Project\e_shop\android\app\src\main\AndroidManifest.xml:16:13-163
+34-->F:\Academic\Level 3\Semester 1\Design Project\motionLearn\android\app\src\main\AndroidManifest.xml:16:13-163
 35            android:hardwareAccelerated="true"
-35-->F:\Academic\Level 3\Semester 1\Design Project\e_shop\android\app\src\main\AndroidManifest.xml:17:13-47
+35-->F:\Academic\Level 3\Semester 1\Design Project\motionLearn\android\app\src\main\AndroidManifest.xml:17:13-47
 36            android:launchMode="singleTop"
-36-->F:\Academic\Level 3\Semester 1\Design Project\e_shop\android\app\src\main\AndroidManifest.xml:14:13-43
+36-->F:\Academic\Level 3\Semester 1\Design Project\motionLearn\android\app\src\main\AndroidManifest.xml:14:13-43
 37            android:theme="@style/LaunchTheme"
-37-->F:\Academic\Level 3\Semester 1\Design Project\e_shop\android\app\src\main\AndroidManifest.xml:15:13-47
+37-->F:\Academic\Level 3\Semester 1\Design Project\motionLearn\android\app\src\main\AndroidManifest.xml:15:13-47
 38            android:windowSoftInputMode="adjustResize" >
-38-->F:\Academic\Level 3\Semester 1\Design Project\e_shop\android\app\src\main\AndroidManifest.xml:18:13-55
+38-->F:\Academic\Level 3\Semester 1\Design Project\motionLearn\android\app\src\main\AndroidManifest.xml:18:13-55
 39
 40            <!--
 41                 Specifies an Android theme to apply to this Activity as soon as
@@ -64,11 +64,11 @@
 44                 to determine the Window background behind the Flutter UI.
 45            -->
 46            <meta-data
-46-->F:\Academic\Level 3\Semester 1\Design Project\e_shop\android\app\src\main\AndroidManifest.xml:23:13-26:17
+46-->F:\Academic\Level 3\Semester 1\Design Project\motionLearn\android\app\src\main\AndroidManifest.xml:23:13-26:17
 47                android:name="io.flutter.embedding.android.NormalTheme"
-47-->F:\Academic\Level 3\Semester 1\Design Project\e_shop\android\app\src\main\AndroidManifest.xml:24:15-70
+47-->F:\Academic\Level 3\Semester 1\Design Project\motionLearn\android\app\src\main\AndroidManifest.xml:24:15-70
 48                android:resource="@style/NormalTheme" />
-48-->F:\Academic\Level 3\Semester 1\Design Project\e_shop\android\app\src\main\AndroidManifest.xml:25:15-52
+48-->F:\Academic\Level 3\Semester 1\Design Project\motionLearn\android\app\src\main\AndroidManifest.xml:25:15-52
 49            <!--
 50                 Displays an Android View that continues showing the launch screen
 51                 Drawable until Flutter paints its first frame, then this splash
@@ -77,21 +77,21 @@
 54                 Flutter's first frame.
 55            -->
 56            <meta-data
-56-->F:\Academic\Level 3\Semester 1\Design Project\e_shop\android\app\src\main\AndroidManifest.xml:32:13-35:17
+56-->F:\Academic\Level 3\Semester 1\Design Project\motionLearn\android\app\src\main\AndroidManifest.xml:32:13-35:17
 57                android:name="io.flutter.embedding.android.SplashScreenDrawable"
-57-->F:\Academic\Level 3\Semester 1\Design Project\e_shop\android\app\src\main\AndroidManifest.xml:33:15-79
+57-->F:\Academic\Level 3\Semester 1\Design Project\motionLearn\android\app\src\main\AndroidManifest.xml:33:15-79
 58                android:resource="@drawable/launch_background" />
-58-->F:\Academic\Level 3\Semester 1\Design Project\e_shop\android\app\src\main\AndroidManifest.xml:34:15-61
+58-->F:\Academic\Level 3\Semester 1\Design Project\motionLearn\android\app\src\main\AndroidManifest.xml:34:15-61
 59
 60            <intent-filter>
-60-->F:\Academic\Level 3\Semester 1\Design Project\e_shop\android\app\src\main\AndroidManifest.xml:36:13-39:29
+60-->F:\Academic\Level 3\Semester 1\Design Project\motionLearn\android\app\src\main\AndroidManifest.xml:36:13-39:29
 61                <action android:name="android.intent.action.MAIN" />
-61-->F:\Academic\Level 3\Semester 1\Design Project\e_shop\android\app\src\main\AndroidManifest.xml:37:17-68
-61-->F:\Academic\Level 3\Semester 1\Design Project\e_shop\android\app\src\main\AndroidManifest.xml:37:25-66
+61-->F:\Academic\Level 3\Semester 1\Design Project\motionLearn\android\app\src\main\AndroidManifest.xml:37:17-68
+61-->F:\Academic\Level 3\Semester 1\Design Project\motionLearn\android\app\src\main\AndroidManifest.xml:37:25-66
 62
 63                <category android:name="android.intent.category.LAUNCHER" />
-63-->F:\Academic\Level 3\Semester 1\Design Project\e_shop\android\app\src\main\AndroidManifest.xml:38:17-76
-63-->F:\Academic\Level 3\Semester 1\Design Project\e_shop\android\app\src\main\AndroidManifest.xml:38:27-74
+63-->F:\Academic\Level 3\Semester 1\Design Project\motionLearn\android\app\src\main\AndroidManifest.xml:38:17-76
+63-->F:\Academic\Level 3\Semester 1\Design Project\motionLearn\android\app\src\main\AndroidManifest.xml:38:27-74
 64            </intent-filter>
 65        </activity>
 66        <!--
@@ -99,44 +99,44 @@
 68             This is used by the Flutter tool to generate GeneratedPluginRegistrant.java
 69        -->
 70        <meta-data
-70-->F:\Academic\Level 3\Semester 1\Design Project\e_shop\android\app\src\main\AndroidManifest.xml:43:9-45:33
+70-->F:\Academic\Level 3\Semester 1\Design Project\motionLearn\android\app\src\main\AndroidManifest.xml:43:9-45:33
 71            android:name="flutterEmbedding"
-71-->F:\Academic\Level 3\Semester 1\Design Project\e_shop\android\app\src\main\AndroidManifest.xml:44:13-44
+71-->F:\Academic\Level 3\Semester 1\Design Project\motionLearn\android\app\src\main\AndroidManifest.xml:44:13-44
 72            android:value="2" />
-72-->F:\Academic\Level 3\Semester 1\Design Project\e_shop\android\app\src\main\AndroidManifest.xml:45:13-30
+72-->F:\Academic\Level 3\Semester 1\Design Project\motionLearn\android\app\src\main\AndroidManifest.xml:45:13-30
 73
 74        <service
-74-->[:cloud_firestore] F:\Academic\Level 3\Semester 1\Design Project\e_shop\build\cloud_firestore\intermediates\library_manifest\debug\AndroidManifest.xml:8:9-12:19
+74-->[:cloud_firestore] F:\Academic\Level 3\Semester 1\Design Project\motionLearn\build\cloud_firestore\intermediates\library_manifest\debug\AndroidManifest.xml:8:9-12:19
 75            android:name="com.google.firebase.components.ComponentDiscoveryService"
-75-->[:cloud_firestore] F:\Academic\Level 3\Semester 1\Design Project\e_shop\build\cloud_firestore\intermediates\library_manifest\debug\AndroidManifest.xml:8:18-89
+75-->[:cloud_firestore] F:\Academic\Level 3\Semester 1\Design Project\motionLearn\build\cloud_firestore\intermediates\library_manifest\debug\AndroidManifest.xml:8:18-89
 76            android:directBootAware="true"
 76-->[com.google.firebase:firebase-common:19.3.0] C:\Users\Nipuna Munasinghe\.gradle\caches\transforms-2\files-2.1\c0425c0468eabf9d04670e944f043df5\jetified-firebase-common-19.3.0\AndroidManifest.xml:34:13-43
 77            android:exported="false" >
 77-->[com.google.firebase:firebase-firestore:21.3.0] C:\Users\Nipuna Munasinghe\.gradle\caches\transforms-2\files-2.1\3e04be8da688819e335968e524f1ac06\jetified-firebase-firestore-21.3.0\AndroidManifest.xml:19:13-37
 78            <meta-data
-78-->[:cloud_firestore] F:\Academic\Level 3\Semester 1\Design Project\e_shop\build\cloud_firestore\intermediates\library_manifest\debug\AndroidManifest.xml:9:13-11:85
+78-->[:cloud_firestore] F:\Academic\Level 3\Semester 1\Design Project\motionLearn\build\cloud_firestore\intermediates\library_manifest\debug\AndroidManifest.xml:9:13-11:85
 79                android:name="com.google.firebase.components:io.flutter.plugins.firebase.cloudfirestore.FlutterFirebaseAppRegistrar"
-79-->[:cloud_firestore] F:\Academic\Level 3\Semester 1\Design Project\e_shop\build\cloud_firestore\intermediates\library_manifest\debug\AndroidManifest.xml:10:17-133
+79-->[:cloud_firestore] F:\Academic\Level 3\Semester 1\Design Project\motionLearn\build\cloud_firestore\intermediates\library_manifest\debug\AndroidManifest.xml:10:17-133
 80                android:value="com.google.firebase.components.ComponentRegistrar" />
-80-->[:cloud_firestore] F:\Academic\Level 3\Semester 1\Design Project\e_shop\build\cloud_firestore\intermediates\library_manifest\debug\AndroidManifest.xml:11:17-82
+80-->[:cloud_firestore] F:\Academic\Level 3\Semester 1\Design Project\motionLearn\build\cloud_firestore\intermediates\library_manifest\debug\AndroidManifest.xml:11:17-82
 81            <meta-data
-81-->[:firebase_auth] F:\Academic\Level 3\Semester 1\Design Project\e_shop\build\firebase_auth\intermediates\library_manifest\debug\AndroidManifest.xml:9:13-11:85
+81-->[:firebase_auth] F:\Academic\Level 3\Semester 1\Design Project\motionLearn\build\firebase_auth\intermediates\library_manifest\debug\AndroidManifest.xml:9:13-11:85
 82                android:name="com.google.firebase.components:io.flutter.plugins.firebaseauth.FlutterFirebaseAppRegistrar"
-82-->[:firebase_auth] F:\Academic\Level 3\Semester 1\Design Project\e_shop\build\firebase_auth\intermediates\library_manifest\debug\AndroidManifest.xml:10:17-122
+82-->[:firebase_auth] F:\Academic\Level 3\Semester 1\Design Project\motionLearn\build\firebase_auth\intermediates\library_manifest\debug\AndroidManifest.xml:10:17-122
 83                android:value="com.google.firebase.components.ComponentRegistrar" />
-83-->[:firebase_auth] F:\Academic\Level 3\Semester 1\Design Project\e_shop\build\firebase_auth\intermediates\library_manifest\debug\AndroidManifest.xml:11:17-82
+83-->[:firebase_auth] F:\Academic\Level 3\Semester 1\Design Project\motionLearn\build\firebase_auth\intermediates\library_manifest\debug\AndroidManifest.xml:11:17-82
 84            <meta-data
-84-->[:firebase_storage] F:\Academic\Level 3\Semester 1\Design Project\e_shop\build\firebase_storage\intermediates\library_manifest\debug\AndroidManifest.xml:9:13-11:85
+84-->[:firebase_storage] F:\Academic\Level 3\Semester 1\Design Project\motionLearn\build\firebase_storage\intermediates\library_manifest\debug\AndroidManifest.xml:9:13-11:85
 85                android:name="com.google.firebase.components:io.flutter.plugins.firebase.storage.FlutterFirebaseAppRegistrar"
-85-->[:firebase_storage] F:\Academic\Level 3\Semester 1\Design Project\e_shop\build\firebase_storage\intermediates\library_manifest\debug\AndroidManifest.xml:10:17-126
+85-->[:firebase_storage] F:\Academic\Level 3\Semester 1\Design Project\motionLearn\build\firebase_storage\intermediates\library_manifest\debug\AndroidManifest.xml:10:17-126
 86                android:value="com.google.firebase.components.ComponentRegistrar" />
-86-->[:firebase_storage] F:\Academic\Level 3\Semester 1\Design Project\e_shop\build\firebase_storage\intermediates\library_manifest\debug\AndroidManifest.xml:11:17-82
+86-->[:firebase_storage] F:\Academic\Level 3\Semester 1\Design Project\motionLearn\build\firebase_storage\intermediates\library_manifest\debug\AndroidManifest.xml:11:17-82
 87            <meta-data
-87-->[:firebase_core] F:\Academic\Level 3\Semester 1\Design Project\e_shop\build\firebase_core\intermediates\library_manifest\debug\AndroidManifest.xml:9:13-11:85
+87-->[:firebase_core] F:\Academic\Level 3\Semester 1\Design Project\motionLearn\build\firebase_core\intermediates\library_manifest\debug\AndroidManifest.xml:9:13-11:85
 88                android:name="com.google.firebase.components:io.flutter.plugins.firebase.core.FlutterFirebaseAppRegistrar"
-88-->[:firebase_core] F:\Academic\Level 3\Semester 1\Design Project\e_shop\build\firebase_core\intermediates\library_manifest\debug\AndroidManifest.xml:10:17-123
+88-->[:firebase_core] F:\Academic\Level 3\Semester 1\Design Project\motionLearn\build\firebase_core\intermediates\library_manifest\debug\AndroidManifest.xml:10:17-123
 89                android:value="com.google.firebase.components.ComponentRegistrar" />
-89-->[:firebase_core] F:\Academic\Level 3\Semester 1\Design Project\e_shop\build\firebase_core\intermediates\library_manifest\debug\AndroidManifest.xml:11:17-82
+89-->[:firebase_core] F:\Academic\Level 3\Semester 1\Design Project\motionLearn\build\firebase_core\intermediates\library_manifest\debug\AndroidManifest.xml:11:17-82
 90            <meta-data
 90-->[com.google.firebase:firebase-firestore:21.3.0] C:\Users\Nipuna Munasinghe\.gradle\caches\transforms-2\files-2.1\3e04be8da688819e335968e524f1ac06\jetified-firebase-firestore-21.3.0\AndroidManifest.xml:20:13-22:85
 91                android:name="com.google.firebase.components:com.google.firebase.firestore.FirestoreRegistrar"
@@ -158,21 +158,21 @@
 99        </service>
 100
 101        <provider
-101-->[:image_picker] F:\Academic\Level 3\Semester 1\Design Project\e_shop\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:11:9-19:20
+101-->[:image_picker] F:\Academic\Level 3\Semester 1\Design Project\motionLearn\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:11:9-19:20
 102            android:name="io.flutter.plugins.imagepicker.ImagePickerFileProvider"
-102-->[:image_picker] F:\Academic\Level 3\Semester 1\Design Project\e_shop\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:12:13-82
+102-->[:image_picker] F:\Academic\Level 3\Semester 1\Design Project\motionLearn\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:12:13-82
 103            android:authorities="com.nipunamu.motionlearn.flutter.image_provider"
-103-->[:image_picker] F:\Academic\Level 3\Semester 1\Design Project\e_shop\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:13:13-74
+103-->[:image_picker] F:\Academic\Level 3\Semester 1\Design Project\motionLearn\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:13:13-74
 104            android:exported="false"
-104-->[:image_picker] F:\Academic\Level 3\Semester 1\Design Project\e_shop\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:14:13-37
+104-->[:image_picker] F:\Academic\Level 3\Semester 1\Design Project\motionLearn\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:14:13-37
 105            android:grantUriPermissions="true" >
-105-->[:image_picker] F:\Academic\Level 3\Semester 1\Design Project\e_shop\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:15:13-47
+105-->[:image_picker] F:\Academic\Level 3\Semester 1\Design Project\motionLearn\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:15:13-47
 106            <meta-data
-106-->[:image_picker] F:\Academic\Level 3\Semester 1\Design Project\e_shop\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:16:13-18:75
+106-->[:image_picker] F:\Academic\Level 3\Semester 1\Design Project\motionLearn\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:16:13-18:75
 107                android:name="android.support.FILE_PROVIDER_PATHS"
-107-->[:image_picker] F:\Academic\Level 3\Semester 1\Design Project\e_shop\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:17:17-67
+107-->[:image_picker] F:\Academic\Level 3\Semester 1\Design Project\motionLearn\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:17:17-67
 108                android:resource="@xml/flutter_image_picker_file_paths" />
-108-->[:image_picker] F:\Academic\Level 3\Semester 1\Design Project\e_shop\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:18:17-72
+108-->[:image_picker] F:\Academic\Level 3\Semester 1\Design Project\motionLearn\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:18:17-72
 109        </provider>
 110
 111        <activity

@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "F:\\Academic\\Level 3\\Semester 1\\Design Project\\e_shop\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values\\values.xml",
+            "outputFile": "F:\\Academic\\Level 3\\Semester 1\\Design Project\\motionLearn\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values\\values.xml",
             "map": [
                 {
                     "source": "C:\\Users\\Nipuna Munasinghe\\.gradle\\caches\\transforms-2\\files-2.1\\b608c3d8537f54a7ed8ad86b3bfe3664\\core-1.1.0\\res\\values\\values.xml",
@@ -40,23 +40,6 @@
                     }
                 },
                 {
-                    "source": "F:\\Academic\\Level 3\\Semester 1\\Design Project\\e_shop\\build\\app\\generated\\res\\google-services\\debug\\values\\values.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8",
-                        "startColumns": "4,4,4,4,4,4,4",
-                        "startOffsets": "55,199,281,385,494,614,710",
-                        "endColumns": "143,81,103,108,119,95,72",
-                        "endOffsets": "194,276,380,489,609,705,778"
-                    },
-                    "to": {
-                        "startLines": "104,105,106,107,108,109,110",
-                        "startColumns": "4,4,4,4,4,4,4",
-                        "startOffsets": "7730,7874,7956,8060,8169,8289,8385",
-                        "endColumns": "143,81,103,108,119,95,72",
-                        "endOffsets": "7869,7951,8055,8164,8284,8380,8453"
-                    }
-                },
-                {
                     "source": "C:\\Users\\Nipuna Munasinghe\\.gradle\\caches\\transforms-2\\files-2.1\\fe53dd02fea6f00fc0146f74a725f819\\play-services-base-17.1.0\\res\\values\\values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,33,46",
@@ -76,7 +59,7 @@
                     }
                 },
                 {
-                    "source": "F:\\Academic\\Level 3\\Semester 1\\Design Project\\e_shop\\android\\app\\src\\main\\res\\values\\styles.xml",
+                    "source": "F:\\Academic\\Level 3\\Semester 1\\Design Project\\motionLearn\\android\\app\\src\\main\\res\\values\\styles.xml",
                     "from": {
                         "startLines": "3,14",
                         "startColumns": "4,4",
@@ -92,6 +75,23 @@
                         "endLines": "116,119",
                         "endColumns": "12,12",
                         "endOffsets": "8821,8986"
+                    }
+                },
+                {
+                    "source": "F:\\Academic\\Level 3\\Semester 1\\Design Project\\motionLearn\\build\\app\\generated\\res\\google-services\\debug\\values\\values.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8",
+                        "startColumns": "4,4,4,4,4,4,4",
+                        "startOffsets": "55,199,281,385,494,614,710",
+                        "endColumns": "143,81,103,108,119,95,72",
+                        "endOffsets": "194,276,380,489,609,705,778"
+                    },
+                    "to": {
+                        "startLines": "104,105,106,107,108,109,110",
+                        "startColumns": "4,4,4,4,4,4,4",
+                        "startOffsets": "7730,7874,7956,8060,8169,8289,8385",
+                        "endColumns": "143,81,103,108,119,95,72",
+                        "endOffsets": "7869,7951,8055,8164,8284,8380,8453"
                     }
                 }
             ]
