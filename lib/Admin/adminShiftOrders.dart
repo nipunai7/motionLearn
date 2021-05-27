@@ -15,7 +15,10 @@ class AdminShiftOrders extends StatefulWidget {
 class _MyOrdersState extends State<AdminShiftOrders> {
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Admin Shift Orders"),
+      ),
     );
   }
 }
