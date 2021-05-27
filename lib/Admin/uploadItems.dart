@@ -190,13 +190,13 @@ class _UploadPageState extends State<UploadPage>
         ),
         leading: IconButton(
           icon: Icon(Icons.arrow_back,color: Colors.white,),
-          onPressed: clearForm(),
+          onPressed: clearForm,
         ),
         title: Text("Add New Tutorial",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 24.0),),
         actions: [
           TextButton(
-              onPressed: () => print("Added"),
-              child: Text("Add",style: TextStyle(color: Colors.deepPurple,fontWeight: FontWeight.bold,fontSize: 16.0),))
+              onPressed: uploading ? null : () => uploadDataToFirebase(),
+              child: Text("Add",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 16.0),))
         ],
       ),
       body: ListView(
@@ -329,6 +329,65 @@ class _UploadPageState extends State<UploadPage>
   }
 
   clearForm(){
+    setState(() {
+      file = null;
+      descriptionText.clear();
+      shortText.clear();
+      priceText.clear();
+      titleText.clear();
+    });
+  }
 
+  uploadDataToFirebase() async{
+    setState(() {
+      uploading = true;
+    });
+
+   String imgdownUrl1 = await uploadImage1(file);
+   String imgdownUrl2 = await uploadImage2(file2);
+   
+   saveItemInfo(imgdownUrl1,imgdownUrl2);
+  }
+
+  Future<String> uploadImage1(image1) async{
+    final StorageReference storageReference = FirebaseStorage.instance.ref().child("Items");
+    StorageUploadTask uploadTask1 = storageReference.child("frontpic_$tuteID.jpg").putFile(image1);
+    StorageTaskSnapshot taskSnapshot1 = await uploadTask1.onComplete;
+    String downloadUrl1 = await taskSnapshot1.ref.getDownloadURL();
+
+    return downloadUrl1;
+  }
+
+  Future<String> uploadImage2(image2) async{
+    final StorageReference storageReference = FirebaseStorage.instance.ref().child("Items");
+    StorageUploadTask uploadTask2 = storageReference.child("tutorial_$tuteID.mp4").putFile(image2);
+    StorageTaskSnapshot taskSnapshot2 = await uploadTask2.onComplete;
+    String downloadUrl2 = await taskSnapshot2.ref.getDownloadURL();
+
+    return downloadUrl2;
+  }
+
+  saveItemInfo(String downUrl1,String downUrl2){
+    final itemsRef = Firestore.instance.collection("Items");
+    itemsRef.document(tuteID).setData({
+      "shortInfo": shortText.text.trim(),
+      "price": priceText.text.trim(),
+      "title": titleText.text.trim(),
+      "longDescription": descriptionText.text.trim(),
+      "thumbnailUrl": downUrl1,
+      "tutorial": downUrl2,
+      "status":"available",
+      "publishedDate":DateTime.now(),
+    });
+
+    setState(() {
+      file = null;
+      uploading = false;
+      tuteID = DateTime.now().millisecondsSinceEpoch.toString();
+      titleText.clear();
+      priceText.clear();
+      shortText.clear();
+      descriptionText.clear();
+    });
   }
 }
