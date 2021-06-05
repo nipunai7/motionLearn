@@ -10,7 +10,7 @@ dependencies:
   flutter:
     sdk: flutter
 
-  cupertino_icons: ^0.1.2
+  cupertino_icons: ^1.0.3
   cloud_firestore: ^0.13.2+1
   firebase_auth: ^0.15.4
   shared_preferences: ^0.5.6+1
@@ -18,10 +18,18 @@ dependencies:
   image_picker: ^0.6.3+1
   firebase_storage: ^3.1.1
   flutter_staggered_grid_view: ^0.3.0
-  provider: ^4.0.4
+  provider: ^5.0.0
   path_provider: ^0.5.0+1
   image: ^2.0.7
   intl:
+  video_player: ^2.1.4
+  chewie: ^1.2.0
+  paypal: ^0.0.4
+  #flutter_braintree: ^1.2.1
+  http_auth: ^1.0.0
+  webview_flutter: ^2.0.8
+  pdf: ^2.1.0
+
 
 
 dev_dependencies:
@@ -42,6 +50,7 @@ flutter:
     - images/admin.png
     - images/cash.png
     - images/test.png
+    - images/R3HAB - Ones You Miss (Official Music Video).mp4
 
 
 

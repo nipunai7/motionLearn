@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:e_shop/Address/address.dart';
 import 'package:e_shop/Counters/BookQuantity.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -27,13 +28,22 @@ Future<void> main() async {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        title: 'e-Shop',
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          primaryColor: Colors.green,
+    return MultiProvider(
+        providers: [
+          ChangeNotifierProvider(create: (c) => CartItemCounter()),
+          ChangeNotifierProvider(create: (c) => BookQuantity()),
+          ChangeNotifierProvider(create: (c) => AddressChanger()),
+          ChangeNotifierProvider(create: (c) => TotalAmount()),
+        ],
+        child: MaterialApp(
+            title: 'Motion Learn',
+            debugShowCheckedModeBanner: false,
+            theme: ThemeData(
+              primaryColor: Colors.green,
+            ),
+            home: SplashScreen()
         ),
-        home: SplashScreen());
+    );
   }
 }
 
@@ -82,7 +92,7 @@ class _SplashScreenState extends State<SplashScreen> {
             children: [
               Image.asset("images/test.png"),
               SizedBox(height: 20.0,),
-              Text("Motion Learn", style: TextStyle(color: Colors.deepPurple,fontSize: 30,),),
+              Text("Motion Learn", style: TextStyle(color: Colors.deepPurple,fontSize: 50,fontFamily: "Signatra"),),
             ],
           ),
         ),

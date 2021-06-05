@@ -371,7 +371,7 @@ class _UploadPageState extends State<UploadPage>
     final itemsRef = Firestore.instance.collection("Items");
     itemsRef.document(tuteID).setData({
       "shortInfo": shortText.text.trim(),
-      "price": priceText.text.trim(),
+      "price": int.parse(priceText.text),
       "title": titleText.text.trim(),
       "longDescription": descriptionText.text.trim(),
       "thumbnailUrl": downUrl1,

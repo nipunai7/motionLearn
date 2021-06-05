@@ -1,4 +1,0 @@
-# Referenced at F:\Academic\Level 3\Semester 1\Design Project\e_shop\build\app\intermediates\merged_manifests\release\AndroidManifest.xml:23
--keep class androidx.core.app.CoreComponentFactory { <init>(); }
-# Referenced at F:\Academic\Level 3\Semester 1\Design Project\e_shop\build\app\intermediates\merged_manifests\release\AndroidManifest.xml:23
--keep class io.flutter.app.FlutterApplication { <init>(); }

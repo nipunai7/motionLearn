@@ -5,7 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class EcommerceApp
 {
-   static const String appName = 'e-Shop';
+   static const String appName = 'Motion Learn';
 
    static SharedPreferences sharedPreferences;
    static FirebaseUser user;
@@ -23,6 +23,7 @@ class EcommerceApp
    static final String userUID = 'uid';
    static final String userAvatarUrl = 'url';
    static final String userPackage = 'userpkg';
+   static final String items = 'items';
 
    static final String addressID = 'addressID';
    static final String totalAmount = 'totalAmount';
@@ -30,5 +31,6 @@ class EcommerceApp
    static final String paymentDetails ='paymentDetails';
    static final String orderTime ='orderTime';
    static final String isSuccess ='isSuccess';
+   static final String itemUsers = 'itemUsers';
 
 }

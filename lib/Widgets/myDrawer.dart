@@ -12,6 +12,8 @@ class MyDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
+      child: Container(
+        color: Colors.deepPurple,
       child: ListView(
         children: [
           Container(
@@ -47,6 +49,7 @@ class MyDrawer extends StatelessWidget {
             ),
             child: Column(
               children: [
+                Divider(height: 10.0,color: Colors.white,thickness: 6.0,),
                 ListTile(
                   leading: Icon(Icons.home,color: Colors.white,),
                   title: Text("Home",style: TextStyle(color: Colors.white),),
@@ -96,8 +99,10 @@ class MyDrawer extends StatelessWidget {
                 Divider(height: 10.0,color: Colors.white,thickness: 6.0,),
               ],
             ),
-          )
+          ),
+
         ],
+      ),
       ),
     );
   }
