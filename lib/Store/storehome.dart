@@ -25,8 +25,7 @@ class _StoreHomeState extends State<StoreHome> {
   @override
   Widget build(BuildContext context) {
     width = MediaQuery.of(context).size.width;
-    return SafeArea(
-      child: Scaffold(
+    return Scaffold(
       appBar: MyAppBar(),
         drawer: MyDrawer(),
         body: CustomScrollView(
@@ -52,7 +51,6 @@ class _StoreHomeState extends State<StoreHome> {
             )
           ],
         )
-      ),
     );
   }
 }

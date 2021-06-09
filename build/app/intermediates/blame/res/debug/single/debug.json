@@ -12,6 +12,10 @@
         "source": "C:\\Users\\Nipuna Munasinghe\\.gradle\\caches\\transforms-2\\files-2.1\\b608c3d8537f54a7ed8ad86b3bfe3664\\core-1.1.0\\res\\drawable\\notification_bg_low.xml"
     },
     {
+        "merged": "F:\\Academic\\Level 3\\Semester 1\\Design Project\\motionLearn\\build\\app\\intermediates\\res\\merged\\debug\\layout_notification_template_big_media_narrow_custom.xml.flat",
+        "source": "C:\\Users\\Nipuna Munasinghe\\.gradle\\caches\\transforms-2\\files-2.1\\6526590a212bd1875ca06c176dfa4521\\media-1.0.0\\res\\layout\\notification_template_big_media_narrow_custom.xml"
+    },
+    {
         "merged": "F:\\Academic\\Level 3\\Semester 1\\Design Project\\motionLearn\\build\\app\\intermediates\\res\\merged\\debug\\drawable_notification_icon_background.xml.flat",
         "source": "C:\\Users\\Nipuna Munasinghe\\.gradle\\caches\\transforms-2\\files-2.1\\b608c3d8537f54a7ed8ad86b3bfe3664\\core-1.1.0\\res\\drawable\\notification_icon_background.xml"
     },
@@ -26,6 +30,10 @@
     {
         "merged": "F:\\Academic\\Level 3\\Semester 1\\Design Project\\motionLearn\\build\\app\\intermediates\\res\\merged\\debug\\drawable-v21_notification_action_background.xml.flat",
         "source": "C:\\Users\\Nipuna Munasinghe\\.gradle\\caches\\transforms-2\\files-2.1\\b608c3d8537f54a7ed8ad86b3bfe3664\\core-1.1.0\\res\\drawable-v21\\notification_action_background.xml"
+    },
+    {
+        "merged": "F:\\Academic\\Level 3\\Semester 1\\Design Project\\motionLearn\\build\\app\\intermediates\\res\\merged\\debug\\layout_notification_template_big_media_custom.xml.flat",
+        "source": "C:\\Users\\Nipuna Munasinghe\\.gradle\\caches\\transforms-2\\files-2.1\\6526590a212bd1875ca06c176dfa4521\\media-1.0.0\\res\\layout\\notification_template_big_media_custom.xml"
     },
     {
         "merged": "F:\\Academic\\Level 3\\Semester 1\\Design Project\\motionLearn\\build\\app\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_common_google_signin_btn_text_light_normal_background.9.png.flat",
@@ -60,6 +68,10 @@
         "source": "C:\\Users\\Nipuna Munasinghe\\.gradle\\caches\\transforms-2\\files-2.1\\fe53dd02fea6f00fc0146f74a725f819\\play-services-base-17.1.0\\res\\drawable-mdpi-v4\\googleg_disabled_color_18.png"
     },
     {
+        "merged": "F:\\Academic\\Level 3\\Semester 1\\Design Project\\motionLearn\\build\\app\\intermediates\\res\\merged\\debug\\xml_filepaths.xml.flat",
+        "source": "F:\\Academic\\Level 3\\Semester 1\\Design Project\\motionLearn\\build\\open_file\\intermediates\\packaged_res\\debug\\xml\\filepaths.xml"
+    },
+    {
         "merged": "F:\\Academic\\Level 3\\Semester 1\\Design Project\\motionLearn\\build\\app\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_googleg_standard_color_18.png.flat",
         "source": "C:\\Users\\Nipuna Munasinghe\\.gradle\\caches\\transforms-2\\files-2.1\\fe53dd02fea6f00fc0146f74a725f819\\play-services-base-17.1.0\\res\\drawable-hdpi-v4\\googleg_standard_color_18.png"
     },
@@ -84,12 +96,24 @@
         "source": "C:\\Users\\Nipuna Munasinghe\\.gradle\\caches\\transforms-2\\files-2.1\\b608c3d8537f54a7ed8ad86b3bfe3664\\core-1.1.0\\res\\layout\\notification_template_part_time.xml"
     },
     {
+        "merged": "F:\\Academic\\Level 3\\Semester 1\\Design Project\\motionLearn\\build\\app\\intermediates\\res\\merged\\debug\\layout_notification_template_big_media.xml.flat",
+        "source": "C:\\Users\\Nipuna Munasinghe\\.gradle\\caches\\transforms-2\\files-2.1\\6526590a212bd1875ca06c176dfa4521\\media-1.0.0\\res\\layout\\notification_template_big_media.xml"
+    },
+    {
         "merged": "F:\\Academic\\Level 3\\Semester 1\\Design Project\\motionLearn\\build\\app\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi_ic_launcher.png.flat",
         "source": "F:\\Academic\\Level 3\\Semester 1\\Design Project\\motionLearn\\android\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher.png"
     },
     {
         "merged": "F:\\Academic\\Level 3\\Semester 1\\Design Project\\motionLearn\\build\\app\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_common_google_signin_btn_icon_dark_normal_background.9.png.flat",
         "source": "C:\\Users\\Nipuna Munasinghe\\.gradle\\caches\\transforms-2\\files-2.1\\fe53dd02fea6f00fc0146f74a725f819\\play-services-base-17.1.0\\res\\drawable-xxhdpi-v4\\common_google_signin_btn_icon_dark_normal_background.9.png"
+    },
+    {
+        "merged": "F:\\Academic\\Level 3\\Semester 1\\Design Project\\motionLearn\\build\\app\\intermediates\\res\\merged\\debug\\layout_notification_media_action.xml.flat",
+        "source": "C:\\Users\\Nipuna Munasinghe\\.gradle\\caches\\transforms-2\\files-2.1\\6526590a212bd1875ca06c176dfa4521\\media-1.0.0\\res\\layout\\notification_media_action.xml"
+    },
+    {
+        "merged": "F:\\Academic\\Level 3\\Semester 1\\Design Project\\motionLearn\\build\\app\\intermediates\\res\\merged\\debug\\layout_notification_template_media_custom.xml.flat",
+        "source": "C:\\Users\\Nipuna Munasinghe\\.gradle\\caches\\transforms-2\\files-2.1\\6526590a212bd1875ca06c176dfa4521\\media-1.0.0\\res\\layout\\notification_template_media_custom.xml"
     },
     {
         "merged": "F:\\Academic\\Level 3\\Semester 1\\Design Project\\motionLearn\\build\\app\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_common_full_open_on_phone.png.flat",
@@ -136,6 +160,10 @@
         "source": "C:\\Users\\Nipuna Munasinghe\\.gradle\\caches\\transforms-2\\files-2.1\\fe53dd02fea6f00fc0146f74a725f819\\play-services-base-17.1.0\\res\\drawable-xhdpi-v4\\googleg_standard_color_18.png"
     },
     {
+        "merged": "F:\\Academic\\Level 3\\Semester 1\\Design Project\\motionLearn\\build\\app\\intermediates\\res\\merged\\debug\\layout_notification_media_cancel_action.xml.flat",
+        "source": "C:\\Users\\Nipuna Munasinghe\\.gradle\\caches\\transforms-2\\files-2.1\\6526590a212bd1875ca06c176dfa4521\\media-1.0.0\\res\\layout\\notification_media_cancel_action.xml"
+    },
+    {
         "merged": "F:\\Academic\\Level 3\\Semester 1\\Design Project\\motionLearn\\build\\app\\intermediates\\res\\merged\\debug\\drawable_notification_bg.xml.flat",
         "source": "C:\\Users\\Nipuna Munasinghe\\.gradle\\caches\\transforms-2\\files-2.1\\b608c3d8537f54a7ed8ad86b3bfe3664\\core-1.1.0\\res\\drawable\\notification_bg.xml"
     },
@@ -168,6 +196,10 @@
         "source": "C:\\Users\\Nipuna Munasinghe\\.gradle\\caches\\transforms-2\\files-2.1\\fe53dd02fea6f00fc0146f74a725f819\\play-services-base-17.1.0\\res\\drawable-mdpi-v4\\common_google_signin_btn_icon_light_normal_background.9.png"
     },
     {
+        "merged": "F:\\Academic\\Level 3\\Semester 1\\Design Project\\motionLearn\\build\\app\\intermediates\\res\\merged\\debug\\layout_notification_template_big_media_narrow.xml.flat",
+        "source": "C:\\Users\\Nipuna Munasinghe\\.gradle\\caches\\transforms-2\\files-2.1\\6526590a212bd1875ca06c176dfa4521\\media-1.0.0\\res\\layout\\notification_template_big_media_narrow.xml"
+    },
+    {
         "merged": "F:\\Academic\\Level 3\\Semester 1\\Design Project\\motionLearn\\build\\app\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_notification_bg_normal_pressed.9.png.flat",
         "source": "C:\\Users\\Nipuna Munasinghe\\.gradle\\caches\\transforms-2\\files-2.1\\b608c3d8537f54a7ed8ad86b3bfe3664\\core-1.1.0\\res\\drawable-hdpi-v4\\notification_bg_normal_pressed.9.png"
     },
@@ -176,12 +208,12 @@
         "source": "C:\\Users\\Nipuna Munasinghe\\.gradle\\caches\\transforms-2\\files-2.1\\b608c3d8537f54a7ed8ad86b3bfe3664\\core-1.1.0\\res\\drawable-hdpi-v4\\notification_bg_low_normal.9.png"
     },
     {
-        "merged": "F:\\Academic\\Level 3\\Semester 1\\Design Project\\motionLearn\\build\\app\\intermediates\\res\\merged\\debug\\drawable_common_google_signin_btn_icon_dark_focused.xml.flat",
-        "source": "C:\\Users\\Nipuna Munasinghe\\.gradle\\caches\\transforms-2\\files-2.1\\fe53dd02fea6f00fc0146f74a725f819\\play-services-base-17.1.0\\res\\drawable\\common_google_signin_btn_icon_dark_focused.xml"
-    },
-    {
         "merged": "F:\\Academic\\Level 3\\Semester 1\\Design Project\\motionLearn\\build\\app\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_notification_bg_normal.9.png.flat",
         "source": "C:\\Users\\Nipuna Munasinghe\\.gradle\\caches\\transforms-2\\files-2.1\\b608c3d8537f54a7ed8ad86b3bfe3664\\core-1.1.0\\res\\drawable-xhdpi-v4\\notification_bg_normal.9.png"
+    },
+    {
+        "merged": "F:\\Academic\\Level 3\\Semester 1\\Design Project\\motionLearn\\build\\app\\intermediates\\res\\merged\\debug\\drawable_common_google_signin_btn_icon_dark_focused.xml.flat",
+        "source": "C:\\Users\\Nipuna Munasinghe\\.gradle\\caches\\transforms-2\\files-2.1\\fe53dd02fea6f00fc0146f74a725f819\\play-services-base-17.1.0\\res\\drawable\\common_google_signin_btn_icon_dark_focused.xml"
     },
     {
         "merged": "F:\\Academic\\Level 3\\Semester 1\\Design Project\\motionLearn\\build\\app\\intermediates\\res\\merged\\debug\\layout_custom_dialog.xml.flat",
@@ -244,6 +276,10 @@
         "source": "C:\\Users\\Nipuna Munasinghe\\.gradle\\caches\\transforms-2\\files-2.1\\fe53dd02fea6f00fc0146f74a725f819\\play-services-base-17.1.0\\res\\color\\common_google_signin_btn_text_dark.xml"
     },
     {
+        "merged": "F:\\Academic\\Level 3\\Semester 1\\Design Project\\motionLearn\\build\\app\\intermediates\\res\\merged\\debug\\layout_notification_template_lines_media.xml.flat",
+        "source": "C:\\Users\\Nipuna Munasinghe\\.gradle\\caches\\transforms-2\\files-2.1\\6526590a212bd1875ca06c176dfa4521\\media-1.0.0\\res\\layout\\notification_template_lines_media.xml"
+    },
+    {
         "merged": "F:\\Academic\\Level 3\\Semester 1\\Design Project\\motionLearn\\build\\app\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_notification_bg_low_pressed.9.png.flat",
         "source": "C:\\Users\\Nipuna Munasinghe\\.gradle\\caches\\transforms-2\\files-2.1\\b608c3d8537f54a7ed8ad86b3bfe3664\\core-1.1.0\\res\\drawable-mdpi-v4\\notification_bg_low_pressed.9.png"
     },
@@ -290,6 +326,10 @@
     {
         "merged": "F:\\Academic\\Level 3\\Semester 1\\Design Project\\motionLearn\\build\\app\\intermediates\\res\\merged\\debug\\drawable_toast_bg.xml.flat",
         "source": "F:\\Academic\\Level 3\\Semester 1\\Design Project\\motionLearn\\build\\fluttertoast\\intermediates\\packaged_res\\debug\\drawable\\toast_bg.xml"
+    },
+    {
+        "merged": "F:\\Academic\\Level 3\\Semester 1\\Design Project\\motionLearn\\build\\app\\intermediates\\res\\merged\\debug\\layout_notification_template_media.xml.flat",
+        "source": "C:\\Users\\Nipuna Munasinghe\\.gradle\\caches\\transforms-2\\files-2.1\\6526590a212bd1875ca06c176dfa4521\\media-1.0.0\\res\\layout\\notification_template_media.xml"
     },
     {
         "merged": "F:\\Academic\\Level 3\\Semester 1\\Design Project\\motionLearn\\build\\app\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_common_full_open_on_phone.png.flat",

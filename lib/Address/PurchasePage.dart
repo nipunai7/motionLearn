@@ -1,5 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:e_shop/Config/config.dart';
+import 'package:e_shop/PDF/api/pdf_api.dart';
+import 'package:e_shop/PDF/api/pdf_invoice_api.dart';
+import 'package:e_shop/PDF/model/customer.dart';
+import 'package:e_shop/PDF/model/invoice.dart';
+import 'package:e_shop/PDF/model/supplier.dart';
+import 'package:e_shop/PDF/page/pdf_page.dart';
 import 'package:e_shop/Store/cart.dart';
 import 'package:e_shop/Widgets/customAppBar.dart';
 import 'package:e_shop/Widgets/loadingWidget.dart';
@@ -7,6 +13,7 @@ import 'package:e_shop/Models/item.dart';
 import 'package:e_shop/Counters/cartitemcounter.dart';
 import 'package:e_shop/Counters/totalMoney.dart';
 import 'package:e_shop/Widgets/myDrawer.dart';
+import 'package:e_shop/main.dart';
 import 'dart:async'
 ;import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
@@ -15,15 +22,19 @@ import 'package:e_shop/Store/storehome.dart';
 import 'package:provider/provider.dart';
 
 class PurchasePage extends StatefulWidget {
+
+  final double totalAmount;
+
+  PurchasePage({Key key,this.totalAmount,}) : super (key: key);
+
   @override
   _PurchasePageState createState() => _PurchasePageState();
 }
 
 class _PurchasePageState extends State<PurchasePage> {
 
-
-  double totalAmount;
   List itemInfo = [];
+  double totalAmount2;
 
 
   Widget build(BuildContext context) {
@@ -36,8 +47,8 @@ class _PurchasePageState extends State<PurchasePage> {
       child:Scaffold(
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
-          Fluttertoast.showToast(msg: "Items purchased");
-          removeItems();
+          addOrderDetails();
+          createInvoice();
         },
         icon: Icon(Icons.confirmation_number),
         label: Text("Confirm Purchase", style: TextStyle(color: Colors.white),),
@@ -79,15 +90,15 @@ class _PurchasePageState extends State<PurchasePage> {
                     (context, index){
                   ItemModel model = ItemModel.fromJson(snapshot.data.documents[index].data);
                   if (index==0){
-                    totalAmount = 0;
-                    totalAmount = model.price + totalAmount;
+                    totalAmount2 = 0;
+                    totalAmount2 = model.price + totalAmount2;
                   }else{
-                    totalAmount = model.price+totalAmount;
+                    totalAmount2 = model.price+totalAmount2;
                   }
 
                   if(snapshot.data.documents.length-1 == index){
                     WidgetsBinding.instance.addPostFrameCallback((t) {
-                      Provider.of<TotalAmount>(context, listen: false).displayResult(totalAmount);
+                      Provider.of<TotalAmount>(context, listen: false).displayResult(totalAmount2);
                     });
                   }
                   return sorceInfo2(model, context);
@@ -134,54 +145,143 @@ class _PurchasePageState extends State<PurchasePage> {
     );
   }
 
-  removeItem(String shortId){
-    List tempList = EcommerceApp.sharedPreferences.getStringList(EcommerceApp.userCartList);
-    tempList.remove(shortId);
-
-    EcommerceApp.firestore.collection(EcommerceApp.collectionUser).document(EcommerceApp.sharedPreferences.getString(EcommerceApp.userUID))
-        .updateData({
-      EcommerceApp.userCartList: tempList,
-    }).then((v){
-      //Fluttertoast.showToast(msg: "Item removed from the cart");
-      EcommerceApp.sharedPreferences.setStringList(EcommerceApp.userCartList, tempList);
-      Provider.of<CartItemCounter>(context,listen: false).displayResult();
-      totalAmount = 0;
-    });
-  }
+  // removeItem(String shortId){
+  //   List tempList = EcommerceApp.sharedPreferences.getStringList(EcommerceApp.userCartList);
+  //   tempList.remove(shortId);
+  //
+  //   EcommerceApp.firestore.collection(EcommerceApp.collectionUser).document(EcommerceApp.sharedPreferences.getString(EcommerceApp.userUID))
+  //       .updateData({
+  //     EcommerceApp.userCartList: tempList,
+  //   }).then((v){
+  //     //Fluttertoast.showToast(msg: "Item removed from the cart");
+  //     EcommerceApp.sharedPreferences.setStringList(EcommerceApp.userCartList, tempList);
+  //     Provider.of<CartItemCounter>(context,listen: false).displayResult();
+  //     totalAmount = 0;
+  //   });
+  // }
 
    removeItems(){
-     //int count = -1;
       itemInfo.forEach((element) {
-       // count++;
-       // Firestore.instance.collection('users').document(EcommerceApp.sharedPreferences.getString(EcommerceApp.userUID)).updateData({'userCart': FieldValue.arrayRemove([count])}).whenComplete((){
-       // print('Field Deleted');
-       // });
-        DocumentReference df = Firestore.instance.collection('users').document(EcommerceApp.sharedPreferences.getString(EcommerceApp.userUID));
-        List list = EcommerceApp.sharedPreferences.getStringList(EcommerceApp.userCartList);
-        list.remove(element);
-        df.updateData({
-          'userCart':FieldValue.arrayRemove([element]),
-          EcommerceApp.userCartList: list,
-        });
-        EcommerceApp.sharedPreferences.setStringList(EcommerceApp.userCartList, list);
-        print (element);
+
+        // DocumentReference df = Firestore.instance.collection('users').document(EcommerceApp.sharedPreferences.getString(EcommerceApp.userUID));
+        // List list = EcommerceApp.sharedPreferences.getStringList(EcommerceApp.userCartList);
+        // list.remove(element);
+        // df.updateData({
+        //   'userCart':FieldValue.arrayRemove([element]),
+        //   EcommerceApp.userCartList: list,
+        // });
+        // EcommerceApp.sharedPreferences.setStringList(EcommerceApp.userCartList, list);
+        // print (element);
 
         DocumentReference df2 = Firestore.instance.collection('users').document(EcommerceApp.sharedPreferences.getString(EcommerceApp.userUID));
         List list2 = EcommerceApp.sharedPreferences.getStringList(EcommerceApp.items);
 
-        df.updateData({
+        df2.updateData({
           'items':FieldValue.arrayUnion([element]),
         });
         EcommerceApp.sharedPreferences.setStringList(EcommerceApp.items, list2);
         print (element);
 
+        EcommerceApp.tempPurchase.add(element);
+
       });
-      Provider.of<CartItemCounter>(context,listen: false).displayResult();
+  }
+
+  addOrderDetails(){
+    writeOrderUser({
+      EcommerceApp.totalAmount: totalAmount2,
+      "OrderBy" : EcommerceApp.sharedPreferences.getString(EcommerceApp.userUID),
+      EcommerceApp.productID: EcommerceApp.sharedPreferences.getStringList(EcommerceApp.userCartList),
+      EcommerceApp.paymentDetails: "Payment Confirmed",
+      EcommerceApp.orderTime: DateTime.now().toString(),
+      EcommerceApp.isSuccess: true,
+    });
+
+    writeOrderAdmin({
+      EcommerceApp.totalAmount: totalAmount2,
+      "OrderBy" : EcommerceApp.sharedPreferences.getString(EcommerceApp.userUID),
+      EcommerceApp.productID: EcommerceApp.sharedPreferences.getStringList(EcommerceApp.userCartList),
+      EcommerceApp.paymentDetails: "Payment Confirmed",
+      EcommerceApp.orderTime: DateTime.now().toString(),
+      EcommerceApp.isSuccess: true,
+    }).whenComplete(() => {
+      emptyCart(),
+      removeItems(),
+    });
+  }
+
+  Future writeOrderUser(Map<String, dynamic> data) async{
+    EcommerceApp.sharedPreferences.setString(EcommerceApp.latestOrder, DateTime.now().millisecondsSinceEpoch.toString()+"_order");
+    await EcommerceApp.firestore.collection(EcommerceApp.collectionUser)
+        .document(EcommerceApp.sharedPreferences.getString(EcommerceApp.userUID))
+        .collection(EcommerceApp.collectionOrders)
+        .document(EcommerceApp.sharedPreferences.getString(EcommerceApp.latestOrder)).setData(data);
+  }
+
+  Future writeOrderAdmin(Map<String, dynamic> data) async{
+    await EcommerceApp.firestore
+        .collection(EcommerceApp.collectionOrders)
+        .document(EcommerceApp.sharedPreferences.getString(EcommerceApp.latestOrder)).setData(data);
+  }
+
+  emptyCart(){
+    EcommerceApp.sharedPreferences.setStringList(EcommerceApp.userCartList, ["garbageValue"]);
+    List temp = EcommerceApp.sharedPreferences.getStringList(EcommerceApp.userCartList);
+
+    Firestore.instance.collection("users").document(EcommerceApp.sharedPreferences.getString(EcommerceApp.userUID)).updateData({
+      EcommerceApp.userCartList: temp,
+    }).then((value) {
+      EcommerceApp.sharedPreferences.setStringList(EcommerceApp.userCartList,temp);
+      Provider.of<CartItemCounter>(context, listen: false).displayResult();
+    });
+    Fluttertoast.showToast(msg: "Purchase Complete, Happy Learning !!!");
+  }
+
+  createInvoice() async{
+    final date = DateTime.now();
+    final dueDate = date.add(Duration(days: 7));
+
+    final invoice = Invoice(
+      supplier: Supplier(
+        name: 'Motion Learn Admin',
+        address: '',
+        paymentInfo: '',
+      ),
+      customer: Customer(
+        name: EcommerceApp.sharedPreferences.getString(EcommerceApp.userName),
+        address: '',
+      ),
+      info: InvoiceInfo(
+        date: date,
+        dueDate: dueDate,
+        description: "Order ID: "+EcommerceApp.sharedPreferences.getString(EcommerceApp.latestOrder),
+        number: '${DateTime.now().millisecond}-9999',
+        order: EcommerceApp.sharedPreferences.getString(EcommerceApp.latestOrder),
+      ),
+      items: [
+        InvoiceItem(
+          description: 'HOW TO SHUFFLE DANCE',
+          date: DateTime.now(),
+          quantity: 1,
+          vat: 0.19,
+          unitPrice: 120,
+        ),
+        InvoiceItem(
+          description: 'BASIC DANCE STEPS|TOUCHE',
+          date: DateTime.now(),
+          quantity: 1,
+          vat: 0.19,
+          unitPrice: 100,
+        ),
+      ],
+    );
+
+    final pdfFile = await PdfInvoiceApi.generate(invoice);
 
     Route route = MaterialPageRoute(builder: (c) => StoreHome());
     Navigator.pushReplacement(context, route);
-
-
+    Provider.of<CartItemCounter>(context, listen: false).displayResult();
+    PdfApi.openFile(pdfFile);
   }
 }
 

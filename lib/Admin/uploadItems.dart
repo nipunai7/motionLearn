@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:e_shop/Admin/adminShiftOrders.dart';
 import 'package:e_shop/Widgets/loadingWidget.dart';
+import 'package:e_shop/Widgets/myDrawer2.dart';
 import 'package:e_shop/main.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
@@ -38,20 +39,45 @@ class _UploadPageState extends State<UploadPage>
   }
 
   displayAdminHome(){
-    return Scaffold(
+    return WillPopScope(
+        onWillPop: (){
+          AlertDialog(
+            title: Text('Alert Dialog Title Text.'),
+            content: Text("Are You Sure Want To Proceed ?"),
+            actions: <Widget>[
+              TextButton(
+                child: Text("YES"),
+                onPressed: () {
+                  Route route = MaterialPageRoute(builder: (c) => SplashScreen());
+                  Navigator.pushReplacement(context, route);
+                },
+              ),
+
+              TextButton(
+                child: Text("NO"),
+                onPressed: () {
+                  //Put your code here which you want to execute on No button click.
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+    },
+      child: Scaffold(
+        drawer: MyDrawer2(),
       appBar: AppBar(
         flexibleSpace: Container(
           decoration: new BoxDecoration(
             color: Colors.deepPurple
           ),
         ),
-        leading: IconButton(
-          icon: Icon(Icons.border_color,color: Colors.white,),
-          onPressed: (){
-            Route route = MaterialPageRoute(builder: (c) => AdminShiftOrders());
-            Navigator.pushReplacement(context, route);
-          },
-        ),
+        // leading: IconButton(
+        //   icon: Icon(Icons.border_color,color: Colors.white,),
+        //   onPressed: (){
+        //     Route route = MaterialPageRoute(builder: (c) => AdminShiftOrders());
+        //     Navigator.pushReplacement(context, route);
+        //   },
+        // ),
         actions: [
           TextButton(
               child: Text("Logout",style: TextStyle(color: Colors.white,fontSize: 16.0,fontWeight: FontWeight.bold),),
@@ -63,6 +89,7 @@ class _UploadPageState extends State<UploadPage>
         ],
       ),
       body: getAdminHomeBody(),
+      )
     );
   }
   getAdminHomeBody(){

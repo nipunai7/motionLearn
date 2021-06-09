@@ -33,4 +33,9 @@ class EcommerceApp
    static final String isSuccess ='isSuccess';
    static final String itemUsers = 'itemUsers';
 
+   static final List tempPurchase=[];
+   static final String latestOrder="";
+   static final String adminName = 'adminName';
+   static final String bought='false';
+
 }

@@ -29,6 +29,8 @@ dependencies:
   http_auth: ^1.0.0
   webview_flutter: ^2.0.8
   pdf: ^2.1.0
+  open_file: ^3.2.1
+
 
 
 

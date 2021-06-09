@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:e_shop/Address/PaypalPayment.dart';
 import 'package:e_shop/Address/PurchasePage.dart';
 import 'package:e_shop/Config/config.dart';
 import 'package:e_shop/Address/address.dart';
@@ -13,7 +12,6 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:e_shop/Store/storehome.dart';
 import 'package:provider/provider.dart';
-import '../main.dart';
 
 class CartPage extends StatefulWidget {
   @override

@@ -1,5 +1,17 @@
 
 *.json
-.dart_tool/flutter_build/6acf91539302b48352b370af99ee9c36/.filecache
 *.json
 *.stamp
+*.dill
+*.class
+*.dex
+*.dex
+*.dex
+*.dex
+*.dex
+*.dex
+*.json
+*.filecache
+*.d
+
+build/app/generated

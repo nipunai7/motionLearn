@@ -60,8 +60,8 @@ class MyDrawer extends StatelessWidget {
                 ),
                 Divider(height: 10.0,color: Colors.white,thickness: 6.0,),
                 ListTile(
-                  leading: Icon(Icons.monetization_on_sharp,color: Colors.white,),
-                  title: Text("My Orders",style: TextStyle(color: Colors.white),),
+                  leading: Icon(Icons.videocam,color: Colors.white,),
+                  title: Text("My Tutorials",style: TextStyle(color: Colors.white),),
                   onTap: (){
                     Route route = MaterialPageRoute(builder: (c) => MyOrders());
                     Navigator.pushReplacement(context, route);

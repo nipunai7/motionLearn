@@ -1,8 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:e_shop/Admin/uploadItems.dart';
 import 'package:e_shop/Authentication/authenication.dart';
+import 'package:e_shop/Config/config.dart';
 import 'package:e_shop/Widgets/customTextField.dart';
 import 'package:e_shop/DialogBox/errorDialog.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -37,6 +39,7 @@ class AdminSignInScreen extends StatefulWidget {
 
 class _AdminSignInScreenState extends State<AdminSignInScreen>
 {
+
 
   final TextEditingController _passtextcontroller = TextEditingController();
   final TextEditingController _adminIDtextcontroller = TextEditingController();
@@ -134,6 +137,7 @@ class _AdminSignInScreenState extends State<AdminSignInScreen>
           Scaffold.of(context).showSnackBar(SnackBar(content: Text("Your Password is Incorrect")));
         }else{
           Scaffold.of(context).showSnackBar(SnackBar(content: Text("Welcome, "+ result.data["name"]),));
+          EcommerceApp.sharedPreferences.setString(EcommerceApp.adminName, result.data["name"]);
 
           setState(() {
             _adminIDtextcontroller.text = "";
@@ -142,6 +146,7 @@ class _AdminSignInScreenState extends State<AdminSignInScreen>
 
           Route route = MaterialPageRoute(builder: (c) => UploadPage());
           Navigator.pushReplacement(context, route);
+
         }
       });
     });

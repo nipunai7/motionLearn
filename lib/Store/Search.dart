@@ -3,6 +3,7 @@ import 'package:chewie/chewie.dart';
 import 'package:e_shop/Config/config.dart';
 import 'package:e_shop/Models/item.dart';
 import 'package:e_shop/Store/storehome.dart';
+import 'package:e_shop/Widgets/myDrawer.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:video_player/video_player.dart';
@@ -13,32 +14,84 @@ class SearchService {
 }
 
 class SearchProduct extends StatefulWidget {
-
-  final VideoPlayerController videoPlayerController;
-  final bool looping;
-
-  SearchProduct({
-    @required this.videoPlayerController,this.looping,Key key,
-  }) : super(key: key);
-
   @override
   _SearchProductState createState() => new _SearchProductState();
 }
 
 class _SearchProductState extends State<SearchProduct> {
 
+  Future<QuerySnapshot> itemList;
 
     @override
     Widget build(BuildContext context) {
-    return Scaffold(
-        body: ListView(
-          children: <Widget>[
-            ChewiListItem(
-                videoPlayerController: VideoPlayerController.network('https://flutter.github.io/assets-for-api-docs/assets/videos/butterfly.mp4',),
-            ),
-          ],
+    return WillPopScope(
+      onWillPop: () {
+        // ignore: missing_return
+        Route route = MaterialPageRoute(builder: (c) => StoreHome());
+        Navigator.pushReplacement(context, route);
+      },
+      child: Scaffold(
+        appBar: MyAppBar(bottom: PreferredSize(child: searchWidget(),preferredSize: Size(56.0,56.0)),),
+        drawer: MyDrawer(),
+        body: FutureBuilder<QuerySnapshot>(
+          future: itemList,
+          builder: (context, snap){
+            return snap.hasData
+                ? ListView.builder(
+                itemBuilder: (context, index){
+                  ItemModel model = ItemModel.fromJson(snap.data.documents[index].data);
+                  return sourceInfo(model, context);
+                },
+                itemCount: snap.data.documents.length,
+            )
+                : Text("No product available");
+          },
         ),
+
+      ),
+
     );
   }
+   Widget searchWidget(){
+      return Container(
+        alignment: Alignment.center,
+        width: MediaQuery.of(context).size.width,
+        height: 80.0,
+        color: Colors.deepPurple,
+        child: Container(
+          width: MediaQuery.of(context).size.width-40.0,
+          height: 50.0,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(6.0),
+          ),
+          child: Row(
+            children: [
+              Padding(
+                  padding: EdgeInsets.only(left: 8.0),
+                child: Icon(Icons.search,color: Colors.deepPurple,),
+              ),
+              Flexible(
+                  child: Padding(
+                    padding: EdgeInsets.only(left: 8.0),
+                    child: TextField(
+                      onChanged: (value){
+                        startSearch(value);
+                      },
+                      decoration: InputDecoration.collapsed(hintText: "Search"),
+                    ),
+                  )
+              )
+              
+            ],
+          ),
+
+        ),
+      );
+    }
+   Future startSearch(String query) async{
+      //itemList = Firestore.instance.collection("Items").where("shortInfo", isGreaterThanOrEqualTo: query).getDocuments();
+     itemList = Firestore.instance.collection("Items").orderBy("shortInfo").startAt([query]).getDocuments();
+   }
 
   }
