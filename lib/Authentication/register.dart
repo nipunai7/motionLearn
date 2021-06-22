@@ -200,6 +200,7 @@ class _RegisterState extends State<Register>
       "url": userImgUrl,
       "userpkg": _userpackagetextcontroller.text.trim(),
       EcommerceApp.userCartList: ["garbageValue"],
+      EcommerceApp.items: ["garbageValue"],
     });
     
     await EcommerceApp.sharedPreferences.setString("uid", fUser.uid);
@@ -208,6 +209,7 @@ class _RegisterState extends State<Register>
     await EcommerceApp.sharedPreferences.setString("url", userImgUrl);
     await EcommerceApp.sharedPreferences.setString("userpkg", _userpackagetextcontroller.text.trim());
     await EcommerceApp.sharedPreferences.setStringList(EcommerceApp.userCartList, ["garbageValue"]);
+    await EcommerceApp.sharedPreferences.setStringList(EcommerceApp.items, ["garbageValue"]);
   }
 }
 

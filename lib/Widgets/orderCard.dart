@@ -18,11 +18,12 @@ class OrderCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return  InkWell(
       onTap: () {
+        print (orderID);
         Route route;
-        if (counter == 0){
-          counter = counter + 1;
+       // if (counter == 0){
+       //   counter = counter + 1;
           route = MaterialPageRoute(builder: (c) => OrderDetails(orderID: orderID));
-        }
+       // }
         Navigator.pushReplacement(context, route);
       },
       child: Container(
@@ -34,7 +35,7 @@ class OrderCard extends StatelessWidget {
         margin: EdgeInsets.all(10.0),
         height: itemCount * 150.0,
         child: ListView.builder(
-            itemCount: itemCount,
+          itemCount: itemCount,
           physics: NeverScrollableScrollPhysics(),
           itemBuilder: (c,index){
               ItemModel model = ItemModel.fromJson(data[index].data);

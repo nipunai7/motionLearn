@@ -12,8 +12,6 @@ class MyOrders extends StatefulWidget {
   _MyOrdersState createState() => _MyOrdersState();
 }
 
-
-
 class _MyOrdersState extends State<MyOrders> {
   @override
   Widget build(BuildContext context) {

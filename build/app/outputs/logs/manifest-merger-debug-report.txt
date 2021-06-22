@@ -9,6 +9,7 @@ MERGED from [:cloud_firestore] F:\Academic\Level 3\Semester 1\Design Project\mot
 MERGED from [:firebase_auth] F:\Academic\Level 3\Semester 1\Design Project\motionLearn\build\firebase_auth\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-15:12
 MERGED from [:firebase_storage] F:\Academic\Level 3\Semester 1\Design Project\motionLearn\build\firebase_storage\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-15:12
 MERGED from [:firebase_core] F:\Academic\Level 3\Semester 1\Design Project\motionLearn\build\firebase_core\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-15:12
+MERGED from [:tflite] F:\Academic\Level 3\Semester 1\Design Project\motionLearn\build\tflite\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
 MERGED from [:image_picker] F:\Academic\Level 3\Semester 1\Design Project\motionLearn\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-22:12
 MERGED from [:flutter_plugin_android_lifecycle] F:\Academic\Level 3\Semester 1\Design Project\motionLearn\build\flutter_plugin_android_lifecycle\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
 MERGED from [:shared_preferences] F:\Academic\Level 3\Semester 1\Design Project\motionLearn\build\shared_preferences\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
@@ -18,6 +19,7 @@ MERGED from [:wakelock] F:\Academic\Level 3\Semester 1\Design Project\motionLear
 MERGED from [:video_player] F:\Academic\Level 3\Semester 1\Design Project\motionLearn\build\video_player\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
 MERGED from [:open_file] F:\Academic\Level 3\Semester 1\Design Project\motionLearn\build\open_file\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-24:12
 MERGED from [:fluttertoast] F:\Academic\Level 3\Semester 1\Design Project\motionLearn\build\fluttertoast\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
+MERGED from [:camera] F:\Academic\Level 3\Semester 1\Design Project\motionLearn\build\camera\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-10:12
 MERGED from [com.google.firebase:firebase-firestore:21.3.0] C:\Users\Nipuna Munasinghe\.gradle\caches\transforms-2\files-2.1\3e04be8da688819e335968e524f1ac06\jetified-firebase-firestore-21.3.0\AndroidManifest.xml:2:1-26:12
 MERGED from [com.google.firebase:firebase-auth:19.2.0] C:\Users\Nipuna Munasinghe\.gradle\caches\transforms-2\files-2.1\51128d44d500a8e01960727d38d5a2a5\firebase-auth-19.2.0\AndroidManifest.xml:17:1-42:12
 MERGED from [com.google.firebase:firebase-storage:17.0.0] C:\Users\Nipuna Munasinghe\.gradle\caches\transforms-2\files-2.1\823f286a19965d6495c6639a984cc6f5\jetified-firebase-storage-17.0.0\AndroidManifest.xml:15:1-37:12
@@ -62,6 +64,8 @@ MERGED from [androidx.print:print:1.0.0] C:\Users\Nipuna Munasinghe\.gradle\cach
 MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\Nipuna Munasinghe\.gradle\caches\transforms-2\files-2.1\cb70f71a9e0a6db9948641fe41db6a8d\interpolator-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\Nipuna Munasinghe\.gradle\caches\transforms-2\files-2.1\b67cc50b6bc4292f897138dcd0416a3d\cursoradapter-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] C:\Users\Nipuna Munasinghe\.gradle\caches\transforms-2\files-2.1\19a56dd0d8c0f0143e9829011684d0b8\lifecycle-viewmodel-2.1.0\AndroidManifest.xml:17:1-22:12
+MERGED from [org.tensorflow:tensorflow-lite:2.5.0] C:\Users\Nipuna Munasinghe\.gradle\caches\transforms-2\files-2.1\b7000c08c8b1cd997c38543ef8b53626\tensorflow-lite-2.5.0\AndroidManifest.xml:2:1-12:12
+MERGED from [org.tensorflow:tensorflow-lite-gpu:2.5.0] C:\Users\Nipuna Munasinghe\.gradle\caches\transforms-2\files-2.1\ade87e43acfe953a640262915e968e2d\tensorflow-lite-gpu-2.5.0\AndroidManifest.xml:2:1-12:12
 MERGED from [io.grpc:grpc-android:1.21.0] C:\Users\Nipuna Munasinghe\.gradle\caches\transforms-2\files-2.1\627740c16ca6b1437d59651e6b834043\grpc-android-1.21.0\AndroidManifest.xml:2:1-13:12
 MERGED from [com.google.firebase:firebase-database-collection:17.0.0] C:\Users\Nipuna Munasinghe\.gradle\caches\transforms-2\files-2.1\23d7c4cbcebb583a4a438c40f282b1cc\firebase-database-collection-17.0.0\AndroidManifest.xml:2:1-7:12
 MERGED from [com.google.firebase:protolite-well-known-types:17.0.0] C:\Users\Nipuna Munasinghe\.gradle\caches\transforms-2\files-2.1\2cb575ee80d366ed9a797ea77737fda0\protolite-well-known-types-17.0.0\AndroidManifest.xml:2:1-11:12
@@ -116,6 +120,10 @@ MERGED from [androidx.core:core:1.1.0] C:\Users\Nipuna Munasinghe\.gradle\caches
 MERGED from [androidx.core:core:1.1.0] C:\Users\Nipuna Munasinghe\.gradle\caches\transforms-2\files-2.1\b608c3d8537f54a7ed8ad86b3bfe3664\core-1.1.0\AndroidManifest.xml:24:5-89
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] C:\Users\Nipuna Munasinghe\.gradle\caches\transforms-2\files-2.1\d7d046dfd56aa1358b7aa384dca4509d\versionedparcelable-1.1.0\AndroidManifest.xml:24:5-25:19
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] C:\Users\Nipuna Munasinghe\.gradle\caches\transforms-2\files-2.1\d7d046dfd56aa1358b7aa384dca4509d\versionedparcelable-1.1.0\AndroidManifest.xml:24:5-25:19
+MERGED from [org.tensorflow:tensorflow-lite:2.5.0] C:\Users\Nipuna Munasinghe\.gradle\caches\transforms-2\files-2.1\b7000c08c8b1cd997c38543ef8b53626\tensorflow-lite-2.5.0\AndroidManifest.xml:10:5-20
+MERGED from [org.tensorflow:tensorflow-lite:2.5.0] C:\Users\Nipuna Munasinghe\.gradle\caches\transforms-2\files-2.1\b7000c08c8b1cd997c38543ef8b53626\tensorflow-lite-2.5.0\AndroidManifest.xml:10:5-20
+MERGED from [org.tensorflow:tensorflow-lite-gpu:2.5.0] C:\Users\Nipuna Munasinghe\.gradle\caches\transforms-2\files-2.1\ade87e43acfe953a640262915e968e2d\tensorflow-lite-gpu-2.5.0\AndroidManifest.xml:10:5-20
+MERGED from [org.tensorflow:tensorflow-lite-gpu:2.5.0] C:\Users\Nipuna Munasinghe\.gradle\caches\transforms-2\files-2.1\ade87e43acfe953a640262915e968e2d\tensorflow-lite-gpu-2.5.0\AndroidManifest.xml:10:5-20
 	android:appComponentFactory
 		ADDED from [androidx.core:core:1.1.0] C:\Users\Nipuna Munasinghe\.gradle\caches\transforms-2\files-2.1\b608c3d8537f54a7ed8ad86b3bfe3664\core-1.1.0\AndroidManifest.xml:24:18-86
 	android:label
@@ -188,6 +196,8 @@ MERGED from [:firebase_storage] F:\Academic\Level 3\Semester 1\Design Project\mo
 MERGED from [:firebase_storage] F:\Academic\Level 3\Semester 1\Design Project\motionLearn\build\firebase_storage\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:firebase_core] F:\Academic\Level 3\Semester 1\Design Project\motionLearn\build\firebase_core\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:firebase_core] F:\Academic\Level 3\Semester 1\Design Project\motionLearn\build\firebase_core\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:tflite] F:\Academic\Level 3\Semester 1\Design Project\motionLearn\build\tflite\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:tflite] F:\Academic\Level 3\Semester 1\Design Project\motionLearn\build\tflite\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:image_picker] F:\Academic\Level 3\Semester 1\Design Project\motionLearn\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:image_picker] F:\Academic\Level 3\Semester 1\Design Project\motionLearn\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:flutter_plugin_android_lifecycle] F:\Academic\Level 3\Semester 1\Design Project\motionLearn\build\flutter_plugin_android_lifecycle\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
@@ -206,6 +216,8 @@ MERGED from [:open_file] F:\Academic\Level 3\Semester 1\Design Project\motionLea
 MERGED from [:open_file] F:\Academic\Level 3\Semester 1\Design Project\motionLearn\build\open_file\intermediates\library_manifest\debug\AndroidManifest.xml:6:5-44
 MERGED from [:fluttertoast] F:\Academic\Level 3\Semester 1\Design Project\motionLearn\build\fluttertoast\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:fluttertoast] F:\Academic\Level 3\Semester 1\Design Project\motionLearn\build\fluttertoast\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:camera] F:\Academic\Level 3\Semester 1\Design Project\motionLearn\build\camera\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:camera] F:\Academic\Level 3\Semester 1\Design Project\motionLearn\build\camera\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [com.google.firebase:firebase-firestore:21.3.0] C:\Users\Nipuna Munasinghe\.gradle\caches\transforms-2\files-2.1\3e04be8da688819e335968e524f1ac06\jetified-firebase-firestore-21.3.0\AndroidManifest.xml:7:5-9:41
 MERGED from [com.google.firebase:firebase-firestore:21.3.0] C:\Users\Nipuna Munasinghe\.gradle\caches\transforms-2\files-2.1\3e04be8da688819e335968e524f1ac06\jetified-firebase-firestore-21.3.0\AndroidManifest.xml:7:5-9:41
 MERGED from [com.google.firebase:firebase-auth:19.2.0] C:\Users\Nipuna Munasinghe\.gradle\caches\transforms-2\files-2.1\51128d44d500a8e01960727d38d5a2a5\firebase-auth-19.2.0\AndroidManifest.xml:21:5-44
@@ -294,6 +306,10 @@ MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\Nipuna Munasin
 MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\Nipuna Munasinghe\.gradle\caches\transforms-2\files-2.1\b67cc50b6bc4292f897138dcd0416a3d\cursoradapter-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] C:\Users\Nipuna Munasinghe\.gradle\caches\transforms-2\files-2.1\19a56dd0d8c0f0143e9829011684d0b8\lifecycle-viewmodel-2.1.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] C:\Users\Nipuna Munasinghe\.gradle\caches\transforms-2\files-2.1\19a56dd0d8c0f0143e9829011684d0b8\lifecycle-viewmodel-2.1.0\AndroidManifest.xml:20:5-44
+MERGED from [org.tensorflow:tensorflow-lite:2.5.0] C:\Users\Nipuna Munasinghe\.gradle\caches\transforms-2\files-2.1\b7000c08c8b1cd997c38543ef8b53626\tensorflow-lite-2.5.0\AndroidManifest.xml:7:5-8:41
+MERGED from [org.tensorflow:tensorflow-lite:2.5.0] C:\Users\Nipuna Munasinghe\.gradle\caches\transforms-2\files-2.1\b7000c08c8b1cd997c38543ef8b53626\tensorflow-lite-2.5.0\AndroidManifest.xml:7:5-8:41
+MERGED from [org.tensorflow:tensorflow-lite-gpu:2.5.0] C:\Users\Nipuna Munasinghe\.gradle\caches\transforms-2\files-2.1\ade87e43acfe953a640262915e968e2d\tensorflow-lite-gpu-2.5.0\AndroidManifest.xml:7:5-8:41
+MERGED from [org.tensorflow:tensorflow-lite-gpu:2.5.0] C:\Users\Nipuna Munasinghe\.gradle\caches\transforms-2\files-2.1\ade87e43acfe953a640262915e968e2d\tensorflow-lite-gpu-2.5.0\AndroidManifest.xml:7:5-8:41
 MERGED from [io.grpc:grpc-android:1.21.0] C:\Users\Nipuna Munasinghe\.gradle\caches\transforms-2\files-2.1\627740c16ca6b1437d59651e6b834043\grpc-android-1.21.0\AndroidManifest.xml:7:5-9:41
 MERGED from [io.grpc:grpc-android:1.21.0] C:\Users\Nipuna Munasinghe\.gradle\caches\transforms-2\files-2.1\627740c16ca6b1437d59651e6b834043\grpc-android-1.21.0\AndroidManifest.xml:7:5-9:41
 MERGED from [com.google.firebase:firebase-database-collection:17.0.0] C:\Users\Nipuna Munasinghe\.gradle\caches\transforms-2\files-2.1\23d7c4cbcebb583a4a438c40f282b1cc\firebase-database-collection-17.0.0\AndroidManifest.xml:5:5-44
@@ -307,6 +323,8 @@ INJECTED from F:\Academic\Level 3\Semester 1\Design Project\motionLearn\android\
 		INJECTED from F:\Academic\Level 3\Semester 1\Design Project\motionLearn\android\app\src\debug\AndroidManifest.xml
 	android:minSdkVersion
 		INJECTED from F:\Academic\Level 3\Semester 1\Design Project\motionLearn\android\app\src\main\AndroidManifest.xml
+		MERGED from F:\Academic\Level 3\Semester 1\Design Project\motionLearn\android\app\src\debug\AndroidManifest.xml
+		MERGED from F:\Academic\Level 3\Semester 1\Design Project\motionLearn\android\app\src\debug\AndroidManifest.xml
 		INJECTED from F:\Academic\Level 3\Semester 1\Design Project\motionLearn\android\app\src\debug\AndroidManifest.xml
 service#com.google.firebase.components.ComponentDiscoveryService
 ADDED from [:cloud_firestore] F:\Academic\Level 3\Semester 1\Design Project\motionLearn\build\cloud_firestore\intermediates\library_manifest\debug\AndroidManifest.xml:8:9-12:19
@@ -398,6 +416,14 @@ ADDED from [:open_file] F:\Academic\Level 3\Semester 1\Design Project\motionLear
 		ADDED from [:open_file] F:\Academic\Level 3\Semester 1\Design Project\motionLearn\build\open_file\intermediates\library_manifest\debug\AndroidManifest.xml:17:13-48
 	android:name
 		ADDED from [:open_file] F:\Academic\Level 3\Semester 1\Design Project\motionLearn\build\open_file\intermediates\library_manifest\debug\AndroidManifest.xml:13:13-64
+uses-permission#android.permission.CAMERA
+ADDED from [:camera] F:\Academic\Level 3\Semester 1\Design Project\motionLearn\build\camera\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-65
+	android:name
+		ADDED from [:camera] F:\Academic\Level 3\Semester 1\Design Project\motionLearn\build\camera\intermediates\library_manifest\debug\AndroidManifest.xml:7:22-62
+uses-permission#android.permission.RECORD_AUDIO
+ADDED from [:camera] F:\Academic\Level 3\Semester 1\Design Project\motionLearn\build\camera\intermediates\library_manifest\debug\AndroidManifest.xml:8:5-71
+	android:name
+		ADDED from [:camera] F:\Academic\Level 3\Semester 1\Design Project\motionLearn\build\camera\intermediates\library_manifest\debug\AndroidManifest.xml:8:22-68
 uses-permission#android.permission.ACCESS_NETWORK_STATE
 ADDED from [com.google.firebase:firebase-firestore:21.3.0] C:\Users\Nipuna Munasinghe\.gradle\caches\transforms-2\files-2.1\3e04be8da688819e335968e524f1ac06\jetified-firebase-firestore-21.3.0\AndroidManifest.xml:13:5-79
 MERGED from [com.google.firebase:firebase-storage:17.0.0] C:\Users\Nipuna Munasinghe\.gradle\caches\transforms-2\files-2.1\823f286a19965d6495c6639a984cc6f5\jetified-firebase-storage-17.0.0\AndroidManifest.xml:26:5-79

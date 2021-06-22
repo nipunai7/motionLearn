@@ -30,6 +30,8 @@ dependencies:
   webview_flutter: ^2.0.8
   pdf: ^2.1.0
   open_file: ^3.2.1
+  camera: ^0.5.8+7
+  tflite:  ^1.1.1
 
 
 
@@ -52,7 +54,9 @@ flutter:
     - images/admin.png
     - images/cash.png
     - images/test.png
-    - images/R3HAB - Ones You Miss (Official Music Video).mp4
+    - assets/mobilenet_v1_1.0_224.txt
+    - assets/mobilenet_v1_1.0_224.tflite
+    - assets/posenet_mv1_075_float_from_checkpoints.tflite
 
 
 

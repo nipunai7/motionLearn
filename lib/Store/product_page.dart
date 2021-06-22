@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:e_shop/Config/config.dart';
+import 'package:e_shop/ML/home.dart';
 import 'package:e_shop/Widgets/customAppBar.dart';
 import 'package:e_shop/Widgets/myDrawer.dart';
 import 'package:e_shop/Models/item.dart';
@@ -26,20 +27,21 @@ class _ProductPageState extends State<ProductPage> {
   @override
   Widget build(BuildContext context)
   {
-    Firestore.instance.collection("users").where("items", arrayContainsAny: [widget.itemModel.shortInfo]).getDocuments().then((value) => {
-      print (value.documents.length),
-      if (value.documents.length == 0){
-        EcommerceApp.sharedPreferences.setString(EcommerceApp.bought, "false")
-      },
+    // Firestore.instance.collection("users").where("items", arrayContainsAny: [widget.itemModel.shortInfo]).getDocuments().then((value) => {
+    //   print (value.documents.length),
+    //   if (value.documents.length == 0){
+    //     EcommerceApp.sharedPreferences.setString(EcommerceApp.bought, "false")
+    //   },
+    //
+    //   value.documents.forEach((element) {
+    //     if (EcommerceApp.sharedPreferences.getString(EcommerceApp.userUID) == element.documentID) {
+    //       print (element.documentID);
+    //       print (EcommerceApp.sharedPreferences.getString(EcommerceApp.userUID));
+    //       EcommerceApp.sharedPreferences.setString(EcommerceApp.bought, "true");
+    //     }
+    //   })
+    // });
 
-      value.documents.forEach((element) {
-        if (EcommerceApp.sharedPreferences.getString(EcommerceApp.userUID) == element.documentID) {
-          print (element.documentID);
-          print (EcommerceApp.sharedPreferences.getString(EcommerceApp.userUID));
-          EcommerceApp.sharedPreferences.setString(EcommerceApp.bought, "true");
-        }
-      })
-    });
 
     Size screenSize = MediaQuery.of(context).size;
     return WillPopScope(onWillPop: (){
@@ -104,7 +106,7 @@ class _ProductPageState extends State<ProductPage> {
                       padding: EdgeInsets.only(top: 8.0,bottom: 16.0),
                     child: Center(
 
-                      child:addToCart()
+                      child:training()
                     ),
                   ),
 
@@ -129,12 +131,17 @@ class _ProductPageState extends State<ProductPage> {
     );
   }
 
+  Widget bought(){
+    EcommerceApp.sharedPreferences.getStringList(EcommerceApp.items).forEach((element) {
+      return null;
+    });
+
+  }
+
  Widget addToCart() {
 
-    print (EcommerceApp.sharedPreferences.getString(EcommerceApp.bought));
-    return EcommerceApp.sharedPreferences.getString(EcommerceApp.bought) == "true"
-        ? Container()
-        : InkWell(
+  //  print (EcommerceApp.sharedPreferences.getString(EcommerceApp.bought));
+    return InkWell(
       onTap: ()=> checkItemInCart(widget.itemModel.shortInfo, context),
       child: Container(
         decoration: BoxDecoration(
@@ -149,6 +156,27 @@ class _ProductPageState extends State<ProductPage> {
       ),
     );
 
+  }
+
+  Widget training(){
+    return InkWell(
+      onTap: (){
+        //EcommerceApp.sharedPreferences.setString(EcommerceApp.itemUserin, widget.itemModel.toString());
+        Route route = MaterialPageRoute(builder: (c) => MLPage());
+        Navigator.pushReplacement(context, route);
+      },
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.deepPurple,
+        ),
+        width: MediaQuery.of(context).size.width - 40.0,
+        height: 50.0,
+        child: Center(
+          child: Text("Training View",style: TextStyle(color: Colors.white,),
+          ),
+        ),
+      ),
+    );
   }
 
 }
