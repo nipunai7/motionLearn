@@ -5,6 +5,7 @@ import 'package:e_shop/Store/Search.dart';
 import 'package:e_shop/Store/cart.dart';
 import 'package:e_shop/Orders/myOrders.dart';
 import 'package:e_shop/Store/storehome.dart';
+import 'package:e_shop/Store/userProfile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -35,9 +36,16 @@ class MyDrawer extends StatelessWidget {
                     ),
                   ),
                   SizedBox(height: 10.0,),
-                  Text(
-                    EcommerceApp.sharedPreferences.getString(EcommerceApp.userName),style: TextStyle(fontFamily: "Signatra",fontSize: 30.0,color: Colors.white),
+                  InkWell(
+                    onTap: () {
+                      Route route = MaterialPageRoute(builder: (c) => UserPage());
+                      Navigator.pushReplacement(context, route);
+                      },
+                    child: Text(
+                      EcommerceApp.sharedPreferences.getString(EcommerceApp.userName),style: TextStyle(fontFamily: "Signatra",fontSize: 30.0,color: Colors.white),
+                    ),
                   )
+
                 ],
               ),
           ),

@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:e_shop/Config/config.dart';
 import 'package:e_shop/Orders/myOrders.dart';
 import 'package:e_shop/Store/storehome.dart';
+import 'package:e_shop/Store/userProfile.dart';
 import 'package:e_shop/Widgets/loadingWidget.dart';
 import 'package:e_shop/Widgets/orderCard.dart';
 import 'package:e_shop/Models/address.dart';
@@ -37,7 +38,7 @@ class OrderDetails extends StatelessWidget {
           title: Text("Order Details",style: TextStyle(color: Colors.white,fontSize: 18.0),),
           leading: IconButton(
               onPressed: (){
-                Route route = MaterialPageRoute(builder: (c) => MyOrders());
+                Route route = MaterialPageRoute(builder: (c) => UserPage());
                 Navigator.pushReplacement(context, route);
               },
               icon: Icon(Icons.arrow_back,color: Colors.white,)

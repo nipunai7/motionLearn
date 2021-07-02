@@ -390,13 +390,14 @@ class _UploadPageState extends State<UploadPage>
     StorageUploadTask uploadTask2 = storageReference.child("tutorial_$tuteID.mp4").putFile(image2);
     StorageTaskSnapshot taskSnapshot2 = await uploadTask2.onComplete;
     String downloadUrl2 = await taskSnapshot2.ref.getDownloadURL();
-
     return downloadUrl2;
   }
 
   saveItemInfo(String downUrl1,String downUrl2){
     final itemsRef = Firestore.instance.collection("Items");
     itemsRef.document(tuteID).setData({
+      "id": tuteID,
+      "reviews": "garbageValue",
       "shortInfo": shortText.text.trim(),
       "price": int.parse(priceText.text),
       "title": titleText.text.trim(),

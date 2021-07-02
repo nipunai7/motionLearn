@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:e_shop/Config/config.dart';
 import 'package:e_shop/PDF/api/pdf_api.dart';
@@ -32,6 +34,8 @@ class PurchasePage extends StatefulWidget {
 }
 
 class _PurchasePageState extends State<PurchasePage> {
+
+  List tet = [1234,45657667];
 
   List itemInfo = [];
   double totalAmount2;
@@ -283,5 +287,17 @@ class _PurchasePageState extends State<PurchasePage> {
     Provider.of<CartItemCounter>(context, listen: false).displayResult();
     PdfApi.openFile(pdfFile);
   }
+
+  // mnk(String des, double unitP){
+  //     return InvoiceItem(
+  //       description: des,
+  //       date: DateTime.now(),
+  //       quantity: 1,
+  //       vat: 0.19,
+  //       unitPrice: unitP ,
+  //     );
+  //
+  //
+  // }
 }
 
