@@ -1,16 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:e_shop/Config/config.dart';
 import 'package:e_shop/Orders/myOrders.dart';
-import 'package:e_shop/Store/storehome.dart';
 import 'package:e_shop/Store/userProfile.dart';
 import 'package:e_shop/Widgets/loadingWidget.dart';
-import 'package:e_shop/Widgets/orderCard.dart';
-import 'package:e_shop/Models/address.dart';
 import 'package:e_shop/Widgets/orderCard2.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:intl/intl.dart';
 
 String getOrderId="";
 class OrderDetails extends StatelessWidget {
@@ -30,19 +25,20 @@ class OrderDetails extends StatelessWidget {
       },
       child: Scaffold(
         appBar: AppBar(
+          toolbarHeight: 48.0,
           iconTheme: IconThemeData(
               color: Colors.white
           ),
           backgroundColor: Colors.deepPurple,
           centerTitle: true,
           title: Text("Order Details",style: TextStyle(color: Colors.white,fontSize: 18.0),),
-          leading: IconButton(
-              onPressed: (){
-                Route route = MaterialPageRoute(builder: (c) => UserPage());
-                Navigator.pushReplacement(context, route);
-              },
-              icon: Icon(Icons.arrow_back,color: Colors.white,)
-          ),
+          // leading: IconButton(
+          //     onPressed: (){
+          //       Route route = MaterialPageRoute(builder: (c) => UserPage());
+          //       Navigator.pushReplacement(context, route);
+          //     },
+          //     icon: Icon(Icons.arrow_back,color: Colors.white,)
+          // ),
         ),
         body: SingleChildScrollView(
           child: FutureBuilder<DocumentSnapshot>(
@@ -126,34 +122,32 @@ class OrderDetails extends StatelessWidget {
 //     );
 //   }
 // }
-
-
-
-
-class PaymentDetailsCard extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-    );
-  }
-}
-
-
-
-class ShippingDetails extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-    );
-  }
-}
-
-
-
-class KeyText extends StatelessWidget {
-
-  @override
-  Widget build(BuildContext context) {
-    return Text("");
-  }
-}
+//
+//
+// class PaymentDetailsCard extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container(
+//     );
+//   }
+// }
+//
+//
+//
+// class ShippingDetails extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Column(
+//     );
+//   }
+// }
+//
+//
+//
+// class KeyText extends StatelessWidget {
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Text("");
+//   }
+//}

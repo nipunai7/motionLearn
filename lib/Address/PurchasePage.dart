@@ -193,6 +193,7 @@ class _PurchasePageState extends State<PurchasePage> {
 
   addOrderDetails(){
     writeOrderUser({
+      "id": EcommerceApp.sharedPreferences.getString(EcommerceApp.latestOrder),
       EcommerceApp.totalAmount: totalAmount2,
       "OrderBy" : EcommerceApp.sharedPreferences.getString(EcommerceApp.userUID),
       EcommerceApp.productID: EcommerceApp.sharedPreferences.getStringList(EcommerceApp.userCartList),
@@ -202,6 +203,7 @@ class _PurchasePageState extends State<PurchasePage> {
     });
 
     writeOrderAdmin({
+      "id": EcommerceApp.sharedPreferences.getString(EcommerceApp.latestOrder),
       EcommerceApp.totalAmount: totalAmount2,
       "OrderBy" : EcommerceApp.sharedPreferences.getString(EcommerceApp.userUID),
       EcommerceApp.productID: EcommerceApp.sharedPreferences.getStringList(EcommerceApp.userCartList),

@@ -3,12 +3,15 @@ import 'package:e_shop/Store/cart.dart';
 import 'package:e_shop/Store/product_page.dart';
 import 'package:e_shop/Counters/cartitemcounter.dart';
 import 'package:e_shop/Widgets/customAppBar.dart';
+import 'package:e_shop/Widgets/orderCard.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:open_file/open_file.dart';
 import 'package:provider/provider.dart';
 import 'package:e_shop/Config/config.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 import '../Widgets/loadingWidget.dart';
 import '../Widgets/myDrawer.dart';
 import '../Widgets/searchBox.dart';
@@ -17,57 +20,344 @@ import '../Models/item.dart';
 double width;
 
 class StoreHome extends StatefulWidget {
+  // int currentIndex;
+  // StoreHome(this.currentIndex);
   @override
   _StoreHomeState createState() => _StoreHomeState();
 }
 
 class _StoreHomeState extends State<StoreHome> {
+  int _currentIndex = 0;
+
+  final tabs = [
+    CustomScrollView(
+      slivers: [
+        SliverPersistentHeader(pinned: true, delegate: SearchBoxDelegate()),
+        StreamBuilder<QuerySnapshot>(
+          stream: Firestore.instance
+              .collection("Items")
+              .limit(15)
+              .orderBy("publishedDate", descending: true)
+              .snapshots(),
+          builder: (context, dataSnapshot) {
+            return !dataSnapshot.hasData
+                ? SliverToBoxAdapter(
+                    child: Center(
+                      child: circularProgress(),
+                    ),
+                  )
+                : SliverStaggeredGrid.countBuilder(
+                    crossAxisCount: 1,
+                    staggeredTileBuilder: (c) => StaggeredTile.fit(1),
+                    itemBuilder: (context, index) {
+                      ItemModel model = ItemModel.fromJson(
+                          dataSnapshot.data.documents[index].data);
+                      return sourceInfo(model, context);
+                    },
+                    itemCount: dataSnapshot.data.documents.length,
+                  );
+          },
+        )
+      ],
+    ),
+    Center(
+        child: WebView(
+      initialUrl:
+          'https://www.google.com/search?q=latest+news+augmented+reality&sxsrf=ALeKk00lT-VbKfPDBDWNlHdTa3H2xVnBLA:1625480430223&source=lnms&tbm=nws&sa=X&ved=2ahUKEwivwYe92svxAhVhqksFHUcFBmoQ_AUoAXoECAEQAw&cshid=1625480435898687&biw=1550&bih=770',
+      javascriptMode: JavascriptMode.unrestricted,
+    )),
+    Center(
+        child: MaterialApp(
+      home: DefaultTabController(
+        length: 4,
+        child: Scaffold(
+          appBar: AppBar(
+            toolbarHeight: 48.0,
+            bottom: TabBar(
+              indicatorColor: Colors.purpleAccent,
+              tabs: [
+                Tab(icon: Icon(Icons.person_pin)),
+                Tab(icon: Icon(Icons.document_scanner_rounded)),
+                Tab(icon: Icon(Icons.favorite_outlined)),
+                Tab(icon: Icon(Icons.attach_money_rounded)),
+              ],
+            ),
+            backgroundColor: Colors.deepPurple,
+          ),
+          body: TabBarView(
+            children: [
+              Container(
+                  child: Column(
+                children: [
+                  SizedBox(
+                    height: 20.0,
+                  ),
+                  Container(
+                    height: 230.0,
+                    width: 230.0,
+                    child: CircleAvatar(
+                      backgroundImage: NetworkImage(EcommerceApp
+                          .sharedPreferences
+                          .getString(EcommerceApp.userAvatarUrl)),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 20.0,
+                  ),
+                  Align(
+                    alignment: Alignment.center,
+                    child: Text(
+                      EcommerceApp.sharedPreferences
+                          .getString(EcommerceApp.userName),
+                      style:
+                          TextStyle(fontSize: 24.0, color: Colors.deepPurple),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 10.0,
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(left: 10.0, top: 20.0),
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        "Email: " +
+                            EcommerceApp.sharedPreferences
+                                .getString(EcommerceApp.userEmail),
+                        style:
+                            TextStyle(fontSize: 18.0, color: Colors.deepPurple),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(left: 10.0, top: 10.0),
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text("Joined on: "+ EcommerceApp.sharedPreferences.getString(EcommerceApp.jdate.toString()),style:TextStyle(fontSize: 18.0, color: Colors.deepPurple),
+                      ),
+                    ),
+                  ),
+                ],
+              )),
+              Container(
+                child: Column(
+                  children: [
+                    Container(
+                      height: 70.0,
+                      child: Card(
+                        child: Align(
+                            alignment: Alignment.centerLeft,
+                            child: Padding(
+                              padding: EdgeInsets.only(left: 10.0),
+                              child: Text(
+                                "1624873033163_report",
+                                style: TextStyle(fontSize: 18.0),
+                              ),
+                            )),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              Container(
+                child: StreamBuilder<QuerySnapshot>(
+                  stream: EcommerceApp.firestore
+                      .collection(EcommerceApp.collectionUser)
+                      .document(EcommerceApp.sharedPreferences
+                          .getString(EcommerceApp.userUID))
+                      .collection(EcommerceApp.collectionOrders)
+                      .snapshots(),
+                  builder: (c, snapshots) {
+                    return snapshots.hasData
+                        ? ListView.builder(
+                            itemCount: snapshots.data.documents.length,
+                            itemBuilder: (c, index) {
+                              return FutureBuilder<QuerySnapshot>(
+                                future: Firestore.instance
+                                    .collection("Items")
+                                    .where("shortInfo",
+                                        whereIn: snapshots.data.documents[index]
+                                            .data[EcommerceApp.productID])
+                                    .getDocuments(),
+                                builder: (c, snap) {
+                                  return snap.hasData
+                                      ?
+                                      //Center(child: Text("We do have data"))
+                                      OrderCard(
+                                          itemCount: snap.data.documents.length,
+                                          data: snap.data.documents,
+                                          orderID: snapshots
+                                              .data.documents[index].documentID,
+                                        )
+                                      : Center(
+                                          child: circularProgress(),
+                                        );
+                                },
+                              );
+                            },
+                          )
+                        : Center(
+                            child: circularProgress(),
+                          );
+                  },
+                ),
+              ),
+              Container(
+                child: Column(
+                  children: [
+                    Container(
+                      height: 500.0,
+                      child: StreamBuilder(
+                        stream: Firestore.instance
+                            .collection("users")
+                            .document(EcommerceApp.sharedPreferences
+                                .getString(EcommerceApp.userUID))
+                            .collection("orders")
+                            .limit(5)
+                            .snapshots(),
+                        builder: (context, snapshot) {
+                          if (!snapshot.hasData) {
+                            print("No orders");
+                          }
+                          return ListView(
+                            children:
+                                snapshot.data.documents.map<Widget>((document) {
+                              return Container(
+                                height: 70.0,
+                                child: InkWell(
+                                  onTap: () {
+                                    try {
+                                      OpenFile.open(
+                                          "/sdcard/Download/Motion_learn 1625472060264_order[9279].pdf");
+                                    } catch (e) {
+                                      print(e);
+                                    }
+                                  },
+                                  child: Card(
+                                    child: Align(
+                                        alignment: Alignment.centerLeft,
+                                        child: Padding(
+                                          padding: EdgeInsets.only(left: 10.0),
+                                          child: Text(
+                                            document['id'],
+                                            style: TextStyle(fontSize: 18.0),
+                                          ),
+                                        )),
+                                  ),
+                                ),
+                              );
+                            }).toList(),
+                          );
+                        },
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    )),
+    Center(
+      child: Text("Categories"),
+    ),
+    Center(
+      child: Text("Settings"),
+    )
+  ];
+
   @override
   Widget build(BuildContext context) {
     width = MediaQuery.of(context).size.width;
     return Scaffold(
-        appBar: MyAppBar(),
-        drawer: MyDrawer(),
-        body: CustomScrollView(
-          slivers: [
-            SliverPersistentHeader(pinned: true, delegate: SearchBoxDelegate()),
-            StreamBuilder<QuerySnapshot>(
-              stream: Firestore.instance
-                  .collection("Items")
-                  .limit(15)
-                  .orderBy("publishedDate", descending: true)
-                  .snapshots(),
-              builder: (context, dataSnapshot) {
-                return !dataSnapshot.hasData
-                    ? SliverToBoxAdapter(
-                        child: Center(
-                          child: circularProgress(),
-                        ),
-                      )
-                    : SliverStaggeredGrid.countBuilder(
-                        crossAxisCount: 1,
-                        staggeredTileBuilder: (c) => StaggeredTile.fit(1),
-                        itemBuilder: (context, index) {
-                          ItemModel model = ItemModel.fromJson(
-                              dataSnapshot.data.documents[index].data);
-                          return sourceInfo(model, context);
-                        },
-                        itemCount: dataSnapshot.data.documents.length,
-                      );
-              },
-            )
-          ],
-        ));
+      appBar: MyAppBar(),
+      drawer: MyDrawer(),
+      body: tabs[_currentIndex],
+      bottomNavigationBar: BottomNavigationBar(
+        selectedItemColor: Colors.white,
+        selectedLabelStyle: TextStyle(color: Colors.red),
+        unselectedLabelStyle: TextStyle(color: Colors.white38),
+        currentIndex: _currentIndex,
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.store),
+            label: "Store",
+            backgroundColor: Colors.deepPurple,
+            //activeIcon: Icon(Icons.store,color: Colors.white)
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.document_scanner_sharp),
+            label: "News",
+            backgroundColor: Colors.deepPurpleAccent,
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.account_circle),
+            label: "Profile",
+            backgroundColor: Colors.deepPurple,
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.list),
+            label: "Categories",
+            backgroundColor: Colors.deepPurpleAccent,
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.settings),
+            label: "Settings",
+            backgroundColor: Colors.deepPurple,
+          )
+        ],
+        onTap: (index) {
+          setState(() {
+            _currentIndex = index;
+          });
+        },
+      ),
+    );
   }
 }
 
 Widget sourceInfo(ItemModel model, BuildContext context,
     {Color background, removeCartFunction}) {
+  Route route;
   return InkWell(
-    onTap: () {
-      Route route =
-          MaterialPageRoute(builder: (c) => ProductPage(itemModel: model));
-      Navigator.pushReplacement(context, route);
+    onTap: () async {
+      bool bought = false;
+      await Firestore.instance
+          .collection("users")
+          .where("items", arrayContainsAny: [model.shortInfo.trim()])
+          .getDocuments()
+          .then((value) async => {
+                print(value.documents.toString()),
+                if (value.documents.length == 0)
+                  {
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (c) => ProductPage(
+                                  itemModel: model,
+                                  bought: false,
+                                ))),
+                  }
+                else
+                  {
+                    value.documents.forEach((element) async {
+                      if (EcommerceApp.sharedPreferences
+                              .getString(EcommerceApp.userUID) ==
+                          element.documentID) {
+                        print("Must be UID" + element.documentID);
+                        bought = true;
+                        Route route = MaterialPageRoute(
+                            builder: (c) => ProductPage(
+                                  itemModel: model,
+                                  bought: true,
+                                ));
+                        Navigator.pushReplacement(context, route);
+                      }
+                      print(bought);
+                    }),
+                  }
+              });
     },
     splashColor: Colors.purple,
     child: Padding(

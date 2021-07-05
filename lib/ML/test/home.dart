@@ -65,7 +65,7 @@ class _HomePageState extends State<HomePageML> {
         leading: IconButton(
           icon: Icon(Icons.arrow_back,color: Colors.white,),
           onPressed:() {
-            Route route = MaterialPageRoute(builder: (c) => ProductPage(itemModel: widget.itemModel,));
+            Route route = MaterialPageRoute(builder: (c) => ProductPage(itemModel: widget.itemModel,bought: true,));
             Navigator.pushReplacement(context, route);
           },
         ),

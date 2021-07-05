@@ -55,6 +55,7 @@ flutter:
     - images/cash.png
     - images/test.png
     - assets/mobilenet_v1_1.0_224.txt
+    - assets/Motion_learn 1625472060264_order[9279].pdf
     - assets/posenet_model.tflite
     - assets/posenet_mv1_075_float_from_checkpoints.tflite
 

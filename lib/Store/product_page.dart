@@ -1,9 +1,7 @@
 import 'package:camera/camera.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:e_shop/Config/config.dart';
-import 'package:e_shop/ML/home.dart';
 import 'package:e_shop/ML/test/home.dart';
-import 'package:e_shop/Widgets/customAppBar.dart';
 import 'package:e_shop/Widgets/customTextField.dart';
 import 'package:e_shop/Widgets/myDrawer.dart';
 import 'package:e_shop/Models/item.dart';
@@ -16,8 +14,9 @@ import '../Widgets/chewiePlayer.dart';
 
 class ProductPage extends StatefulWidget {
   final ItemModel itemModel;
+  final bool bought;
 
-  ProductPage({this.itemModel});
+  ProductPage({this.itemModel,this.bought});
 
   @override
   _ProductPageState createState() => _ProductPageState();
@@ -31,22 +30,6 @@ class _ProductPageState extends State<ProductPage> {
 
   @override
   Widget build(BuildContext context) {
-    // Firestore.instance.collection("users").where("items", arrayContainsAny: [widget.itemModel.shortInfo]).getDocuments().then((value) => {
-    //   print (value.documents.length),
-    //   if (value.documents.length == 0){
-    //     EcommerceApp.sharedPreferences.setString(EcommerceApp.bought, "false")
-    //   },
-    //
-    //   value.documents.forEach((element) {
-    //     if (EcommerceApp.sharedPreferences.getString(EcommerceApp.userUID) == element.documentID) {
-    //       print (element.documentID);
-    //       print (EcommerceApp.sharedPreferences.getString(EcommerceApp.userUID));
-    //       EcommerceApp.sharedPreferences.setString(EcommerceApp.bought, "true");
-    //     }
-    //   })
-    // });
-
-    Size screenSize = MediaQuery.of(context).size;
     return WillPopScope(
       onWillPop: () {
         Route route = MaterialPageRoute(builder: (c) => StoreHome());
@@ -127,27 +110,7 @@ class _ProductPageState extends State<ProductPage> {
                   ),
                   Padding(
                     padding: EdgeInsets.only(top: 8.0, bottom: 16.0),
-                    child: Center(child: training()),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(top: 8.0, bottom: 16.0),
-                    child: Center(
-                        child: new Container(
-                            decoration: BoxDecoration(
-                                border: Border.all(color: Colors.deepPurple)),
-                            child: Row(
-                              children: <Widget>[
-                                Flexible(child: review()),
-                              ],
-                            ))),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(top: 8.0, bottom: 16.0),
-                    child: Center(child: submitRev()),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(top: 8.0, bottom: 16.0),
-                    child: Center(child: viewRev()),
+                    child:Center(child: training()),
                   ),
                   Container(
                     height: 200.0,
@@ -162,6 +125,26 @@ class _ProductPageState extends State<ProductPage> {
                       ],
                     ),
                   ),
+                  Padding(
+                    padding: EdgeInsets.only(top: 8.0, bottom: 16.0),
+                    child: Center(
+                        child: new Container(
+                            decoration: BoxDecoration(
+                                border: Border.all(color: Colors.deepPurple)),
+                            child: Row(
+                              children: <Widget>[
+                                Flexible(child: bought()),
+                              ],
+                            ))),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(top: 8.0, bottom: 16.0),
+                    child: Center(child: submitRev()),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(top: 8.0, bottom: 16.0),
+                    child: Center(child: viewRev()),
+                  ),
                 ],
               ),
             ),
@@ -172,82 +155,99 @@ class _ProductPageState extends State<ProductPage> {
   }
 
   Widget bought() {
-    EcommerceApp.sharedPreferences
-        .getStringList(EcommerceApp.items)
-        .forEach((element) {
-      return null;
-    });
+    if (widget.bought == true){
+      return review();
+    }else{
+      return addToCart();
+    }
   }
 
   Widget addToCart() {
-    //  print (EcommerceApp.sharedPreferences.getString(EcommerceApp.bought));
-    return InkWell(
-      onTap: () => checkItemInCart(widget.itemModel.shortInfo, context),
-      child: Container(
-        decoration: BoxDecoration(
-          color: Colors.deepPurple,
-        ),
-        width: MediaQuery.of(context).size.width - 40.0,
-        height: 50.0,
-        child: Center(
-          child: Text(
-            "Add to Cart",
-            style: TextStyle(
-              color: Colors.white,
+    print(widget.bought);
+    print ("Add to cart");
+    if(widget.bought == false){
+      return InkWell(
+        onTap: () => checkItemInCart(widget.itemModel.shortInfo, context),
+        child: Container(
+          decoration: BoxDecoration(
+            color: Colors.deepPurple,
+          ),
+          width: MediaQuery.of(context).size.width - 40.0,
+          height: 50.0,
+          child: Center(
+            child: Text(
+              "Add to Cart",
+              style: TextStyle(
+                color: Colors.white,
+              ),
             ),
           ),
         ),
-      ),
-    );
+      );
+    }else{
+      return Container();
+    }
+    //  print (EcommerceApp.sharedPreferences.getString(EcommerceApp.bought));
+
   }
 
   Widget training() {
-    return InkWell(
-      onTap: () {
-        Route route =
-            MaterialPageRoute(builder: (c) => HomePageML(widget.itemModel));
-        Navigator.pushReplacement(context, route);
-      },
-      child: Container(
-        decoration: BoxDecoration(
-          color: Colors.deepPurple,
-        ),
-        width: MediaQuery.of(context).size.width - 40.0,
-        height: 50.0,
-        child: Center(
-          child: Text(
-            "Training View",
-            style: TextStyle(
-              color: Colors.white,
+    bool bought = widget.bought;
+    if (bought == true){
+      return InkWell(
+        onTap: () {
+          Route route =
+          MaterialPageRoute(builder: (c) => HomePageML(widget.itemModel));
+          Navigator.pushReplacement(context, route);
+        },
+        child: Container(
+          decoration: BoxDecoration(
+            color: Colors.deepPurple,
+          ),
+          width: MediaQuery.of(context).size.width - 40.0,
+          height: 50.0,
+          child: Center(
+            child: Text(
+              "Training View",
+              style: TextStyle(
+                color: Colors.white,
+              ),
             ),
           ),
         ),
-      ),
-    );
+      );
+    }else{
+      return Container();
+    }
+
   }
 
   Widget submitRev() {
-    return InkWell(
-      onTap: () {
-        print(widget.itemModel.reviews);
-        submitRevtoDB();
-      },
-      child: Container(
-        decoration: BoxDecoration(
-          color: Colors.deepPurple,
-        ),
-        width: MediaQuery.of(context).size.width - 40.0,
-        height: 50.0,
-        child: Center(
-          child: Text(
-            "Submit Review",
-            style: TextStyle(
-              color: Colors.white,
+    if (widget.bought == true){
+      return InkWell(
+        onTap: () {
+          print(widget.itemModel.reviews);
+          submitRevtoDB();
+        },
+        child: Container(
+          decoration: BoxDecoration(
+            color: Colors.deepPurple,
+          ),
+          width: MediaQuery.of(context).size.width - 40.0,
+          height: 50.0,
+          child: Center(
+            child: Text(
+              "Submit Review",
+              style: TextStyle(
+                color: Colors.white,
+              ),
             ),
           ),
         ),
-      ),
-    );
+      );
+    }else{
+      return Container();
+    }
   }
 
   submitRevtoDB() async {
@@ -287,60 +287,113 @@ class _ProductPageState extends State<ProductPage> {
       "userName":
           EcommerceApp.sharedPreferences.getString(EcommerceApp.userName),
     }).then((value) =>
-            {Fluttertoast.showToast(msg: "Review added successfully")});
+            {
+              Fluttertoast.showToast(msg: "Review added successfully"),
+              //Navigator.pushReplacement(context, MaterialPageRoute(builder: (c) => ProductPage(itemModel: widget.itemModel,bought: widget.bought,)))
+            });
   }
 
   Widget review() {
-    return InkWell(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          CustomTextField(
-            controller: reviewT,
-            data: Icons.insert_emoticon,
-            hintText: "Review",
-            isObsecure: false,
-          )
-        ],
-      ),
-    );
+    if (widget.bought == true){
+      return InkWell(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            CustomTextField(
+              controller: reviewT,
+              data: Icons.insert_emoticon,
+              hintText: "Review",
+              isObsecure: false,
+            )
+          ],
+        ),
+      );
+    }else{
+      return Container();
+    }
   }
 
-  Widget viewRev() {
-    List tempL = widget.itemModel.reviews;
-    print(tempL);
+  viewRev() {
 
-    return InkWell(
-      child: Container(
-          // decoration: BoxDecoration(
-          //   border: Border.all(color: Colors.deepPurple)
-          // ),
-          child: Card(
-              child: Padding(
-                  padding: EdgeInsets.only(bottom: 10.0),
-                  child: Column(
-                    children: [
-                      ListTile(
-                        title: Text("Nipuna Munasinghe"),
-                        leading: CircleAvatar(
-                          backgroundImage: NetworkImage(EcommerceApp
-                              .sharedPreferences
-                              .getString(EcommerceApp.userAvatarUrl)),
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(left: 10.0),
-                        child: Align(
-                          alignment: Alignment.centerLeft,
-                          child: Text(
-                            "This is a very good tutorial, Thank you",
-                            textAlign: TextAlign.left,
-                          ),
-                        ),
-                      )
-                    ],
-                  )))),
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      height: MediaQuery.of(context).size.height/3,
+      child: StreamBuilder(
+        stream: Firestore.instance.collection("Items").document(widget.itemModel.id).collection("Reviews").limit(5).snapshots(),
+        builder: (context, snapshot12){
+          if (!snapshot12.hasData){
+            print("No data mnk");
+            return CircularProgressIndicator();
+          }
+          return ListView(
+            children: snapshot12.data.documents.map<Widget>((document){
+              print ("Name: "+document['userName']);
+              return InkWell(
+                    child: Container(
+                        // decoration: BoxDecoration(
+                        //   border: Border.all(color: Colors.deepPurple)
+                        // ),
+                        child: Card(
+                            child: Padding(
+                                padding: EdgeInsets.only(bottom: 10.0),
+                                child: Column(
+                                  children: [
+                                    ListTile(
+                                      title: Text(document['userName']),
+                                      leading: CircleAvatar(
+                                        backgroundImage: NetworkImage(document['userIMG']),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.only(left: 10.0),
+                                      child: Align(
+                                        alignment: Alignment.centerLeft,
+                                        child: Text(
+                                          document['review'],
+                                          textAlign: TextAlign.left,
+                                        ),
+                                      ),
+                                    )
+                                  ],
+                                )))),
+                  );
+            }).toList(),
+          );
+        },
+      ),
     );
+
+    // return InkWell(
+    //   child: Container(
+    //       // decoration: BoxDecoration(
+    //       //   border: Border.all(color: Colors.deepPurple)
+    //       // ),
+    //       child: Card(
+    //           child: Padding(
+    //               padding: EdgeInsets.only(bottom: 10.0),
+    //               child: Column(
+    //                 children: [
+    //                   ListTile(
+    //                     title: Text("Nipuna Munasinghe"),
+    //                     leading: CircleAvatar(
+    //                       backgroundImage: NetworkImage(EcommerceApp
+    //                           .sharedPreferences
+    //                           .getString(EcommerceApp.userAvatarUrl)),
+    //                     ),
+    //                   ),
+    //                   Padding(
+    //                     padding: EdgeInsets.only(left: 10.0),
+    //                     child: Align(
+    //                       alignment: Alignment.centerLeft,
+    //                       child: Text(
+    //                         "This is a very good tutorial, Thank you",
+    //                         textAlign: TextAlign.left,
+    //                       ),
+    //                     ),
+    //                   )
+    //                 ],
+    //               )))),
+    // );
   }
 }
 

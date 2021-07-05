@@ -195,6 +195,7 @@ class _RegisterState extends State<Register>
   Future saveUsertoFirebase(FirebaseUser fUser) async {
     Firestore.instance.collection("users").document(fUser.uid).setData({
       "uid": fUser.uid,
+      "jdate": DateTime.now().toString(),
       "email": fUser.email,
       "name": _nametextcontroller.text.trim(),
       "url": userImgUrl,
@@ -210,6 +211,7 @@ class _RegisterState extends State<Register>
     await EcommerceApp.sharedPreferences.setString("userpkg", _userpackagetextcontroller.text.trim());
     await EcommerceApp.sharedPreferences.setStringList(EcommerceApp.userCartList, ["garbageValue"]);
     await EcommerceApp.sharedPreferences.setStringList(EcommerceApp.items, ["garbageValue"]);
+    await EcommerceApp.sharedPreferences.setString("jdate", DateTime.now().toString());
   }
 }
 

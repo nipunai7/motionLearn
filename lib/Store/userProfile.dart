@@ -16,12 +16,19 @@ class _UserPageState extends State<UserPage> {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: () {},
+      onWillPop: () {
+        print (EcommerceApp.sharedPreferences.getString(EcommerceApp.jdate.toString()));
+      },
       child: MaterialApp(
         home: DefaultTabController(
           length: 4,
           child: Scaffold(
             appBar: AppBar(
+              elevation: 10.0,
+              centerTitle: true,
+              excludeHeaderSemantics: true,
+              leadingWidth: 20.0,
+
               leading: IconButton(
                 onPressed: () {
                   Route route = MaterialPageRoute(builder: (c) => StoreHome());
@@ -64,6 +71,13 @@ class _UserPageState extends State<UserPage> {
                           child: Align(
                             alignment: Alignment.centerLeft,
                             child: Text('Email: '+EcommerceApp.sharedPreferences.getString(EcommerceApp.userEmail),style: TextStyle(fontSize: 18.0,color: Colors.deepPurple),),
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(left: 10.0,top: 10.0),
+                          child: Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text('Joined on: '+EcommerceApp.sharedPreferences.getString(EcommerceApp.jdate.toString()),style: TextStyle(fontSize: 18.0,color: Colors.deepPurple),),
                           ),
                         ),
                       ],
@@ -145,4 +159,5 @@ class _UserPageState extends State<UserPage> {
       ),
     );
   }
+
 }
