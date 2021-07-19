@@ -29,23 +29,23 @@ class _HomePageState extends State<HomePageML> {
     super.initState();
   }
 
-  loadModel() async {
-    String res;
-    switch (_model) {
-
-      case posenet:
-        res = await Tflite.loadModel(
-            model: "assets/posenet_model.tflite");
-        break;
-    }
-    print(res);
-  }
+  // loadModel() async {
+  //   String res;
+  //   switch (_model) {
+  //
+  //   //   case posenet:
+  //   //     res = await Tflite.loadModel(
+  //   //         // model: "assets/posenet_model.tflite");
+  //   //     break;
+  //   // }
+  //   print(res);
+  // }
 
   onSelect(model) {
     setState(() {
       _model = model;
     });
-    loadModel();
+    // loadModel();
   }
 
   setRecognitions(recognitions, imageHeight, imageWidth) {

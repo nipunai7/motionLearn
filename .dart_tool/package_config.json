@@ -266,6 +266,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "native_device_orientation",
+      "rootUri": "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/native_device_orientation-1.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "nested",
       "rootUri": "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/nested-1.0.0",
       "packageUri": "lib/",
@@ -334,6 +340,12 @@
     {
       "name": "petitparser",
       "rootUri": "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/petitparser-3.1.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.7"
+    },
+    {
+      "name": "pip_view",
+      "rootUri": "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/pip_view-0.9.5",
       "packageUri": "lib/",
       "languageVersion": "2.7"
     },
@@ -471,7 +483,7 @@
     },
     {
       "name": "video_player",
-      "rootUri": "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/video_player-2.1.6",
+      "rootUri": "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/video_player-2.1.10",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -519,13 +531,13 @@
     },
     {
       "name": "webview_flutter",
-      "rootUri": "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/webview_flutter-2.0.9",
+      "rootUri": "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/webview_flutter-2.0.10",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
       "name": "win32",
-      "rootUri": "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/win32-2.2.4",
+      "rootUri": "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/win32-2.2.5",
       "packageUri": "lib/",
       "languageVersion": "2.13"
     },
@@ -548,7 +560,7 @@
       "languageVersion": "2.2"
     }
   ],
-  "generated": "2021-07-05T08:09:14.536428Z",
+  "generated": "2021-07-19T16:43:41.536868Z",
   "generator": "pub",
   "generatorVersion": "2.13.0"
 }

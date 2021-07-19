@@ -76,7 +76,7 @@ class _MLPagestate extends State<MLPage>{
     {
       String response;
       response = await Tflite.loadModel(
-        model: "assets/posenet_mv1_075_float_from_checkpoints.tflite",
+        // model: "assets/posenet_mv1_075_float_from_checkpoints.tflite",
       );
       print(response);
     }
