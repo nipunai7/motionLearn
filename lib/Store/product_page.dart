@@ -41,7 +41,7 @@ class _ProductPageState extends State<ProductPage> {
     controller = VideoPlayerController.network(widget.itemModel.videoUrl)
       ..addListener(() => setState(() {}))
       ..setLooping(true)
-      ..initialize().then((_) => controller.play());
+      ..initialize();
 
     NativeDeviceOrientationCommunicator()
         .onOrientationChanged(useSensor: true)
@@ -100,6 +100,7 @@ class _ProductPageState extends State<ProductPage> {
               color: Colors.white,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Stack(
                     children: [

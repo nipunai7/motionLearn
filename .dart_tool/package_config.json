@@ -548,6 +548,12 @@
       "languageVersion": "2.3"
     },
     {
+      "name": "xfile",
+      "rootUri": "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/xfile-1.1.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.2"
+    },
+    {
       "name": "xml",
       "rootUri": "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/xml-4.5.1",
       "packageUri": "lib/",
@@ -560,7 +566,7 @@
       "languageVersion": "2.2"
     }
   ],
-  "generated": "2021-07-19T16:43:41.536868Z",
+  "generated": "2021-07-19T19:09:09.502308Z",
   "generator": "pub",
   "generatorVersion": "2.13.0"
 }

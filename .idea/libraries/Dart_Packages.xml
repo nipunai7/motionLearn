@@ -639,6 +639,13 @@
             </list>
           </value>
         </entry>
+        <entry key="xfile">
+          <value>
+            <list>
+              <option value="C:/flutter/.pub-cache/hosted/pub.dartlang.org/xfile-1.1.0/lib" />
+            </list>
+          </value>
+        </entry>
         <entry key="xml">
           <value>
             <list>
@@ -736,6 +743,7 @@
       <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/webview_flutter-2.0.10/lib" />
       <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/win32-2.2.5/lib" />
       <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/xdg_directories-0.1.2/lib" />
+      <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/xfile-1.1.0/lib" />
       <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/xml-4.5.1/lib" />
       <root url="file://C:/flutter/bin/cache/pkg/sky_engine/lib" />
       <root url="file://C:/flutter/packages/flutter/lib" />

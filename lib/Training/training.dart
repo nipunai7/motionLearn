@@ -4,13 +4,15 @@ import 'package:e_shop/Models/item.dart';
 import 'package:e_shop/Store/product_page.dart';
 import 'package:e_shop/Training/widget/orientation/landscape_player_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:pip_view/pip_view.dart';
 
 import '../main.dart';
 
 class TrainingPage extends StatefulWidget {
-  ItemModel itemModel;
+  final ItemModel itemModel;
+
   TrainingPage(this.itemModel);
 
   @override
@@ -42,51 +44,64 @@ class _TrainingPageState extends State<TrainingPage> {
 
   @override
   Widget build(BuildContext context) {
-    return PIPView(
-      builder: (context,isFloating) {
-        return WillPopScope(
-            onWillPop: () {
-              // Navigator.pushReplacement(
-              //     context, MaterialPageRoute(builder: (c) => StoreHome()));
-            },
-            child: Scaffold(
-              appBar: AppBar(
-                title: Text("Training View"),
-                centerTitle: true,
-                backgroundColor: Colors.deepPurple,
-                leading: IconButton(
-                  icon: Icon(Icons.arrow_back),
-                  onPressed: () {
-                    Navigator.pushReplacement(context,
-                        MaterialPageRoute(builder: (c) => ProductPage(itemModel: widget.itemModel,bought: true,)));
-                  },
+    return PIPView(builder: (context, isFloating) {
+      return WillPopScope(
+          onWillPop: () {
+            // Navigator.pushReplacement(
+            //     context, MaterialPageRoute(builder: (c) => StoreHome()));
+          },
+          child: Scaffold(
+            appBar: AppBar(
+              title: Text("Training View"),
+              centerTitle: true,
+              backgroundColor: Colors.deepPurple,
+              leading: IconButton(
+                icon: Icon(Icons.arrow_back),
+                onPressed: () {
+                  Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (c) => ProductPage(
+                                itemModel: widget.itemModel,
+                                bought: true,
+                              )));
+                },
+              ),
+            ),
+            body: Center(
+              child: Container(
+                padding: EdgeInsets.only(top: 20.0),
+                child: Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    AspectRatio(
+                        aspectRatio: cameraController.value.aspectRatio,
+                        child: CameraPreview(cameraController)),
+                    InkWell(
+                        onTap: () {
+                          setLandscape();
+                          PIPView.of(context).presentBelow(
+                              LandscapePlayerPage(widget.itemModel.videoUrl));
+                        },
+                        child: Column(
+                          children: [
+                            Icon(Icons.camera,size: 50.0,color: Colors.deepPurple,)
+                          ],
+                        ))
+                  ],
                 ),
               ),
-              body: Center(
-                child: Container(
-                  child: Stack(
-                    children: [
-                      AspectRatio(
-                          aspectRatio: cameraController.value.aspectRatio,
-                          child: CameraPreview(cameraController)),
-                      TextButton(
-                          onPressed: () {
-                            PIPView.of(context).presentBelow(LandscapePlayerPage(widget.itemModel.videoUrl));
-                          },
-                          child: Text("Press Me"))
-                    ],
-                  ),
-                ),
-              ),
-            )
-        );
-      }
-    );
+            ),
+          ));
+    });
   }
 
   cameraCapture2() async {
     //Navigator.pop(context);
-    final pickedFile = await picker.getVideo(source: ImageSource.camera,preferredCameraDevice: CameraDevice.rear,);
+    final pickedFile = await picker.getVideo(
+      source: ImageSource.camera,
+      preferredCameraDevice: CameraDevice.rear,
+    );
     setState(() {
       if (pickedFile != null) {
         file2 = File(pickedFile.path);
@@ -94,5 +109,13 @@ class _TrainingPageState extends State<TrainingPage> {
         print('No Video selected.');
       }
     });
+  }
+
+  Future setLandscape() async {
+    await SystemChrome.setEnabledSystemUIOverlays([]);
+    await SystemChrome.setPreferredOrientations([
+      DeviceOrientation.landscapeLeft,
+      DeviceOrientation.landscapeRight,
+    ]);
   }
 }
