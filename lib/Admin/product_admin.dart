@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:e_shop/Admin/adminShiftOrders.dart';
+import 'package:e_shop/Admin/adminuploads.dart';
 import 'package:e_shop/Admin/product_admin_edit.dart';
 import 'package:e_shop/Admin/uploadItems.dart';
 import 'package:e_shop/Widgets/customAppBar.dart';
@@ -29,7 +30,7 @@ class _ProductAdminState extends State<ProductAdmin> {
   {
     Size screenSize = MediaQuery.of(context).size;
     return WillPopScope(onWillPop: (){
-      Route route = MaterialPageRoute(builder: (c) => AdminShiftOrders());
+      Route route = MaterialPageRoute(builder: (c) => AdminUploads());
       Navigator.pushReplacement(context, route);
     },
 
@@ -43,7 +44,7 @@ class _ProductAdminState extends State<ProductAdmin> {
           title: Text("Manage Tutorial",style: TextStyle(color: Colors.white,fontSize: 18.0),),
           leading: IconButton(
               onPressed: (){
-                Route route = MaterialPageRoute(builder: (c) => AdminShiftOrders());
+                Route route = MaterialPageRoute(builder: (c) => AdminUploads());
                 Navigator.pushReplacement(context, route);
               },
               icon: Icon(Icons.arrow_back,color: Colors.white,)

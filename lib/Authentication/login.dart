@@ -191,6 +191,7 @@ class _LoginState extends State<Login> {
           dataSnapShot.data[EcommerceApp.userCartList].cast<String>();
       await EcommerceApp.sharedPreferences
           .setStringList(EcommerceApp.userCartList, cartList);
+      await EcommerceApp.sharedPreferences.setString("totalSpent", dataSnapShot.data[EcommerceApp.totalSpent]);
     });
   }
 }

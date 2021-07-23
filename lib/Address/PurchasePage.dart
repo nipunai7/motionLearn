@@ -7,7 +7,6 @@ import 'package:e_shop/PDF/api/pdf_invoice_api.dart';
 import 'package:e_shop/PDF/model/customer.dart';
 import 'package:e_shop/PDF/model/invoice.dart';
 import 'package:e_shop/PDF/model/supplier.dart';
-import 'package:e_shop/PDF/page/pdf_page.dart';
 import 'package:e_shop/Store/cart.dart';
 import 'package:e_shop/Widgets/customAppBar.dart';
 import 'package:e_shop/Widgets/loadingWidget.dart';
@@ -15,10 +14,8 @@ import 'package:e_shop/Models/item.dart';
 import 'package:e_shop/Counters/cartitemcounter.dart';
 import 'package:e_shop/Counters/totalMoney.dart';
 import 'package:e_shop/Widgets/myDrawer.dart';
-import 'package:e_shop/main.dart';
 import 'dart:async'
 ;import 'package:flutter/material.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:e_shop/Store/storehome.dart';
 import 'package:provider/provider.dart';
@@ -36,8 +33,9 @@ class PurchasePage extends StatefulWidget {
 class _PurchasePageState extends State<PurchasePage> {
 
   List tet = [1234,45657667];
-
+  List itemid = [];
   List itemInfo = [];
+  List purchaseCount = [];
   double totalAmount2;
 
 
@@ -120,6 +118,8 @@ class _PurchasePageState extends State<PurchasePage> {
 
  Widget sorceInfo2(ItemModel model, BuildContext context,{Color background}){
    itemInfo.add(model.shortInfo);
+   itemid.add(model.id);
+   purchaseCount.add(model.purchaseCount);
    return InkWell(
       splashColor: Colors.purple,
       child: Padding(
@@ -149,36 +149,12 @@ class _PurchasePageState extends State<PurchasePage> {
     );
   }
 
-  // removeItem(String shortId){
-  //   List tempList = EcommerceApp.sharedPreferences.getStringList(EcommerceApp.userCartList);
-  //   tempList.remove(shortId);
-  //
-  //   EcommerceApp.firestore.collection(EcommerceApp.collectionUser).document(EcommerceApp.sharedPreferences.getString(EcommerceApp.userUID))
-  //       .updateData({
-  //     EcommerceApp.userCartList: tempList,
-  //   }).then((v){
-  //     //Fluttertoast.showToast(msg: "Item removed from the cart");
-  //     EcommerceApp.sharedPreferences.setStringList(EcommerceApp.userCartList, tempList);
-  //     Provider.of<CartItemCounter>(context,listen: false).displayResult();
-  //     totalAmount = 0;
-  //   });
-  // }
-
    removeItems(){
       itemInfo.forEach((element) {
 
-        // DocumentReference df = Firestore.instance.collection('users').document(EcommerceApp.sharedPreferences.getString(EcommerceApp.userUID));
-        // List list = EcommerceApp.sharedPreferences.getStringList(EcommerceApp.userCartList);
-        // list.remove(element);
-        // df.updateData({
-        //   'userCart':FieldValue.arrayRemove([element]),
-        //   EcommerceApp.userCartList: list,
-        // });
-        // EcommerceApp.sharedPreferences.setStringList(EcommerceApp.userCartList, list);
-        // print (element);
-
         DocumentReference df2 = Firestore.instance.collection('users').document(EcommerceApp.sharedPreferences.getString(EcommerceApp.userUID));
         List list2 = EcommerceApp.sharedPreferences.getStringList(EcommerceApp.items);
+        list2.add(element);
 
         df2.updateData({
           'items':FieldValue.arrayUnion([element]),
@@ -192,6 +168,22 @@ class _PurchasePageState extends State<PurchasePage> {
   }
 
   addOrderDetails(){
+    int index = 0;
+    itemid.forEach((element) {
+      Firestore.instance.collection("Items").document(element).updateData({
+        "purchaseCount": purchaseCount[index]+1
+      });
+      index++;
+    });
+
+    double tempVal = double.parse(EcommerceApp.sharedPreferences.getString(EcommerceApp.totalSpent))+totalAmount2;
+    Firestore.instance.collection("users").document(EcommerceApp.sharedPreferences.getString(EcommerceApp.userUID)).updateData({
+      "totalSpent": (tempVal).toString()
+    });
+
+    EcommerceApp.sharedPreferences.setString(EcommerceApp.totalSpent, tempVal.toString());
+
+
     writeOrderUser({
       "id": EcommerceApp.sharedPreferences.getString(EcommerceApp.latestOrder),
       EcommerceApp.totalAmount: totalAmount2,

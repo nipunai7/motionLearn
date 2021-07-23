@@ -16,6 +16,7 @@ class EcommerceApp
    static String collectionOrders = "orders";
    static String userCartList = 'userCart';
    static String subCollectionAddress = 'userAddress';
+   static String totalSpent = 'totalSpent';
 
    static final String userName = 'name';
    static final String jdate = 'jdate';

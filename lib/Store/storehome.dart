@@ -325,7 +325,6 @@ class _StoreHomeState extends State<StoreHome> {
 
 Widget sourceInfo(ItemModel model, BuildContext context,
     {Color background, removeCartFunction}) {
-  Route route;
   return InkWell(
     onTap: () async {
       bool bought = false;
@@ -538,7 +537,15 @@ Widget card({Color primaryColor = Colors.redAccent, String imgPath}) {
 }
 
 void checkItemInCart(String productID, BuildContext context) {
-  EcommerceApp.sharedPreferences
+
+  print(EcommerceApp.sharedPreferences.getStringList(EcommerceApp.items));
+  print(EcommerceApp.sharedPreferences.getString(EcommerceApp.totalSpent));
+  // EcommerceApp.sharedPreferences.setStringList(EcommerceApp.items, []);
+
+  EcommerceApp.sharedPreferences.getStringList(EcommerceApp.items).contains(productID)
+  ? Fluttertoast.showToast(msg: "You already own this tutorial.")
+
+  :EcommerceApp.sharedPreferences
           .getStringList(EcommerceApp.userCartList)
           .contains(productID)
       ? Fluttertoast.showToast(msg: "Item is already in Cart.")

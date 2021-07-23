@@ -70,19 +70,24 @@ class _UploadPageState extends State<UploadPage> {
             //   },
             // ),
             actions: [
-              TextButton(
-                child: Text(
-                  "Logout",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 16.0,
-                      fontWeight: FontWeight.bold),
+              Container(
+                margin: EdgeInsets.all(10.0),
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.white,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(9.0),
+                    ),
+                  ),
+                  child: Text(
+                    "Add New Tutorial",
+                    style: TextStyle(
+                        color: Colors.deepPurple,
+                        fontSize: 16.0,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  onPressed: () => takeImage(context),
                 ),
-                onPressed: () {
-                  Route route =
-                      MaterialPageRoute(builder: (c) => SplashScreen());
-                  Navigator.pushReplacement(context, route);
-                },
               ),
             ],
           ),
@@ -91,37 +96,7 @@ class _UploadPageState extends State<UploadPage> {
   }
 
   getAdminHomeBody() {
-    return Container(
-      decoration: new BoxDecoration(color: Colors.deepPurple),
-      child: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              Icons.shop_two,
-              color: Colors.white,
-              size: 200.0,
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: 20.0),
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  primary: Colors.white,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(9.0),
-                  ),
-                ),
-                child: Text(
-                  "Add New Tutorial",
-                  style: TextStyle(fontSize: 20.0, color: Colors.deepPurple),
-                ),
-                onPressed: () => takeImage(context),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
+    return Container();
   }
 
   takeImage(mContext) {
@@ -487,6 +462,7 @@ class _UploadPageState extends State<UploadPage> {
     final itemsRef = Firestore.instance.collection("Items");
     itemsRef.document(tuteID).setData({
       "id": tuteID,
+      "purchaseCount":0,
       "reviews": [],
       "shortInfo": shortText.text.trim(),
       "price": int.parse(priceText.text),
