@@ -19,7 +19,7 @@ class ProductPage extends StatefulWidget {
   final ItemModel itemModel;
   final bool bought;
 
-  ProductPage({this.itemModel,this.bought});
+  ProductPage({this.itemModel, this.bought});
 
   @override
   _ProductPageState createState() => _ProductPageState();
@@ -62,6 +62,7 @@ class _ProductPageState extends State<ProductPage> {
   @override
   void dispose() {
     controller.dispose();
+    setOrientation(true);
     super.dispose();
   }
 
@@ -148,15 +149,15 @@ class _ProductPageState extends State<ProductPage> {
                   ),
                   Padding(
                     padding: EdgeInsets.only(top: 8.0, bottom: 16.0),
-                    child:Center(child: training()),
+                    child: Center(child: training()),
                   ),
                   Container(
-                    height: 200.0,
-                    width: MediaQuery.of(context).size.width,
+                      height: 200.0,
+                      width: MediaQuery.of(context).size.width,
                       alignment: Alignment.topCenter,
-                    child: buildVideo()
-                    //
-                  ),
+                      child: buildVideo()
+                      //
+                      ),
                   Padding(
                     padding: EdgeInsets.only(top: 8.0, bottom: 16.0),
                     child: Center(
@@ -187,17 +188,17 @@ class _ProductPageState extends State<ProductPage> {
   }
 
   Widget bought() {
-    if (widget.bought == true){
+    if (widget.bought == true) {
       return review();
-    }else{
+    } else {
       return addToCart();
     }
   }
 
   Widget addToCart() {
     print(widget.bought);
-    print ("Add to cart");
-    if(widget.bought == false){
+    print("Add to cart");
+    if (widget.bought == false) {
       return InkWell(
         onTap: () => checkItemInCart(widget.itemModel.shortInfo, context),
         child: Container(
@@ -216,20 +217,19 @@ class _ProductPageState extends State<ProductPage> {
           ),
         ),
       );
-    }else{
+    } else {
       return Container();
     }
     //  print (EcommerceApp.sharedPreferences.getString(EcommerceApp.bought));
-
   }
 
   Widget training() {
     bool bought = widget.bought;
-    if (bought == true){
+    if (bought == true) {
       return InkWell(
         onTap: () {
           Route route =
-          MaterialPageRoute(builder: (c) => TrainingPage(widget.itemModel));
+              MaterialPageRoute(builder: (c) => TrainingPage(widget.itemModel));
           Navigator.pushReplacement(context, route);
         },
         child: Container(
@@ -248,14 +248,13 @@ class _ProductPageState extends State<ProductPage> {
           ),
         ),
       );
-    }else{
+    } else {
       return Container();
     }
-
   }
 
   Widget submitRev() {
-    if (widget.bought == true){
+    if (widget.bought == true) {
       return InkWell(
         onTap: () {
           print(widget.itemModel.reviews);
@@ -277,7 +276,7 @@ class _ProductPageState extends State<ProductPage> {
           ),
         ),
       );
-    }else{
+    } else {
       return Container();
     }
   }
@@ -318,15 +317,14 @@ class _ProductPageState extends State<ProductPage> {
           EcommerceApp.sharedPreferences.getString(EcommerceApp.userAvatarUrl),
       "userName":
           EcommerceApp.sharedPreferences.getString(EcommerceApp.userName),
-    }).then((value) =>
-            {
+    }).then((value) => {
               Fluttertoast.showToast(msg: "Review added successfully"),
               //Navigator.pushReplacement(context, MaterialPageRoute(builder: (c) => ProductPage(itemModel: widget.itemModel,bought: widget.bought,)))
             });
   }
 
   Widget review() {
-    if (widget.bought == true){
+    if (widget.bought == true) {
       return InkWell(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -340,55 +338,60 @@ class _ProductPageState extends State<ProductPage> {
           ],
         ),
       );
-    }else{
+    } else {
       return Container();
     }
   }
 
   viewRev() {
-
     return Container(
       width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.height/3,
+      height: MediaQuery.of(context).size.height / 3,
       child: StreamBuilder(
-        stream: Firestore.instance.collection("Items").document(widget.itemModel.id).collection("Reviews").limit(5).snapshots(),
-        builder: (context, snapshot12){
-          if (!snapshot12.hasData){
+        stream: Firestore.instance
+            .collection("Items")
+            .document(widget.itemModel.id)
+            .collection("Reviews")
+            .limit(5)
+            .snapshots(),
+        builder: (context, snapshot12) {
+          if (!snapshot12.hasData) {
             print("No data mnk");
             return CircularProgressIndicator();
           }
           return ListView(
-            children: snapshot12.data.documents.map<Widget>((document){
-              print ("Name: "+document['userName']);
+            children: snapshot12.data.documents.map<Widget>((document) {
+              print("Name: " + document['userName']);
               return InkWell(
-                    child: Container(
-                        // decoration: BoxDecoration(
-                        //   border: Border.all(color: Colors.deepPurple)
-                        // ),
-                        child: Card(
-                            child: Padding(
-                                padding: EdgeInsets.only(bottom: 10.0),
-                                child: Column(
-                                  children: [
-                                    ListTile(
-                                      title: Text(document['userName']),
-                                      leading: CircleAvatar(
-                                        backgroundImage: NetworkImage(document['userIMG']),
-                                      ),
+                child: Container(
+                    // decoration: BoxDecoration(
+                    //   border: Border.all(color: Colors.deepPurple)
+                    // ),
+                    child: Card(
+                        child: Padding(
+                            padding: EdgeInsets.only(bottom: 10.0),
+                            child: Column(
+                              children: [
+                                ListTile(
+                                  title: Text(document['userName']),
+                                  leading: CircleAvatar(
+                                    backgroundImage:
+                                        NetworkImage(document['userIMG']),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.only(left: 10.0),
+                                  child: Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: Text(
+                                      document['review'],
+                                      textAlign: TextAlign.left,
                                     ),
-                                    Padding(
-                                      padding: EdgeInsets.only(left: 10.0),
-                                      child: Align(
-                                        alignment: Alignment.centerLeft,
-                                        child: Text(
-                                          document['review'],
-                                          textAlign: TextAlign.left,
-                                        ),
-                                      ),
-                                    )
-                                  ],
-                                )))),
-                  );
+                                  ),
+                                )
+                              ],
+                            )))),
+              );
             }).toList(),
           );
         },
@@ -397,35 +400,35 @@ class _ProductPageState extends State<ProductPage> {
   }
 
   Widget buildVideo() => OrientationBuilder(
-    builder: (context, orientation) {
-      final isPortrait = orientation == Orientation.portrait;
+        builder: (context, orientation) {
+          final isPortrait = orientation == Orientation.portrait;
 
-      setOrientation(isPortrait);
+          setOrientation(isPortrait);
 
-      return Stack(
-        fit: isPortrait ? StackFit.loose : StackFit.expand,
-        children: <Widget>[
-          buildVideoPlayer(),
-          Positioned.fill(
-            child: AdvancedOverlayWidget(
-              controller: controller,
-              onClickedFullScreen: () {
-                target = isPortrait
-                    ? Orientation.landscape
-                    : Orientation.portrait;
+          return Stack(
+            fit: isPortrait ? StackFit.loose : StackFit.expand,
+            children: <Widget>[
+              buildVideoPlayer(),
+              Positioned.fill(
+                child: AdvancedOverlayWidget(
+                  controller: controller,
+                  onClickedFullScreen: () {
+                    target = isPortrait
+                        ? Orientation.landscape
+                        : Orientation.portrait;
 
-                // if (isPortrait) {
-                //   AutoOrientation.landscapeRightMode();
-                // } else {
-                //   AutoOrientation.portraitUpMode();
-                // }
-              },
-            ),
-          ),
-        ],
+                    // if (isPortrait) {
+                    //   AutoOrientation.landscapeRightMode();
+                    // } else {
+                    //   AutoOrientation.portraitUpMode();
+                    // }
+                  },
+                ),
+              ),
+            ],
+          );
+        },
       );
-    },
-  );
 
   Widget buildVideoPlayer() {
     final video = AspectRatio(

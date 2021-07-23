@@ -22,26 +22,26 @@ class LandscapePlayerPage extends StatefulWidget {
 
 class _LandscapePlayerPageState extends State<LandscapePlayerPage> {
   VideoPlayerController controller;
-  CameraController cameraController;
-  String videoPath;
+
+  // CameraController cameraController;
+  //String videoPath;
 
   @override
   void initState() {
     super.initState();
-    cameraController = CameraController(cameras[1], ResolutionPreset.medium);
-    cameraController.initialize().then((_) {
-      if (!mounted) {
-        return;
-      }
-      setState(() {});
-    });
+    // cameraController = CameraController(cameras[1], ResolutionPreset.medium);
+    // cameraController.initialize().then((_) {
+    //   if (!mounted) {
+    //     return;
+    //   }
+    // });
 
     controller = VideoPlayerController.network(widget.url)
       ..addListener(() => setState(() {}))
       ..setLooping(false)
       ..initialize();
     controller.addListener(() {
-      stopRecord();
+      //stopRecord();
     });
 
     setLandscape();
@@ -51,7 +51,6 @@ class _LandscapePlayerPageState extends State<LandscapePlayerPage> {
   void dispose() {
     controller.dispose();
     setAllOrientations();
-
     super.dispose();
   }
 
@@ -76,47 +75,47 @@ class _LandscapePlayerPageState extends State<LandscapePlayerPage> {
   Widget build(BuildContext context) =>
       VideoPlayerFullscreenWidget(controller: controller);
 
-  void stopRecord() async{
-    if (controller.value.position == Duration(seconds: 3,minutes: 0,hours: 0)){
-      print("Started: ");
-
-      final Directory appDirectory = await getExternalStorageDirectory();
-      final String videoDirectory = '${appDirectory.path}/Videos';
-      await Directory(videoDirectory).create(recursive: true);
-      final String currentTime = DateTime.now().millisecondsSinceEpoch.toString();
-      final String filePath = '$videoDirectory/$currentTime.mp4';
-
-      try {
-        await cameraController.startVideoRecording(filePath);
-        print('File path: '+ filePath);
-        videoPath = filePath;
-      } on CameraException catch (e) {
-        _showCameraException(e);
-      }
-    }
-
-   if (controller.value.position == controller.value.duration){
-      print("Ended");
-        try {
-          await cameraController.stopVideoRecording();
-        } on CameraException catch (e) {
-          _showCameraException(e);
-        }
-
-    }
-  }
-
-  void _showCameraException(CameraException e) {
-    String errorText = 'Error: ${e.code}\nError Message: ${e.description}';
-    print(errorText);
-
-    Fluttertoast.showToast(
-        msg: 'Error: ${e.code}\n${e.description}',
-        toastLength: Toast.LENGTH_SHORT,
-        gravity: ToastGravity.CENTER,
-        timeInSecForIos: 1,
-        backgroundColor: Colors.red,
-        textColor: Colors.white
-    );
-  }
+// void stopRecord() async{
+//   if (controller.value.position == Duration(seconds: 0,minutes: 0,hours: 0)){
+//     print("Started: ");
+//
+//     final Directory appDirectory = await getTemporaryDirectory();
+//     final String videoDirectory = '${appDirectory.path}/Videos';
+//     await Directory(videoDirectory).create(recursive: true);
+//     final String currentTime = DateTime.now().millisecondsSinceEpoch.toString();
+//     final String filePath = '$videoDirectory/$currentTime.mp4';
+//
+//     try {
+//       await cameraController.startVideoRecording(filePath);
+//       print('File path: '+ filePath);
+//       videoPath = filePath;
+//     } on CameraException catch (e) {
+//       _showCameraException(e);
+//     }
+//   }
+//
+//  if (controller.value.position == controller.value.duration){
+//     print("Ended");
+//       try {
+//         await cameraController.stopVideoRecording();
+//       } on CameraException catch (e) {
+//         _showCameraException(e);
+//       }
+//
+//   }
+// }
+//
+// void _showCameraException(CameraException e) {
+//   String errorText = 'Error: ${e.code}\nError Message: ${e.description}';
+//   print(errorText);
+//
+//   Fluttertoast.showToast(
+//       msg: 'Error: ${e.code}\n${e.description}',
+//       toastLength: Toast.LENGTH_SHORT,
+//       gravity: ToastGravity.CENTER,
+//       timeInSecForIos: 1,
+//       backgroundColor: Colors.red,
+//       textColor: Colors.white
+//   );
+// }
 }

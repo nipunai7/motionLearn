@@ -80,6 +80,24 @@
       "languageVersion": "2.1"
     },
     {
+      "name": "cloud_functions",
+      "rootUri": "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/cloud_functions-0.5.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.0"
+    },
+    {
+      "name": "cloud_functions_platform_interface",
+      "rootUri": "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/cloud_functions_platform_interface-1.1.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.0"
+    },
+    {
+      "name": "cloud_functions_web",
+      "rootUri": "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/cloud_functions_web-1.1.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.0"
+    },
+    {
       "name": "collection",
       "rootUri": "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/collection-1.15.0",
       "packageUri": "lib/",
@@ -566,7 +584,7 @@
       "languageVersion": "2.2"
     }
   ],
-  "generated": "2021-07-19T19:09:09.502308Z",
+  "generated": "2021-07-22T10:34:22.862913Z",
   "generator": "pub",
   "generatorVersion": "2.13.0"
 }

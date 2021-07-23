@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:e_shop/Widgets/loadingWidget.dart';
@@ -7,6 +8,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:http/http.dart' as http;
 
 class UploadPage extends StatefulWidget {
   @override
@@ -496,22 +498,16 @@ class _UploadPageState extends State<UploadPage> {
       "publishedDate": DateTime.now(),
     });
 
-    // try {
-    //   Response response = await post(
-    //       Uri.parse('http://127.0.0.1:5000/admin?video=' +
-    //           downUrl2 +
-    //           '&tuteID=' +
-    //           tuteID),
-    //       encoding: Encoding.getByName("utf-8"));
-    //
-    //   if (response.body == '{"message": "All done"}') {
-    //     print("Video processed");
-    //   } else {
-    //     print("Video process failed");
-    //   }
-    // } catch (e) {
-    //   print(e);
-    // }
+    print("video: "+ downUrl2);
+    print("tuteID: "+ tuteID);
+
+    final response = await createReport(downUrl2,tuteID);
+
+    if (response.statusCode == 200){
+      print("All Done");
+    }else{
+      print(response.body);
+    }
 
     setState(() {
       file = null;
@@ -522,5 +518,20 @@ class _UploadPageState extends State<UploadPage> {
       shortText.clear();
       descriptionText.clear();
     });
+
   }
+
+  Future<http.Response> createReport(String video,String tuteID) {
+    return http.post(
+      Uri.parse('http://34.126.164.58/admin'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, String>{
+        'video': video,
+        'tuteID': tuteID
+      }),
+    );
+  }
+
 }

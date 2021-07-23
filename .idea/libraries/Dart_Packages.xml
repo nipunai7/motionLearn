@@ -93,6 +93,27 @@
             </list>
           </value>
         </entry>
+        <entry key="cloud_functions">
+          <value>
+            <list>
+              <option value="C:/flutter/.pub-cache/hosted/pub.dartlang.org/cloud_functions-0.5.0/lib" />
+            </list>
+          </value>
+        </entry>
+        <entry key="cloud_functions_platform_interface">
+          <value>
+            <list>
+              <option value="C:/flutter/.pub-cache/hosted/pub.dartlang.org/cloud_functions_platform_interface-1.1.0/lib" />
+            </list>
+          </value>
+        </entry>
+        <entry key="cloud_functions_web">
+          <value>
+            <list>
+              <option value="C:/flutter/.pub-cache/hosted/pub.dartlang.org/cloud_functions_web-1.1.0/lib" />
+            </list>
+          </value>
+        </entry>
         <entry key="collection">
           <value>
             <list>
@@ -669,6 +690,9 @@
       <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/cloud_firestore-0.13.7/lib" />
       <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/cloud_firestore_platform_interface-1.1.2/lib" />
       <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/cloud_firestore_web-0.1.1+2/lib" />
+      <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/cloud_functions-0.5.0/lib" />
+      <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/cloud_functions_platform_interface-1.1.0/lib" />
+      <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/cloud_functions_web-1.1.0/lib" />
       <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/collection-1.15.0/lib" />
       <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/convert-2.1.1/lib" />
       <root url="file://C:/flutter/.pub-cache/hosted/pub.dartlang.org/crypto-2.1.5/lib" />

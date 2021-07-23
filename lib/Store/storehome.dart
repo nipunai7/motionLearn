@@ -16,6 +16,7 @@ import '../Widgets/loadingWidget.dart';
 import '../Widgets/myDrawer.dart';
 import '../Widgets/searchBox.dart';
 import '../Models/item.dart';
+import 'package:cloud_functions/cloud_functions.dart';
 
 double width;
 
@@ -133,7 +134,12 @@ class _StoreHomeState extends State<StoreHome> {
                     padding: EdgeInsets.only(left: 10.0, top: 10.0),
                     child: Align(
                       alignment: Alignment.centerLeft,
-                      child: Text("Joined on: "+ EcommerceApp.sharedPreferences.getString(EcommerceApp.jdate.toString()),style:TextStyle(fontSize: 18.0, color: Colors.deepPurple),
+                      child: Text(
+                        "Joined on: " +
+                            EcommerceApp.sharedPreferences
+                                .getString(EcommerceApp.jdate.toString()),
+                        style:
+                            TextStyle(fontSize: 18.0, color: Colors.deepPurple),
                       ),
                     ),
                   ),

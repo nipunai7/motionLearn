@@ -1,4 +1,4 @@
-#Tue Jul 20 14:51:18 IST 2021
+#Fri Jul 23 10:48:56 IST 2021
 path.4=classes_1.dex
 path.3=classes_0.dex
 path.2=classes2.dex
@@ -26,6 +26,7 @@ renamed.16=classes17.dex
 path.18=classes_15.dex
 renamed.8=classes9.dex
 renamed.15=classes16.dex
+path.19=classes_16.dex
 renamed.14=classes15.dex
 renamed.13=classes14.dex
 renamed.12=classes13.dex
@@ -35,6 +36,7 @@ base.17=F\:\\Academic\\Level 3\\Semester 1\\Design Project\\motionLearn\\build\\
 base.16=F\:\\Academic\\Level 3\\Semester 1\\Design Project\\motionLearn\\build\\app\\intermediates\\dex\\debug\\mergeLibDexDebug\\out\\classes_8.dex
 base.15=F\:\\Academic\\Level 3\\Semester 1\\Design Project\\motionLearn\\build\\app\\intermediates\\dex\\debug\\mergeLibDexDebug\\out\\classes_7.dex
 base.14=F\:\\Academic\\Level 3\\Semester 1\\Design Project\\motionLearn\\build\\app\\intermediates\\dex\\debug\\mergeLibDexDebug\\out\\classes_6.dex
+base.19=F\:\\Academic\\Level 3\\Semester 1\\Design Project\\motionLearn\\build\\app\\intermediates\\dex\\debug\\mergeLibDexDebug\\out\\classes_16.dex
 base.18=F\:\\Academic\\Level 3\\Semester 1\\Design Project\\motionLearn\\build\\app\\intermediates\\dex\\debug\\mergeLibDexDebug\\out\\classes_15.dex
 renamed.3=classes4.dex
 path.12=classes_4.dex
@@ -52,6 +54,7 @@ renamed.5=classes6.dex
 path.14=classes_6.dex
 renamed.4=classes5.dex
 path.15=classes_7.dex
+renamed.19=classes20.dex
 base.13=F\:\\Academic\\Level 3\\Semester 1\\Design Project\\motionLearn\\build\\app\\intermediates\\dex\\debug\\mergeLibDexDebug\\out\\classes_5.dex
 base.12=F\:\\Academic\\Level 3\\Semester 1\\Design Project\\motionLearn\\build\\app\\intermediates\\dex\\debug\\mergeLibDexDebug\\out\\classes_4.dex
 base.11=F\:\\Academic\\Level 3\\Semester 1\\Design Project\\motionLearn\\build\\app\\intermediates\\dex\\debug\\mergeLibDexDebug\\out\\classes_3.dex
