@@ -20,14 +20,13 @@ class InvoiceInfo {
   final String number;
   final String order;
   final DateTime date;
-  final DateTime dueDate;
 
   const InvoiceInfo({
     this.description,
     this.order,
     this.number,
     this.date,
-    this.dueDate,
+
   });
 }
 

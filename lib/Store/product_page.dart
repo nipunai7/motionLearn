@@ -356,7 +356,7 @@ class _ProductPageState extends State<ProductPage> {
             .snapshots(),
         builder: (context, snapshot12) {
           if (!snapshot12.hasData) {
-            print("No data mnk");
+            print("No data");
             return CircularProgressIndicator();
           }
           return ListView(

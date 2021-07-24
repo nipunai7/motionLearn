@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:e_shop/Store/cart.dart';
+import 'package:e_shop/Store/report.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:e_shop/Store/product_page.dart';
 import 'package:e_shop/Counters/cartitemcounter.dart';
 import 'package:e_shop/Widgets/customAppBar.dart';
@@ -16,7 +17,6 @@ import '../Widgets/loadingWidget.dart';
 import '../Widgets/myDrawer.dart';
 import '../Widgets/searchBox.dart';
 import '../Models/item.dart';
-import 'package:cloud_functions/cloud_functions.dart';
 
 double width;
 
@@ -149,17 +149,51 @@ class _StoreHomeState extends State<StoreHome> {
                 child: Column(
                   children: [
                     Container(
-                      height: 70.0,
-                      child: Card(
-                        child: Align(
-                            alignment: Alignment.centerLeft,
-                            child: Padding(
-                              padding: EdgeInsets.only(left: 10.0),
-                              child: Text(
-                                "1624873033163_report",
-                                style: TextStyle(fontSize: 18.0),
-                              ),
-                            )),
+                      height: 500.0,
+                      child: StreamBuilder(
+                        stream: Firestore.instance
+                            .collection("users")
+                            .document(EcommerceApp.sharedPreferences
+                            .getString(EcommerceApp.userUID))
+                            .collection("Reports")
+                            .snapshots(),
+                        builder: (context, snapshot) {
+                          if (!snapshot.hasData) {
+                            return Container(
+                              child: Center(child: Text("No Reports")),
+                            );
+                          }
+                          return ListView(
+                            children:
+                            snapshot.data.documents.map<Widget>((document) {
+                              return Container(
+                                height: 70.0,
+                                child: InkWell(
+                                  onTap: () {
+                                    try {
+                                      // launch(document['fullurl']);
+                                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (c)=> ReportPage(url: "test",)));
+                                      print(document['fullurl']);
+                                    } catch (e) {
+                                      print(e);
+                                    }
+                                  },
+                                  child: Card(
+                                    child: Align(
+                                        alignment: Alignment.centerLeft,
+                                        child: Padding(
+                                          padding: EdgeInsets.only(left: 10.0),
+                                          child: Text(
+                                            document['tutorial Name']+' attempt: '+document['attempt'],
+                                            style: TextStyle(fontSize: 18.0),
+                                          ),
+                                        )),
+                                  ),
+                                ),
+                              );
+                            }).toList(),
+                          );
+                        },
                       ),
                     )
                   ],
@@ -219,11 +253,12 @@ class _StoreHomeState extends State<StoreHome> {
                             .document(EcommerceApp.sharedPreferences
                                 .getString(EcommerceApp.userUID))
                             .collection("orders")
-                            .limit(5)
                             .snapshots(),
                         builder: (context, snapshot) {
                           if (!snapshot.hasData) {
-                            print("No orders");
+                            return Container(
+                              child: Center(child: Text("No Invoices")),
+                            );
                           }
                           return ListView(
                             children:
@@ -233,8 +268,8 @@ class _StoreHomeState extends State<StoreHome> {
                                 child: InkWell(
                                   onTap: () {
                                     try {
-                                      OpenFile.open(
-                                          "/sdcard/Download/Motion_learn 1625472060264_order[9279].pdf");
+                                      launch(document['invoice']);
+                                      print(document['invoice']);
                                     } catch (e) {
                                       print(e);
                                     }
@@ -540,7 +575,7 @@ void checkItemInCart(String productID, BuildContext context) {
 
   print(EcommerceApp.sharedPreferences.getStringList(EcommerceApp.items));
   print(EcommerceApp.sharedPreferences.getString(EcommerceApp.totalSpent));
-  // EcommerceApp.sharedPreferences.setStringList(EcommerceApp.items, []);
+  //EcommerceApp.sharedPreferences.setStringList(EcommerceApp.items, []);
 
   EcommerceApp.sharedPreferences.getStringList(EcommerceApp.items).contains(productID)
   ? Fluttertoast.showToast(msg: "You already own this tutorial.")

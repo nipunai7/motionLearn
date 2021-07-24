@@ -16,9 +16,7 @@ class _UserPageState extends State<UserPage> {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: () {
-        print (EcommerceApp.sharedPreferences.getString(EcommerceApp.jdate.toString()));
-      },
+      onWillPop: (){},
       child: MaterialApp(
         home: DefaultTabController(
           length: 4,

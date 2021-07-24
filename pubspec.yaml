@@ -39,6 +39,10 @@ dependencies:
   native_device_orientation:
   xfile: ^1.1.0
   cloud_functions:
+  firebase_analytics:
+  firebase_core:
+  url_launcher:
+  syncfusion_flutter_charts: ^19.2.48
 
 
 

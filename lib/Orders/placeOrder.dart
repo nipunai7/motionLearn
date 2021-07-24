@@ -3,7 +3,6 @@ import 'package:e_shop/Config/config.dart';
 import 'package:e_shop/Store/cart.dart';
 import 'package:e_shop/Store/storehome.dart';
 import 'package:e_shop/Counters/cartitemcounter.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';

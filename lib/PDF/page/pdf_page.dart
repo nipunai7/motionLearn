@@ -64,7 +64,7 @@ class _PdfPageState extends State<PdfPage> {
                       ),
                       info: InvoiceInfo(
                         date: date,
-                        dueDate: dueDate,
+                        //dueDate: dueDate,
                         description: "Order ID: "+EcommerceApp.sharedPreferences.getString(EcommerceApp.latestOrder),
                         number: '${DateTime.now().millisecond}-9999',
                         order: EcommerceApp.sharedPreferences.getString(EcommerceApp.latestOrder),

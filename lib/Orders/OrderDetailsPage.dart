@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:e_shop/Config/config.dart';
 import 'package:e_shop/Orders/myOrders.dart';
-import 'package:e_shop/Store/userProfile.dart';
 import 'package:e_shop/Widgets/loadingWidget.dart';
 import 'package:e_shop/Widgets/orderCard2.dart';
 import 'package:flutter/cupertino.dart';

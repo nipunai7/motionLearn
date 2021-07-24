@@ -156,7 +156,7 @@ class _VideoPlayState extends State<VideoPlay> {
 
   Future<String> uploadVideo(image2) async {
     final StorageReference storageReference =
-    FirebaseStorage.instance.ref().child("Reports/"+uid+"/"+tuteID+" "+attempt+"/");
+    FirebaseStorage.instance.ref().child("Reports/"+uid+"/"+tuteID+"/"+attempt+"/");
     StorageUploadTask uploadTask2 =
     storageReference.child("training_$tuteID.mp4").putFile(image2);
     StorageTaskSnapshot taskSnapshot2 = await uploadTask2.onComplete;

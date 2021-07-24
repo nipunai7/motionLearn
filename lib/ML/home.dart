@@ -1,7 +1,6 @@
 import 'package:camera/camera.dart';
 import 'package:e_shop/main.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:tflite/tflite.dart';
 
 class MLPage extends StatefulWidget {
@@ -68,23 +67,23 @@ class _MLPagestate extends State<MLPage>{
     });
   }
 
-  loadModel() async
-  {
-    Tflite.close();
-
-    try
-    {
-      String response;
-      response = await Tflite.loadModel(
-        // model: "assets/posenet_mv1_075_float_from_checkpoints.tflite",
-      );
-      print(response);
-    }
-    on PlatformException
-    {
-      print("Unable to load Model");
-    }
-  }
+  // loadModel() async
+  // {
+  //   Tflite.close();
+  //
+  //   try
+  //   {
+  //     String response;
+  //     response = await Tflite.loadModel(
+  //       // model: "assets/posenet_mv1_075_float_from_checkpoints.tflite",
+  //     );
+  //     print(response);
+  //   }
+  //   on PlatformException
+  //   {
+  //     print("Unable to load Model");
+  //   }
+  // }
 
   List<Widget> displayKeypoints(Size screen)
   {
@@ -117,13 +116,13 @@ class _MLPagestate extends State<MLPage>{
     return listsAll;
   }
 
-  @override
-  void initState() {
-    super.initState();
-
-    initCamera();
-    loadModel();
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //
+  //   initCamera();
+  //   loadModel();
+  // }
 
   @override
   void dispose() {

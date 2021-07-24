@@ -4,7 +4,6 @@ import 'package:e_shop/Authentication/authenication.dart';
 import 'package:e_shop/Config/config.dart';
 import 'package:e_shop/Widgets/customTextField.dart';
 import 'package:e_shop/DialogBox/errorDialog.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 

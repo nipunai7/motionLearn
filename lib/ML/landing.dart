@@ -1,5 +1,3 @@
-
-import 'package:camera/camera.dart';
 import 'package:e_shop/ML/home.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

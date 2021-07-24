@@ -67,7 +67,6 @@ class PdfInvoiceApi {
       );
 
   static Widget buildInvoiceInfo(InvoiceInfo info) {
-    final paymentTerms = '${info.dueDate.difference(info.date).inDays} days';
     final titles = <String>[
       'Invoice Number:',
       'Invoice Date:',
@@ -167,17 +166,17 @@ class PdfInvoiceApi {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                buildText(
-                  title: 'Net total',
-                  value: Utils.formatPrice(netTotal),
-                  unite: true,
-                ),
+                // buildText(
+                //   title: 'Net total',
+                //   value: Utils.formatPrice(netTotal),
+                //   unite: true,
+                // ),
                 // buildText(
                 //   title: 'Vat ${vatPercent * 100} %',
                 //   value: Utils.formatPrice(vat),
                 //   unite: true,
                 // ),
-                Divider(),
+                // Divider(),
                 buildText(
                   title: 'Total amount ',
                   titleStyle: TextStyle(

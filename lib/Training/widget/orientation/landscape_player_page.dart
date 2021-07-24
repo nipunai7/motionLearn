@@ -1,15 +1,9 @@
-import 'dart:io';
-
-import 'package:camera/camera.dart';
 import 'package:e_shop/Training/widget/orientation/video_player_fullscreen_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:video_player/video_player.dart';
 import 'package:wakelock/wakelock.dart';
 
-import '../../../main.dart';
 
 class LandscapePlayerPage extends StatefulWidget {
   String url;

@@ -2,7 +2,6 @@ import 'package:e_shop/Models/item.dart';
 import 'package:e_shop/Store/product_page.dart';
 import 'package:e_shop/main.dart';
 import 'package:flutter/material.dart';
-import 'package:tflite/tflite.dart';
 import 'dart:math' as math;
 
 import '../../main.dart';

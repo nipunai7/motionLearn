@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:e_shop/Address/PurchasePage.dart';
 import 'package:e_shop/Config/config.dart';
-import 'package:e_shop/Address/address.dart';
 import 'package:e_shop/Widgets/customAppBar.dart';
 import 'package:e_shop/Widgets/loadingWidget.dart';
 import 'package:e_shop/Models/item.dart';

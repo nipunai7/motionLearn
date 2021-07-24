@@ -1,16 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:e_shop/Admin/adminShiftOrders.dart';
 import 'package:e_shop/Admin/product_admin.dart';
-import 'package:e_shop/Admin/uploadItems.dart';
 import 'package:e_shop/Config/config.dart';
-import 'package:e_shop/Widgets/customAppBar.dart';
 import 'package:e_shop/Widgets/customTextField.dart';
-import 'package:e_shop/Widgets/customTextField2.dart';
-import 'package:e_shop/Widgets/myDrawer.dart';
 import 'package:e_shop/Models/item.dart';
 import 'package:e_shop/Widgets/myDrawer2.dart';
 import 'package:flutter/material.dart';
-import 'package:e_shop/Store/storehome.dart';
 import 'package:video_player/video_player.dart';
 import '../Widgets/chewiePlayer.dart';
 

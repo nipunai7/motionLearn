@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'package:camera/camera.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:e_shop/Address/address.dart';
 import 'package:e_shop/Counters/BookQuantity.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -13,8 +12,6 @@ import 'Counters/cartitemcounter.dart';
 import 'Counters/changeAddresss.dart';
 import 'Counters/totalMoney.dart';
 import 'Store/storehome.dart';
-import 'package:image_picker/image_picker.dart';
-
 
 List<CameraDescription> cameras;
 

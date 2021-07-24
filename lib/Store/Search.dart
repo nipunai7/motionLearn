@@ -1,14 +1,9 @@
-
-import 'package:chewie/chewie.dart';
-import 'package:e_shop/Config/config.dart';
 import 'package:e_shop/Models/item.dart';
 import 'package:e_shop/Store/storehome.dart';
 import 'package:e_shop/Widgets/myDrawer.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:video_player/video_player.dart';
 import '../Widgets/customAppBar.dart';
-import '../Widgets/chewiePlayer.dart';
 
 class SearchService {
 }

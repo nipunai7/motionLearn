@@ -1,10 +1,6 @@
-import 'package:e_shop/Store/cart.dart';
-import 'package:e_shop/Counters/cartitemcounter.dart';
 import 'package:e_shop/Store/storehome.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:e_shop/Config/config.dart';
 
 class MyAppBar2 extends StatelessWidget with PreferredSizeWidget
 {

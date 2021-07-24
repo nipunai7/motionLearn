@@ -16,6 +16,11 @@ class UploadPage extends StatefulWidget {
 }
 
 class _UploadPageState extends State<UploadPage> {
+  double _total;
+  List _tuteTitle = [];
+  List _qty = [];
+  List _price = [];
+
   bool get wantKeepAlive => true;
   File file, file2;
   final picker = ImagePicker();
@@ -28,6 +33,7 @@ class _UploadPageState extends State<UploadPage> {
 
   @override
   Widget build(BuildContext context) {
+    getAll();
     return file == null ? displayAdminHome() : adminUploadForm();
   }
 
@@ -91,12 +97,187 @@ class _UploadPageState extends State<UploadPage> {
               ),
             ],
           ),
-          body: getAdminHomeBody(),
+          body: dashboard(),
         ));
   }
 
-  getAdminHomeBody() {
-    return Container();
+  dashboard() {
+    return Container(
+        child: _total != null
+            ? Column(
+                children: [
+                  Card(
+                    elevation: 14.0,
+                    child: Center(
+                      heightFactor: 1.0,
+                      child: Container(
+                          height: 60.0,
+                          child: Center(
+                            child: Text(
+                              "Total Earnings: $_total",
+                              style: TextStyle(
+                                  fontSize: 24.0, color: Colors.deepPurple),
+                            ),
+                          )),
+                    ),
+                  ),
+                  Card(
+                    elevation: 12.0,
+                    child: Column(
+                      children: [
+                        SizedBox(height: 6.0,),
+                        Center(
+                          child: Text(
+                            "Trending Tutorials",
+                            style: TextStyle(
+                                fontSize: 24.0, color: Colors.deepPurple),
+                          ),
+                          widthFactor: 1.96,
+                          heightFactor: 1.2,
+                        ),
+                        Container(
+                          margin:
+                              EdgeInsets.only(left: 4.0, top: 4.0, right: 4.0),
+                          decoration: BoxDecoration(
+                              border: Border.all(color: Colors.deepPurple),
+                            borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(
+                                    5.0) ,
+                              topRight: Radius.circular(
+                                  5.0) ,//                 <--- border radius here
+                            ),),
+                          child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Container(
+                                    decoration: BoxDecoration(
+                                      color: Colors.deepPurple,
+                                      border:
+                                          Border.all(color: Colors.deepPurple),
+                                      borderRadius: BorderRadius.only(
+                                          topLeft: Radius.circular(
+                                              5.0) //                 <--- border radius here
+                                          ),
+                                    ),
+                                    width: 220.0,
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Text(
+                                        "Title",
+                                        style: TextStyle(
+                                            fontSize: 18.0,
+                                            color: Colors.white),
+                                      ),
+                                    )),
+                                Container(
+                                    decoration: BoxDecoration(
+                                        color: Colors.deepPurple,
+                                        border: Border.all(
+                                            color: Colors.deepPurple)),
+                                    width: 80,
+                                    child: Center(
+                                        child: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Text(
+                                        "Qty",
+                                        style: TextStyle(
+                                            fontSize: 18.0,
+                                            color: Colors.white),
+                                      ),
+                                    ))),
+                                Container(
+                                    width: 74.7,
+                                    decoration: BoxDecoration(
+                                      color: Colors.deepPurple,
+                                        border: Border.all(
+                                            color: Colors.deepPurple),
+                                      borderRadius: BorderRadius.only(
+                                          topRight: Radius.circular(
+                                              5.0) //                 <--- border radius here
+                                      ),),
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(
+                                          top: 8.0, bottom: 8.0),
+                                      child: Center(
+                                        child: Text(
+                                          "Income",
+                                          style: TextStyle(
+                                              fontSize: 18.0,
+                                              color: Colors.white),
+                                        ),
+                                      ),
+                                    ))
+                              ]),
+                        ),
+                        trending()
+                      ],
+                    ),
+                  )
+                ],
+              )
+            : Container(
+                child: ElevatedButton(
+                  child: Text("Press to Load data"),
+                  onPressed: () {
+                    Route route =
+                        MaterialPageRoute(builder: (c) => UploadPage());
+                    Navigator.pushReplacement(context, route);
+                  },
+                ),
+              ));
+  }
+
+  trending() {
+    return Container(
+        margin: EdgeInsets.only(left: 4.0, bottom: 4.0, right: 4.0),
+        height: 190.0,
+        child: StreamBuilder(
+          stream: Firestore.instance
+              .collection("Items")
+              .orderBy("purchaseCount", descending: true)
+              .limit(4)
+              .snapshots(),
+          builder: (context, snapshot12) {
+            if (!snapshot12.hasData) {
+              print("No data");
+              return CircularProgressIndicator();
+            }
+            return ListView(
+              children: snapshot12.data.documents.map<Widget>((document) {
+                return InkWell(
+                  child: Container(
+                      height: 47.0,
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Colors.deepPurple),
+                      borderRadius: BorderRadius.all(Radius.circular(5.0))),
+                      child: Padding(
+                        padding: EdgeInsets.only(left: 4.0, right: 4.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Container(
+                                width: 200.0,
+                                child: Text(
+                                  document['title'],
+                                  style: TextStyle(fontSize: 18.0),
+                                )),
+                            Text(
+                              document['purchaseCount'].toString(),
+                              style: TextStyle(fontSize: 18.0),
+                            ),
+                            Text(
+                              (document['purchaseCount'] * document['price'])
+                                  .toString(),
+                              style: TextStyle(fontSize: 18.0),
+                            ),
+                          ],
+                        ),
+                      )),
+                );
+              }).toList(),
+            );
+          },
+        ));
   }
 
   takeImage(mContext) {
@@ -462,7 +643,7 @@ class _UploadPageState extends State<UploadPage> {
     final itemsRef = Firestore.instance.collection("Items");
     itemsRef.document(tuteID).setData({
       "id": tuteID,
-      "purchaseCount":0,
+      "purchaseCount": 0,
       "reviews": [],
       "shortInfo": shortText.text.trim(),
       "price": int.parse(priceText.text),
@@ -474,14 +655,14 @@ class _UploadPageState extends State<UploadPage> {
       "publishedDate": DateTime.now(),
     });
 
-    print("video: "+ downUrl2);
-    print("tuteID: "+ tuteID);
+    print("video: " + downUrl2);
+    print("tuteID: " + tuteID);
 
-    final response = await createReport(downUrl2,tuteID);
+    final response = await createReport(downUrl2, tuteID);
 
-    if (response.statusCode == 200){
+    if (response.statusCode == 200) {
       print("All Done");
-    }else{
+    } else {
       print(response.body);
     }
 
@@ -494,20 +675,50 @@ class _UploadPageState extends State<UploadPage> {
       shortText.clear();
       descriptionText.clear();
     });
-
   }
 
-  Future<http.Response> createReport(String video,String tuteID) {
+  Future<http.Response> createReport(String video, String tuteID) {
     return http.post(
       Uri.parse('http://34.126.164.58/admin'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
-      body: jsonEncode(<String, String>{
-        'video': video,
-        'tuteID': tuteID
-      }),
+      body: jsonEncode(<String, String>{'video': video, 'tuteID': tuteID}),
     );
   }
 
+  getAll() async {
+    double total = 0;
+    // List tuteTitle = [];
+    // List qty = [];
+    // List price = [];
+    await Firestore.instance
+        .collection("users")
+        .orderBy("totalSpent")
+        .getDocuments()
+        .then((value) => {
+              value.documents.forEach((element) {
+                total += double.parse(element.data['totalSpent']);
+              }),
+            });
+
+    // await Firestore.instance
+    //     .collection("Items")
+    //     .orderBy("purchaseCount", descending: true)
+    //     .getDocuments()
+    //     .then((value) => {
+    //           value.documents.forEach((element) {
+    //             tuteTitle.add(element.data['title']);
+    //             qty.add(element.data['purchaseCount']);
+    //             price.add(element.data['price']);
+    //           })
+    //         });
+    setState(() {
+      _total = total;
+      // _tuteTitle = tuteTitle;
+      // _qty = qty;
+      // _price = price;
+      dashboard();
+    });
+  }
 }
