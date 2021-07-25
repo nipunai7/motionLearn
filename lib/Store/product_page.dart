@@ -128,6 +128,12 @@ class _ProductPageState extends State<ProductPage> {
                             style: boldTextStyle,
                           ),
                           SizedBox(
+                            height: 2.0,
+                          ),
+                          Text(
+                            "Break Dance",style: TextStyle(color: Colors.black45),
+                          ),
+                          SizedBox(
                             height: 10.0,
                           ),
                           Text(

@@ -5,6 +5,7 @@ import 'package:e_shop/Store/cart.dart';
 import 'package:e_shop/Orders/myOrders.dart';
 import 'package:e_shop/Store/storehome.dart';
 import 'package:e_shop/Store/userProfile.dart';
+import 'package:e_shop/User/profile.dart';
 import 'package:flutter/material.dart';
 
 class MyDrawer extends StatelessWidget {
@@ -36,7 +37,7 @@ class MyDrawer extends StatelessWidget {
                   SizedBox(height: 10.0,),
                   InkWell(
                     onTap: () {
-                      Route route = MaterialPageRoute(builder: (c) => UserPage());
+                      Route route = MaterialPageRoute(builder: (c) => Profile());
                       Navigator.pushReplacement(context, route);
                       },
                     child: Text(

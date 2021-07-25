@@ -1,5 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:e_shop/Store/report.dart';
+import 'package:e_shop/User/numbers.dart';
+import 'package:e_shop/User/profile.dart';
+import 'package:e_shop/User/user.dart';
+import 'package:e_shop/User/userPref.dart';
+import 'package:e_shop/User/widget.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:e_shop/Store/product_page.dart';
 import 'package:e_shop/Counters/cartitemcounter.dart';
@@ -87,64 +92,7 @@ class _StoreHomeState extends State<StoreHome> {
           ),
           body: TabBarView(
             children: [
-              Container(
-                  child: Column(
-                children: [
-                  SizedBox(
-                    height: 20.0,
-                  ),
-                  Container(
-                    height: 230.0,
-                    width: 230.0,
-                    child: CircleAvatar(
-                      backgroundImage: NetworkImage(EcommerceApp
-                          .sharedPreferences
-                          .getString(EcommerceApp.userAvatarUrl)),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 20.0,
-                  ),
-                  Align(
-                    alignment: Alignment.center,
-                    child: Text(
-                      EcommerceApp.sharedPreferences
-                          .getString(EcommerceApp.userName),
-                      style:
-                          TextStyle(fontSize: 24.0, color: Colors.deepPurple),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 10.0,
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(left: 10.0, top: 20.0),
-                    child: Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        "Email: " +
-                            EcommerceApp.sharedPreferences
-                                .getString(EcommerceApp.userEmail),
-                        style:
-                            TextStyle(fontSize: 18.0, color: Colors.deepPurple),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(left: 10.0, top: 10.0),
-                    child: Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        "Joined on: " +
-                            EcommerceApp.sharedPreferences
-                                .getString(EcommerceApp.jdate.toString()),
-                        style:
-                            TextStyle(fontSize: 18.0, color: Colors.deepPurple),
-                      ),
-                    ),
-                  ),
-                ],
-              )),
+              Container(child: uProfile()),
               Container(
                 child: Column(
                   children: [
@@ -154,7 +102,7 @@ class _StoreHomeState extends State<StoreHome> {
                         stream: Firestore.instance
                             .collection("users")
                             .document(EcommerceApp.sharedPreferences
-                            .getString(EcommerceApp.userUID))
+                                .getString(EcommerceApp.userUID))
                             .collection("Reports")
                             .snapshots(),
                         builder: (context, snapshot) {
@@ -165,14 +113,19 @@ class _StoreHomeState extends State<StoreHome> {
                           }
                           return ListView(
                             children:
-                            snapshot.data.documents.map<Widget>((document) {
+                                snapshot.data.documents.map<Widget>((document) {
                               return Container(
                                 height: 70.0,
                                 child: InkWell(
                                   onTap: () {
                                     try {
                                       // launch(document['fullurl']);
-                                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (c)=> ReportPage(url: "test",)));
+                                      Navigator.pushReplacement(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (c) => ReportPage(
+                                                    url: document['fullurl'],
+                                                  )));
                                       print(document['fullurl']);
                                     } catch (e) {
                                       print(e);
@@ -184,7 +137,9 @@ class _StoreHomeState extends State<StoreHome> {
                                         child: Padding(
                                           padding: EdgeInsets.only(left: 10.0),
                                           child: Text(
-                                            document['tutorial Name']+' attempt: '+document['attempt'],
+                                            document['tutorial Name'] +
+                                                ' attempt: ' +
+                                                document['attempt'],
                                             style: TextStyle(fontSize: 18.0),
                                           ),
                                         )),
@@ -300,8 +255,48 @@ class _StoreHomeState extends State<StoreHome> {
         ),
       ),
     )),
-    Center(
-      child: Text("Categories"),
+    ListView(
+      children: [
+        InkWell(
+          onTap: () {},
+          child: Card(
+            child: Padding(
+              padding:
+                  const EdgeInsets.only(top: 12.0, bottom: 12.0, left: 8.0),
+              child: Text(
+                "Break Dance 2",
+                style: TextStyle(fontSize: 20.0),
+              ),
+            ),
+          ),
+        ),
+        InkWell(
+          onTap: () {},
+          child: Card(
+            child: Padding(
+              padding:
+                  const EdgeInsets.only(top: 12.0, bottom: 12.0, left: 8.0),
+              child: Text(
+                "Salsa 1",
+                style: TextStyle(fontSize: 20.0),
+              ),
+            ),
+          ),
+        ),
+        InkWell(
+          onTap: () {},
+          child: Card(
+            child: Padding(
+              padding:
+                  const EdgeInsets.only(top: 12.0, bottom: 12.0, left: 8.0),
+              child: Text(
+                "Hiphop 1",
+                style: TextStyle(fontSize: 20.0),
+              ),
+            ),
+          ),
+        ),
+      ],
     ),
     Center(
       child: Text("Settings"),
@@ -328,7 +323,7 @@ class _StoreHomeState extends State<StoreHome> {
             //activeIcon: Icon(Icons.store,color: Colors.white)
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.document_scanner_sharp),
+            icon: Icon(CupertinoIcons.news_solid),
             label: "News",
             backgroundColor: Colors.deepPurpleAccent,
           ),
@@ -342,11 +337,11 @@ class _StoreHomeState extends State<StoreHome> {
             label: "Categories",
             backgroundColor: Colors.deepPurpleAccent,
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: "Settings",
-            backgroundColor: Colors.deepPurple,
-          )
+          // BottomNavigationBarItem(
+          //   icon: Icon(Icons.settings),
+          //   label: "Settings",
+          //   backgroundColor: Colors.deepPurple,
+          // )
         ],
         onTap: (index) {
           setState(() {
@@ -567,24 +562,147 @@ Widget sourceInfo(ItemModel model, BuildContext context,
   );
 }
 
+Widget buildName(User user) => Column(
+      children: [
+        Text(
+          user.name,
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
+        ),
+        const SizedBox(
+          height: 4,
+        ),
+        Text(
+          user.email,
+          style: TextStyle(
+              color: Colors.grey, fontStyle: FontStyle.italic, fontSize: 15.0),
+        )
+      ],
+    );
+
+Widget about(User user) => Container(
+      //padding: EdgeInsets.symmetric(horizontal: 30),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Align(
+            alignment: Alignment.center,
+            child: Text(
+              'About',
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            ),
+          ),
+          SizedBox(height: 1),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Container(
+                  width: 120.0,
+                  child: Column(
+                    children: [
+                      Align(
+                          alignment: Alignment.topLeft,
+                          child: Text("Age: ",
+                              style: TextStyle(
+                                  fontSize: 16,
+                                  height: 1.4,
+                                  fontWeight: FontWeight.bold))),
+                      Align(
+                          alignment: Alignment.topLeft,
+                          child: Text("Occupation: ",
+                              style: TextStyle(
+                                  fontSize: 16,
+                                  height: 1.4,
+                                  fontWeight: FontWeight.bold))),
+                      Align(
+                          alignment: Alignment.topLeft,
+                          child: Text("Interests: ",
+                              style: TextStyle(
+                                  fontSize: 16,
+                                  height: 1.4,
+                                  fontWeight: FontWeight.bold))),
+                    ],
+                  ),
+                ),
+                Container(
+                  width: 250.0,
+                  child: Column(
+                    children: [
+                      Align(
+                          alignment: Alignment.topLeft,
+                          child: Text(user.age,
+                              style: TextStyle(
+                                  fontSize: 16,
+                                  height: 1.4,
+                                  fontWeight: FontWeight.bold))),
+                      Align(
+                          alignment: Alignment.topLeft,
+                          child: Text(user.occupation,
+                              style: TextStyle(
+                                  fontSize: 16,
+                                  height: 1.4,
+                                  fontWeight: FontWeight.bold))),
+                      Align(
+                          alignment: Alignment.topLeft,
+                          child: Text(user.interests,
+                              style: TextStyle(
+                                  fontSize: 16,
+                                  height: 1.4,
+                                  fontWeight: FontWeight.bold)))
+                    ],
+                  ),
+                )
+              ],
+            ),
+          ),
+          SizedBox(
+            height: 24.0,
+          ),
+          Center(
+            child: Container(
+              child: Column(
+                children: [
+                  Text(
+                    "Most Viewed Category",
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(
+                    height: 6.0,
+                  ),
+                  Text(
+                    user.mostPlayed,
+                    style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.deepPurple),
+                  )
+                ],
+              ),
+            ),
+          )
+        ],
+      ),
+    );
+
 Widget card({Color primaryColor = Colors.redAccent, String imgPath}) {
   return Container();
 }
 
 void checkItemInCart(String productID, BuildContext context) {
-
   print(EcommerceApp.sharedPreferences.getStringList(EcommerceApp.items));
   print(EcommerceApp.sharedPreferences.getString(EcommerceApp.totalSpent));
   //EcommerceApp.sharedPreferences.setStringList(EcommerceApp.items, []);
 
-  EcommerceApp.sharedPreferences.getStringList(EcommerceApp.items).contains(productID)
-  ? Fluttertoast.showToast(msg: "You already own this tutorial.")
-
-  :EcommerceApp.sharedPreferences
-          .getStringList(EcommerceApp.userCartList)
+  EcommerceApp.sharedPreferences
+          .getStringList(EcommerceApp.items)
           .contains(productID)
-      ? Fluttertoast.showToast(msg: "Item is already in Cart.")
-      : addItemtoCart(productID, context);
+      ? Fluttertoast.showToast(msg: "You already own this tutorial.")
+      : EcommerceApp.sharedPreferences
+              .getStringList(EcommerceApp.userCartList)
+              .contains(productID)
+          ? Fluttertoast.showToast(msg: "Item is already in Cart.")
+          : addItemtoCart(productID, context);
 }
 
 addItemtoCart(String tutoID, BuildContext context) {
@@ -603,4 +721,54 @@ addItemtoCart(String tutoID, BuildContext context) {
         .setStringList(EcommerceApp.userCartList, tempList);
     Provider.of<CartItemCounter>(context, listen: false).displayResult();
   });
+}
+
+Widget uProfile() {
+  final user = UserPref.myUser;
+  return ListView(
+    physics: BouncingScrollPhysics(),
+    children: [
+      SizedBox(
+        height: 20.0,
+      ),
+      Profile_Widget(
+        imagePath: user.imagePath,
+        onclick: () async {},
+      ),
+      SizedBox(
+        height: 24.0,
+      ),
+      buildName(user),
+      SizedBox(
+        height: 24.0,
+      ),
+      NumbersWidget(
+        user: user,
+      ),
+      SizedBox(
+        height: 40.0,
+      ),
+      about(user),
+    ],
+  );
+}
+
+Widget dropCat() {
+  var list1 = ['BASIC DANCE STEPS|TOUCHE'];
+  var list2 = ['Feet Dance with counter'];
+  var list3 = ['Shuffle Dance'];
+
+  return Column(
+    children: [
+      DropdownButton<String>(
+        hint: Text("Break Dance"),
+        items: list1.map((String dropDownStringItem) {
+          return DropdownMenuItem<String>(
+            value: dropDownStringItem,
+            child: Text(dropDownStringItem),
+          );
+        }).toList(),
+      ),
+    ],
+  );
 }

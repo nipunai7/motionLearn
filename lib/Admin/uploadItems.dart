@@ -68,34 +68,6 @@ class _UploadPageState extends State<UploadPage> {
             flexibleSpace: Container(
               decoration: new BoxDecoration(color: Colors.deepPurple),
             ),
-            // leading: IconButton(
-            //   icon: Icon(Icons.border_color,color: Colors.white,),
-            //   onPressed: (){
-            //     Route route = MaterialPageRoute(builder: (c) => AdminShiftOrders());
-            //     Navigator.pushReplacement(context, route);
-            //   },
-            // ),
-            actions: [
-              Container(
-                margin: EdgeInsets.all(10.0),
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    primary: Colors.white,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(9.0),
-                    ),
-                  ),
-                  child: Text(
-                    "Add New Tutorial",
-                    style: TextStyle(
-                        color: Colors.deepPurple,
-                        fontSize: 16.0,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  onPressed: () => takeImage(context),
-                ),
-              ),
-            ],
           ),
           body: dashboard(),
         ));
