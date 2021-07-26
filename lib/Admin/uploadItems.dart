@@ -9,6 +9,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:http/http.dart' as http;
+import 'package:syncfusion_flutter_charts/charts.dart';
+import 'package:syncfusion_flutter_charts/sparkcharts.dart';
 
 class UploadPage extends StatefulWidget {
   @override
@@ -74,118 +76,252 @@ class _UploadPageState extends State<UploadPage> {
   }
 
   dashboard() {
+    List<_SalesData> data = [
+      _SalesData('Jan', 8500),
+      _SalesData('Feb', 6800),
+      _SalesData('Mar', 7400),
+      _SalesData('Apr', 6500),
+      _SalesData('May', 8600)
+    ];
     return Container(
         child: _total != null
-            ? Column(
-                children: [
-                  Card(
-                    elevation: 14.0,
-                    child: Center(
-                      heightFactor: 1.0,
-                      child: Container(
-                          height: 60.0,
-                          child: Center(
+            ? SingleChildScrollView(
+                child: Column(
+                  children: [
+                    Card(
+                      elevation: 14.0,
+                      child: Center(
+                        heightFactor: 1.0,
+                        child: Container(
+                            height: 60.0,
+                            child: Center(
+                              child: Text(
+                                "Total Earnings: $_total",
+                                style: TextStyle(
+                                    fontSize: 24.0, color: Colors.deepPurple),
+                              ),
+                            )),
+                      ),
+                    ),
+                    Card(
+                      elevation: 12.0,
+                      child: Column(
+                        children: [
+                          SizedBox(
+                            height: 6.0,
+                          ),
+                          Center(
                             child: Text(
-                              "Total Earnings: $_total",
+                              "Trending Tutorials",
                               style: TextStyle(
                                   fontSize: 24.0, color: Colors.deepPurple),
                             ),
-                          )),
-                    ),
-                  ),
-                  Card(
-                    elevation: 12.0,
-                    child: Column(
-                      children: [
-                        SizedBox(height: 6.0,),
-                        Center(
-                          child: Text(
-                            "Trending Tutorials",
-                            style: TextStyle(
-                                fontSize: 24.0, color: Colors.deepPurple),
+                            widthFactor: 1.96,
+                            heightFactor: 1.2,
                           ),
-                          widthFactor: 1.96,
-                          heightFactor: 1.2,
-                        ),
-                        Container(
-                          margin:
-                              EdgeInsets.only(left: 4.0, top: 4.0, right: 4.0),
-                          decoration: BoxDecoration(
+                          Container(
+                            margin: EdgeInsets.only(
+                                left: 4.0, top: 4.0, right: 4.0),
+                            decoration: BoxDecoration(
                               border: Border.all(color: Colors.deepPurple),
-                            borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(
-                                    5.0) ,
-                              topRight: Radius.circular(
-                                  5.0) ,//                 <--- border radius here
-                            ),),
-                          child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Container(
-                                    decoration: BoxDecoration(
-                                      color: Colors.deepPurple,
-                                      border:
-                                          Border.all(color: Colors.deepPurple),
-                                      borderRadius: BorderRadius.only(
-                                          topLeft: Radius.circular(
-                                              5.0) //                 <--- border radius here
-                                          ),
-                                    ),
-                                    width: 220.0,
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Text(
-                                        "Title",
-                                        style: TextStyle(
-                                            fontSize: 18.0,
-                                            color: Colors.white),
-                                      ),
-                                    )),
-                                Container(
-                                    decoration: BoxDecoration(
+                              borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(5.0),
+                                topRight: Radius.circular(
+                                    5.0), //                 <--- border radius here
+                              ),
+                            ),
+                            child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Container(
+                                      decoration: BoxDecoration(
                                         color: Colors.deepPurple,
                                         border: Border.all(
-                                            color: Colors.deepPurple)),
-                                    width: 80,
-                                    child: Center(
-                                        child: Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Text(
-                                        "Qty",
-                                        style: TextStyle(
-                                            fontSize: 18.0,
-                                            color: Colors.white),
-                                      ),
-                                    ))),
-                                Container(
-                                    width: 74.7,
-                                    decoration: BoxDecoration(
-                                      color: Colors.deepPurple,
-                                        border: Border.all(
                                             color: Colors.deepPurple),
-                                      borderRadius: BorderRadius.only(
-                                          topRight: Radius.circular(
-                                              5.0) //                 <--- border radius here
-                                      ),),
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(
-                                          top: 8.0, bottom: 8.0),
-                                      child: Center(
+                                        borderRadius: BorderRadius.only(
+                                            topLeft: Radius.circular(
+                                                5.0) //                 <--- border radius here
+                                            ),
+                                      ),
+                                      width: 220.0,
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
                                         child: Text(
-                                          "Income",
+                                          "Title",
                                           style: TextStyle(
                                               fontSize: 18.0,
                                               color: Colors.white),
                                         ),
+                                      )),
+                                  Container(
+                                      decoration: BoxDecoration(
+                                          color: Colors.deepPurple,
+                                          border: Border.all(
+                                              color: Colors.deepPurple)),
+                                      width: 80,
+                                      child: Center(
+                                          child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Text(
+                                          "Qty",
+                                          style: TextStyle(
+                                              fontSize: 18.0,
+                                              color: Colors.white),
+                                        ),
+                                      ))),
+                                  Container(
+                                      width: 74.7,
+                                      decoration: BoxDecoration(
+                                        color: Colors.deepPurple,
+                                        border: Border.all(
+                                            color: Colors.deepPurple),
+                                        borderRadius: BorderRadius.only(
+                                            topRight: Radius.circular(
+                                                5.0) //                 <--- border radius here
+                                            ),
                                       ),
-                                    ))
-                              ]),
-                        ),
-                        trending()
-                      ],
+                                      child: Padding(
+                                        padding: const EdgeInsets.only(
+                                            top: 8.0, bottom: 8.0),
+                                        child: Center(
+                                          child: Text(
+                                            "Income",
+                                            style: TextStyle(
+                                                fontSize: 18.0,
+                                                color: Colors.white),
+                                          ),
+                                        ),
+                                      ))
+                                ]),
+                          ),
+                          trending()
+                        ],
+                      ),
                     ),
-                  )
-                ],
+                    Card(
+                      elevation: 12.0,
+                      child: Column(
+                        children: [
+                          SizedBox(
+                            height: 6.0,
+                          ),
+                          Center(
+                            child: Text(
+                              "Top clients",
+                              style: TextStyle(
+                                  fontSize: 24.0, color: Colors.deepPurple),
+                            ),
+                            widthFactor: 1.96,
+                            heightFactor: 1.2,
+                          ),
+                          Container(
+                            margin: EdgeInsets.only(
+                                left: 4.0, top: 4.0, right: 4.0),
+                            decoration: BoxDecoration(
+                              border: Border.all(color: Colors.deepPurple),
+                              borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(5.0),
+                                topRight: Radius.circular(
+                                    5.0), //                 <--- border radius here
+                              ),
+                            ),
+                            child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Container(
+                                      decoration: BoxDecoration(
+                                        color: Colors.deepPurple,
+                                        border: Border.all(
+                                            color: Colors.deepPurple),
+                                        borderRadius: BorderRadius.only(
+                                            topLeft: Radius.circular(
+                                                5.0) //                 <--- border radius here
+                                            ),
+                                      ),
+                                      width: 220.0,
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Text(
+                                          "Title",
+                                          style: TextStyle(
+                                              fontSize: 18.0,
+                                              color: Colors.white),
+                                        ),
+                                      )),
+                                  Container(
+                                      decoration: BoxDecoration(
+                                          color: Colors.deepPurple,
+                                          border: Border.all(
+                                              color: Colors.deepPurple)),
+                                      width: 80,
+                                      child: Center(
+                                          child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Text(
+                                          "",
+                                          style: TextStyle(
+                                              fontSize: 18.0,
+                                              color: Colors.white),
+                                        ),
+                                      ))),
+                                  Container(
+                                      width: 74.7,
+                                      decoration: BoxDecoration(
+                                        color: Colors.deepPurple,
+                                        border: Border.all(
+                                            color: Colors.deepPurple),
+                                        borderRadius: BorderRadius.only(
+                                            topRight: Radius.circular(
+                                                5.0) //                 <--- border radius here
+                                            ),
+                                      ),
+                                      child: Padding(
+                                        padding: const EdgeInsets.only(
+                                            top: 8.0, bottom: 8.0),
+                                        child: Center(
+                                          child: Text(
+                                            "Income",
+                                            style: TextStyle(
+                                                fontSize: 18.0,
+                                                color: Colors.white),
+                                          ),
+                                        ),
+                                      ))
+                                ]),
+                          ),
+                          trending2()
+                        ],
+                      ),
+                    ),
+                    Card(
+                        margin: EdgeInsets.all(10.0),
+                        elevation: 16.0,
+                        child: Center(
+                            heightFactor: 1.1,
+                            child: SfCartesianChart(
+                                primaryXAxis: CategoryAxis(),
+                                // Chart title
+                                title: ChartTitle(text: 'Monthly Sales'),
+                                // Enable legend
+                                legend: Legend(isVisible: true),
+                                // Enable tooltip
+                                tooltipBehavior: TooltipBehavior(enable: true),
+                                series: <ChartSeries<_SalesData, String>>[
+                                  LineSeries<_SalesData, String>(
+                                      dataSource: data,
+                                      xValueMapper: (_SalesData sales, _) =>
+                                          sales.year,
+                                      yValueMapper: (_SalesData sales, _) =>
+                                          sales.sales,
+                                      name: '',
+                                      // Enable data label
+                                      dataLabelSettings:
+                                          DataLabelSettings(isVisible: true)),
+                                ])))
+                  ],
+                ),
               )
             : Container(
                 child: ElevatedButton(
@@ -221,7 +357,7 @@ class _UploadPageState extends State<UploadPage> {
                       height: 47.0,
                       decoration: BoxDecoration(
                           border: Border.all(color: Colors.deepPurple),
-                      borderRadius: BorderRadius.all(Radius.circular(5.0))),
+                          borderRadius: BorderRadius.all(Radius.circular(5.0))),
                       child: Padding(
                         padding: EdgeInsets.only(left: 4.0, right: 4.0),
                         child: Row(
@@ -240,6 +376,58 @@ class _UploadPageState extends State<UploadPage> {
                             Text(
                               (document['purchaseCount'] * document['price'])
                                   .toString(),
+                              style: TextStyle(fontSize: 18.0),
+                            ),
+                          ],
+                        ),
+                      )),
+                );
+              }).toList(),
+            );
+          },
+        ));
+  }
+
+  trending2() {
+    return Container(
+        margin: EdgeInsets.only(left: 4.0, bottom: 4.0, right: 4.0),
+        height: 190.0,
+        child: StreamBuilder(
+          stream: Firestore.instance
+              .collection("users")
+              .orderBy("totalSpent", descending: true)
+              .limit(4)
+              .snapshots(),
+          builder: (context, snapshot12) {
+            if (!snapshot12.hasData) {
+              print("No data");
+              return CircularProgressIndicator();
+            }
+            return ListView(
+              children: snapshot12.data.documents.map<Widget>((document) {
+                return InkWell(
+                  child: Container(
+                      height: 47.0,
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Colors.deepPurple),
+                          borderRadius: BorderRadius.all(Radius.circular(5.0))),
+                      child: Padding(
+                        padding: EdgeInsets.only(left: 4.0, right: 4.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Container(
+                                width: 200.0,
+                                child: Text(
+                                  document['name'],
+                                  style: TextStyle(fontSize: 18.0),
+                                )),
+                            // Text(
+                            //   "4",
+                            //   style: TextStyle(fontSize: 18.0),
+                            // ),
+                            Text(
+                              (document['totalSpent']).toString(),
                               style: TextStyle(fontSize: 18.0),
                             ),
                           ],
@@ -693,4 +881,11 @@ class _UploadPageState extends State<UploadPage> {
       dashboard();
     });
   }
+}
+
+class _SalesData {
+  _SalesData(this.year, this.sales);
+
+  final String year;
+  final double sales;
 }
