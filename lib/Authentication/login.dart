@@ -161,6 +161,7 @@ class _LoginState extends State<Login> {
     if (firebaseUser != null) {
       readData(firebaseUser).then((s) {
         Navigator.pop(context);
+        Duration(seconds: 5);
         Route route = MaterialPageRoute(builder: (c) => StoreHome());
         Navigator.pushReplacement(context, route);
       });
@@ -174,15 +175,15 @@ class _LoginState extends State<Login> {
         .get()
         .then((dataSnapShot) async {
       await EcommerceApp.sharedPreferences
-          .setString("uid", dataSnapShot.data[EcommerceApp.userUID]);
+          .setString(EcommerceApp.userUID, dataSnapShot.data['uid']);
       await EcommerceApp.sharedPreferences
-          .setString("email", dataSnapShot.data[EcommerceApp.userEmail]);
+          .setString(EcommerceApp.userEmail, dataSnapShot.data['email']);
       await EcommerceApp.sharedPreferences
-          .setString("name", dataSnapShot.data[EcommerceApp.userName]);
+          .setString(EcommerceApp.userName, dataSnapShot.data['name']);
       await EcommerceApp.sharedPreferences
-          .setString("url", dataSnapShot.data[EcommerceApp.userAvatarUrl]);
+          .setString(EcommerceApp.userAvatarUrl, dataSnapShot.data['url']);
       await EcommerceApp.sharedPreferences
-          .setString("jdate", dataSnapShot.data[EcommerceApp.jdate]);
+          .setString(EcommerceApp.jdate, dataSnapShot.data['jdate']);
       List<String> itemlist =
           dataSnapShot.data[EcommerceApp.items].cast<String>();
       await EcommerceApp.sharedPreferences

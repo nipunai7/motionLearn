@@ -1,4 +1,3 @@
-import 'package:e_shop/User/user.dart';
 import 'package:flutter/material.dart';
 
 class Profile_Widget extends StatelessWidget {

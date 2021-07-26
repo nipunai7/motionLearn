@@ -3,10 +3,10 @@ import 'package:e_shop/Admin/adminShiftOrders.dart';
 import 'package:e_shop/Admin/adminuploads.dart';
 import 'package:e_shop/Admin/product_admin_edit.dart';
 import 'package:e_shop/Models/item.dart';
+import 'package:e_shop/Widgets/chewiePlayer.dart';
 import 'package:e_shop/Widgets/myDrawer2.dart';
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
-import '../Widgets/chewiePlayer.dart';
 
 
 class ProductAdmin extends StatefulWidget {

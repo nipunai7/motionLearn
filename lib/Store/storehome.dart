@@ -562,22 +562,33 @@ Widget sourceInfo(ItemModel model, BuildContext context,
   );
 }
 
-Widget buildName(User user) => Column(
-      children: [
-        Text(
-          user.name,
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
-        ),
-        const SizedBox(
-          height: 4,
-        ),
-        Text(
-          user.email,
-          style: TextStyle(
-              color: Colors.grey, fontStyle: FontStyle.italic, fontSize: 15.0),
-        )
-      ],
-    );
+Widget buildName(User user) {
+  String name = 'loading';
+  String email = 'loading';
+  if (EcommerceApp.sharedPreferences.getString(EcommerceApp.userName) != null){
+    name = EcommerceApp.sharedPreferences.getString(EcommerceApp.userName);
+  }
+
+  if (EcommerceApp.sharedPreferences.getString(EcommerceApp.userEmail) != null){
+    email = EcommerceApp.sharedPreferences.getString(EcommerceApp.userEmail);
+  }
+  return Column(
+    children: [
+      Text(
+        name,
+        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
+      ),
+      const SizedBox(
+        height: 4,
+      ),
+      Text(
+        email,
+        style: TextStyle(
+            color: Colors.grey, fontStyle: FontStyle.italic, fontSize: 15.0),
+      )
+    ],
+  );
+}
 
 Widget about(User user) => Container(
       //padding: EdgeInsets.symmetric(horizontal: 30),
@@ -725,6 +736,11 @@ addItemtoCart(String tutoID, BuildContext context) {
 
 Widget uProfile() {
   final user = UserPref.myUser;
+  String img = 'https://www.iconspng.com/uploads/simple-user-icon.png';
+  if (EcommerceApp.sharedPreferences.getString(EcommerceApp.userAvatarUrl) != null){
+    img = EcommerceApp.sharedPreferences.getString(EcommerceApp.userAvatarUrl);
+  }
+
   return ListView(
     physics: BouncingScrollPhysics(),
     children: [
@@ -732,7 +748,7 @@ Widget uProfile() {
         height: 20.0,
       ),
       Profile_Widget(
-        imagePath: user.imagePath,
+        imagePath: img,
         onclick: () async {},
       ),
       SizedBox(
@@ -749,26 +765,6 @@ Widget uProfile() {
         height: 40.0,
       ),
       about(user),
-    ],
-  );
-}
-
-Widget dropCat() {
-  var list1 = ['BASIC DANCE STEPS|TOUCHE'];
-  var list2 = ['Feet Dance with counter'];
-  var list3 = ['Shuffle Dance'];
-
-  return Column(
-    children: [
-      DropdownButton<String>(
-        hint: Text("Break Dance"),
-        items: list1.map((String dropDownStringItem) {
-          return DropdownMenuItem<String>(
-            value: dropDownStringItem,
-            child: Text(dropDownStringItem),
-          );
-        }).toList(),
-      ),
     ],
   );
 }
