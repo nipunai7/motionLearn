@@ -33,6 +33,7 @@ dependencies:
   camera: ^0.5.8+7
 #  tflite:  ^1.1.1
   pip_view: ^0.9.5
+  payhere_mobilesdk_flutter: ^1.0.3
 #  file_picker:
   wakelock:
 #  auto_orientation:
@@ -43,6 +44,7 @@ dependencies:
 #  firebase_core:
   url_launcher:
   syncfusion_flutter_charts: ^19.2.48
+  loading_animations: ^2.2.0
 
 
 
