@@ -1,10 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:e_shop/Store/report.dart';
-import 'package:e_shop/User/numbers.dart';
-import 'package:e_shop/User/profile.dart';
+import 'package:e_shop/User/reports.dart';
 import 'package:e_shop/User/user.dart';
-import 'package:e_shop/User/userPref.dart';
-import 'package:e_shop/User/widget.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:e_shop/Store/product_page.dart';
 import 'package:e_shop/Counters/cartitemcounter.dart';
@@ -14,7 +11,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:open_file/open_file.dart';
 import 'package:provider/provider.dart';
 import 'package:e_shop/Config/config.dart';
 import 'package:webview_flutter/webview_flutter.dart';
@@ -26,8 +22,8 @@ import '../Models/item.dart';
 double width;
 
 class StoreHome extends StatefulWidget {
-  // int currentIndex;
-  // StoreHome(this.currentIndex);
+  StoreHome({Key key}) : super(key: key);
+
   @override
   _StoreHomeState createState() => _StoreHomeState();
 }
@@ -67,10 +63,12 @@ class _StoreHomeState extends State<StoreHome> {
       ],
     ),
     Center(
-        child: WebView(
-      initialUrl:
-          'https://www.google.com/search?q=latest+news+augmented+reality&sxsrf=ALeKk00lT-VbKfPDBDWNlHdTa3H2xVnBLA:1625480430223&source=lnms&tbm=nws&sa=X&ved=2ahUKEwivwYe92svxAhVhqksFHUcFBmoQ_AUoAXoECAEQAw&cshid=1625480435898687&biw=1550&bih=770',
-      javascriptMode: JavascriptMode.unrestricted,
+        child: Container(
+      child: WebView(
+        initialUrl:
+            'https://www.google.com/search?q=latest+news+augmented+reality&sxsrf=ALeKk00lT-VbKfPDBDWNlHdTa3H2xVnBLA:1625480430223&source=lnms&tbm=nws&sa=X&ved=2ahUKEwivwYe92svxAhVhqksFHUcFBmoQ_AUoAXoECAEQAw&cshid=1625480435898687&biw=1550&bih=770',
+        javascriptMode: JavascriptMode.unrestricted,
+      ),
     )),
     Center(
         child: MaterialApp(
@@ -92,7 +90,11 @@ class _StoreHomeState extends State<StoreHome> {
           ),
           body: TabBarView(
             children: [
-              Container(child: uProfile()),
+              Container(
+                  margin: EdgeInsets.only(top: 0.0),
+                  child: MaterialApp(
+                    home: ReportView(),
+                  )),
               Container(
                 child: Column(
                   children: [
@@ -105,52 +107,121 @@ class _StoreHomeState extends State<StoreHome> {
                                 .getString(EcommerceApp.userUID))
                             .collection("Reports")
                             .snapshots(),
-                        builder: (context, snapshot) {
-                          if (!snapshot.hasData) {
+                        builder: (context, snaps) {
+                          if (!snaps.hasData) {
                             return Container(
-                              child: Center(child: Text("No Reports")),
+                              child: Text("No reports yet"),
                             );
                           }
-                          return ListView(
-                            children:
-                                snapshot.data.documents.map<Widget>((document) {
-                              return Container(
-                                height: 70.0,
-                                child: InkWell(
-                                  onTap: () {
-                                    try {
-                                      // launch(document['fullurl']);
-                                      Navigator.pushReplacement(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (c) => ReportPage(
-                                                    url: document['fullurl'],
-                                                  )));
-                                      print(document['fullurl']);
-                                    } catch (e) {
-                                      print(e);
-                                    }
-                                  },
-                                  child: Card(
-                                    child: Align(
-                                        alignment: Alignment.centerLeft,
-                                        child: Padding(
-                                          padding: EdgeInsets.only(left: 10.0),
-                                          child: Text(
-                                            document['tutorial Name'] +
-                                                ' attempt: ' +
-                                                document['attempt'],
-                                            style: TextStyle(fontSize: 18.0),
-                                          ),
-                                        )),
-                                  ),
-                                ),
-                              );
-                            }).toList(),
+                          return Container(
+                            child: ListView(
+                              children:
+                                  snaps.data.documents.map<Widget>((document) {
+                                var list = new List.generate(
+                                    int.parse(document['attempts']),
+                                    (i) => "${i + 1}");
+                                return ExpansionTile(
+                                  title: Text(document['tutorial Name']),
+                                  children: list
+                                      .map((val) => InkWell(
+                                            onTap: () {
+                                              Firestore.instance
+                                                  .collection("users")
+                                                  .document(EcommerceApp
+                                                      .sharedPreferences
+                                                      .getString(
+                                                          EcommerceApp.userUID))
+                                                  .collection("Reports")
+                                                  .document(document.documentID)
+                                                  .collection("attempts")
+                                                  .document(val)
+                                                  .get()
+                                                  .then((value) => {
+                                                        print(value.data),
+                                                        Navigator
+                                                            .pushReplacement(
+                                                                context,
+                                                                MaterialPageRoute(
+                                                                    builder: (c) =>
+                                                                        ReportPage(
+                                                                          url: document[
+                                                                              'fullurl'],
+                                                                          la: double.parse(value
+                                                                              .data['la']
+                                                                              .round()
+                                                                              .toString()),
+                                                                          le: double.parse(value
+                                                                              .data['le']
+                                                                              .round()
+                                                                              .toString()),
+                                                                          lh: double.parse(value
+                                                                              .data['lh']
+                                                                              .round()
+                                                                              .toString()),
+                                                                          lk: double.parse(value
+                                                                              .data['lk']
+                                                                              .round()
+                                                                              .toString()),
+                                                                          ls: double.parse(value
+                                                                              .data['ls']
+                                                                              .round()
+                                                                              .toString()),
+                                                                          lw: double.parse(value
+                                                                              .data['lw']
+                                                                              .round()
+                                                                              .toString()),
+                                                                          ra: double.parse(value
+                                                                              .data['ra']
+                                                                              .round()
+                                                                              .toString()),
+                                                                          re: double.parse(value
+                                                                              .data['re']
+                                                                              .round()
+                                                                              .toString()),
+                                                                          rh: double.parse(value
+                                                                              .data['rh']
+                                                                              .round()
+                                                                              .toString()),
+                                                                          rk: double.parse(value
+                                                                              .data['rk']
+                                                                              .round()
+                                                                              .toString()),
+                                                                          rs: double.parse(value
+                                                                              .data['rs']
+                                                                              .round()
+                                                                              .toString()),
+                                                                          rw: double.parse(value
+                                                                              .data['rw']
+                                                                              .round()
+                                                                              .toString()),
+                                                                          total: value
+                                                                              .data['overall']
+                                                                              .round(),
+                                                                          name:
+                                                                              value.data['tutorial Name'],
+                                                                          date:
+                                                                              value.data['report date'],
+                                                                          attempt:
+                                                                              value.data['attempt'],
+                                                                          video:
+                                                                              value.data['userVideo'],
+                                                                          tuteID:
+                                                                              value.data['tutorial id'],
+                                                                        )))
+                                                      });
+                                            },
+                                            child: new ListTile(
+                                              title: new Text(val),
+                                            ),
+                                          ))
+                                      .toList(),
+                                );
+                              }).toList(),
+                            ),
                           );
                         },
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),
@@ -255,48 +326,27 @@ class _StoreHomeState extends State<StoreHome> {
         ),
       ),
     )),
-    ListView(
-      children: [
-        InkWell(
-          onTap: () {},
-          child: Card(
-            child: Padding(
-              padding:
-                  const EdgeInsets.only(top: 12.0, bottom: 12.0, left: 8.0),
-              child: Text(
-                "Break Dance 2",
-                style: TextStyle(fontSize: 20.0),
-              ),
-            ),
+    Container(
+      child: Column(
+        children: [
+          ExpansionTile(
+            title: Text("Salsa"),
+            children: [
+              ListTile(
+                title: Text("Feet Dance with counter"),
+              )
+            ],
           ),
-        ),
-        InkWell(
-          onTap: () {},
-          child: Card(
-            child: Padding(
-              padding:
-                  const EdgeInsets.only(top: 12.0, bottom: 12.0, left: 8.0),
-              child: Text(
-                "Salsa 1",
-                style: TextStyle(fontSize: 20.0),
-              ),
-            ),
-          ),
-        ),
-        InkWell(
-          onTap: () {},
-          child: Card(
-            child: Padding(
-              padding:
-                  const EdgeInsets.only(top: 12.0, bottom: 12.0, left: 8.0),
-              child: Text(
-                "Hiphop 1",
-                style: TextStyle(fontSize: 20.0),
-              ),
-            ),
-          ),
-        ),
-      ],
+          ExpansionTile(
+            title: Text("Hiphop"),
+            children: [
+              ListTile(
+                title: Text("Shuffle Dance"),
+              )
+            ],
+          )
+        ],
+      ),
     ),
     Center(
       child: Text("Settings"),
@@ -355,6 +405,16 @@ class _StoreHomeState extends State<StoreHome> {
 
 Widget sourceInfo(ItemModel model, BuildContext context,
     {Color background, removeCartFunction}) {
+  test() {
+    Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+            builder: (c) => ProductPage(
+                  itemModel: model,
+                  bought: false,
+                )));
+  }
+
   return InkWell(
     onTap: () async {
       bool bought = false;
@@ -365,15 +425,7 @@ Widget sourceInfo(ItemModel model, BuildContext context,
           .then((value) async => {
                 print(value.documents.toString()),
                 if (value.documents.length == 0)
-                  {
-                    Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                            builder: (c) => ProductPage(
-                                  itemModel: model,
-                                  bought: false,
-                                ))),
-                  }
+                  {test()}
                 else
                   {
                     value.documents.forEach((element) async {
@@ -425,7 +477,7 @@ Widget sourceInfo(ItemModel model, BuildContext context,
                           child: Text(
                             model.title,
                             style: TextStyle(
-                                color: Colors.deepPurpleAccent, fontSize: 14.0),
+                                color: Colors.deepPurpleAccent, fontSize: 20.0),
                           ),
                         ),
                       ],
@@ -442,7 +494,7 @@ Widget sourceInfo(ItemModel model, BuildContext context,
                           child: Text(
                             model.shortInfo,
                             style: TextStyle(
-                                color: Colors.black54, fontSize: 12.0),
+                                color: Colors.black54, fontSize: 16.0),
                           ),
                         ),
                       ],
@@ -453,59 +505,59 @@ Widget sourceInfo(ItemModel model, BuildContext context,
                   ),
                   Row(
                     children: [
-                      Container(
-                        decoration: BoxDecoration(
-                          shape: BoxShape.rectangle,
-                          color: Colors.purple,
-                        ),
-                        alignment: Alignment.topLeft,
-                        width: 40.0,
-                        height: 43.0,
-                        child: Center(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                "50%",
-                                style: TextStyle(
-                                    fontSize: 15.0,
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.normal),
-                              ),
-                              Text(
-                                "OFF",
-                                style: TextStyle(
-                                    fontSize: 15.0,
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.normal),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
+                      // Container(
+                      //   decoration: BoxDecoration(
+                      //     shape: BoxShape.rectangle,
+                      //     color: Colors.purple,
+                      //   ),
+                      //   alignment: Alignment.topLeft,
+                      //   width: 40.0,
+                      //   height: 43.0,
+                      //   child: Center(
+                      //     child: Column(
+                      //       mainAxisAlignment: MainAxisAlignment.center,
+                      //       children: [
+                      //         Text(
+                      //           "50%",
+                      //           style: TextStyle(
+                      //               fontSize: 15.0,
+                      //               color: Colors.white,
+                      //               fontWeight: FontWeight.normal),
+                      //         ),
+                      //         Text(
+                      //           "OFF",
+                      //           style: TextStyle(
+                      //               fontSize: 15.0,
+                      //               color: Colors.white,
+                      //               fontWeight: FontWeight.normal),
+                      //         ),
+                      //       ],
+                      //     ),
+                      //   ),
+                      // ),
                       SizedBox(
-                        width: 10.0,
+                        width: 0.0,
                       ),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
+                          // Padding(
+                          //   padding: EdgeInsets.only(top: 0.0),
+                          //   child: Row(
+                          //     children: [
+                          //       Text(
+                          //         "Original Price: Rs." +
+                          //             (model.price * 2).toString(),
+                          //         style: TextStyle(
+                          //             fontSize: 14.0,
+                          //             color: Colors.grey,
+                          //             decoration: TextDecoration.lineThrough),
+                          //       )
+                          //     ],
+                          //   ),
+                          // ),
                           Padding(
                             padding: EdgeInsets.only(top: 0.0),
-                            child: Row(
-                              children: [
-                                Text(
-                                  "Original Price: Rs." +
-                                      (model.price * 2).toString(),
-                                  style: TextStyle(
-                                      fontSize: 14.0,
-                                      color: Colors.grey,
-                                      decoration: TextDecoration.lineThrough),
-                                )
-                              ],
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(top: 5.0),
                             child: Row(
                               children: [
                                 Text(
@@ -565,11 +617,12 @@ Widget sourceInfo(ItemModel model, BuildContext context,
 Widget buildName(User user) {
   String name = 'loading';
   String email = 'loading';
-  if (EcommerceApp.sharedPreferences.getString(EcommerceApp.userName) != null){
+  if (EcommerceApp.sharedPreferences.getString(EcommerceApp.userName) != null) {
     name = EcommerceApp.sharedPreferences.getString(EcommerceApp.userName);
   }
 
-  if (EcommerceApp.sharedPreferences.getString(EcommerceApp.userEmail) != null){
+  if (EcommerceApp.sharedPreferences.getString(EcommerceApp.userEmail) !=
+      null) {
     email = EcommerceApp.sharedPreferences.getString(EcommerceApp.userEmail);
   }
   return Column(
@@ -716,12 +769,12 @@ void checkItemInCart(String productID, BuildContext context) {
           : addItemtoCart(productID, context);
 }
 
-addItemtoCart(String tutoID, BuildContext context) {
+addItemtoCart(String tutoID, BuildContext context) async {
   List tempList =
       EcommerceApp.sharedPreferences.getStringList(EcommerceApp.userCartList);
   tempList.add(tutoID);
 
-  EcommerceApp.firestore
+  await EcommerceApp.firestore
       .collection(EcommerceApp.collectionUser)
       .document(EcommerceApp.sharedPreferences.getString(EcommerceApp.userUID))
       .updateData({
@@ -732,39 +785,21 @@ addItemtoCart(String tutoID, BuildContext context) {
         .setStringList(EcommerceApp.userCartList, tempList);
     Provider.of<CartItemCounter>(context, listen: false).displayResult();
   });
-}
 
-Widget uProfile() {
-  final user = UserPref.myUser;
-  String img = 'https://www.iconspng.com/uploads/simple-user-icon.png';
-  if (EcommerceApp.sharedPreferences.getString(EcommerceApp.userAvatarUrl) != null){
-    img = EcommerceApp.sharedPreferences.getString(EcommerceApp.userAvatarUrl);
-  }
+  String tot = EcommerceApp.sharedPreferences.getString(EcommerceApp.totalAmount);
+  await Firestore.instance.collection("Items").where(tutoID, isEqualTo: "shortInfo").getDocuments().then((value) => {
+    value.documents.forEach((element) {
+      if (tot == null){
+        tot = '0';
+      }
 
-  return ListView(
-    physics: BouncingScrollPhysics(),
-    children: [
-      SizedBox(
-        height: 20.0,
-      ),
-      Profile_Widget(
-        imagePath: img,
-        onclick: () async {},
-      ),
-      SizedBox(
-        height: 24.0,
-      ),
-      buildName(user),
-      SizedBox(
-        height: 24.0,
-      ),
-      NumbersWidget(
-        user: user,
-      ),
-      SizedBox(
-        height: 40.0,
-      ),
-      about(user),
-    ],
-  );
+      double currentVal = double.parse(tot);
+      double itemPrice = double.parse(element.data['price']);
+
+      currentVal += itemPrice;
+
+      EcommerceApp.sharedPreferences.setString(EcommerceApp.totalAmount,currentVal.toString());
+
+    })
+  });
 }

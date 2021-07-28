@@ -20,8 +20,10 @@ class _RegisterState extends State<Register> {
   final TextEditingController _passtextcontroller = TextEditingController();
   final TextEditingController _emailextcontroller = TextEditingController();
   final TextEditingController _cpasstextcontroller = TextEditingController();
-  final TextEditingController _userpackagetextcontroller =
-      TextEditingController();
+  final TextEditingController _userpackagetextcontroller = TextEditingController();
+  final TextEditingController _userJob = TextEditingController();
+  final TextEditingController _userAge = TextEditingController();
+  final TextEditingController _preference = TextEditingController();
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
   String userImgUrl = "";
   File _imageFile;
@@ -84,6 +86,24 @@ class _RegisterState extends State<Register> {
                     data: Icons.lock,
                     hintText: "Password",
                     isObsecure: true,
+                  ),
+                  CustomTextField(
+                    controller: _userAge,
+                    data: Icons.cake_rounded,
+                    hintText: "Your age",
+                    isObsecure: false,
+                  ),
+                  CustomTextField(
+                    controller: _userJob,
+                    data: Icons.work_rounded,
+                    hintText: "Your occupation",
+                    isObsecure: false,
+                  ),
+                  CustomTextField(
+                    controller: _preference,
+                    data: Icons.live_tv_rounded,
+                    hintText: "Your preferred categories",
+                    isObsecure: false,
                   ),
                   CustomTextField(
                     controller: _userpackagetextcontroller,
@@ -233,6 +253,15 @@ class _RegisterState extends State<Register> {
       "userpkg": _userpackagetextcontroller.text.trim(),
       EcommerceApp.userCartList: ["garbageValue"],
       EcommerceApp.items: ["garbageValue"],
+      "totalSpent":"0",
+      "job":_userJob.text.trim(),
+      "age":_userAge.text.trim(),
+      "preference": _preference.text.trim(),
+      "hiphop":0,
+      "breakdance":0,
+      "salsa":0,
+      "other":0
+
     });
 
     await EcommerceApp.sharedPreferences.setString("uid", fUser.uid);
@@ -248,5 +277,9 @@ class _RegisterState extends State<Register> {
         .setStringList(EcommerceApp.items, ["garbageValue"]);
     await EcommerceApp.sharedPreferences
         .setString("jdate", DateTime.now().toString());
+    await EcommerceApp.sharedPreferences.setString("totalSpent", '0');
+    await EcommerceApp.sharedPreferences.setString(EcommerceApp.pref, _preference.text.trim());
+    await EcommerceApp.sharedPreferences.setString(EcommerceApp.job, _userJob.text.trim());
+    await EcommerceApp.sharedPreferences.setString(EcommerceApp.age, _userAge.text.trim());
   }
 }

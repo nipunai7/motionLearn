@@ -6,6 +6,7 @@ import 'package:e_shop/Orders/myOrders.dart';
 import 'package:e_shop/Store/storehome.dart';
 import 'package:e_shop/Store/userProfile.dart';
 import 'package:e_shop/User/profile.dart';
+import 'package:e_shop/User/reports.dart';
 import 'package:flutter/material.dart';
 
 class MyDrawer extends StatelessWidget {
@@ -104,6 +105,15 @@ class MyDrawer extends StatelessWidget {
                   },
                 ),
                 Divider(height: 10.0,color: Colors.white,thickness: 6.0,),
+                // ListTile(
+                //   leading: Icon(Icons.logout,color: Colors.white,),
+                //   title: Text("Logout",style: TextStyle(color: Colors.white),),
+                //   onTap: (){
+                //     Navigator.pushReplacement(context, MaterialPageRoute(builder: (c)=> ReportView()));
+                //   },
+                // ),
+
+
               ],
             ),
           ),

@@ -8,6 +8,7 @@ import 'package:e_shop/Widgets/loadingWidget.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:http/http.dart' as http;
 
@@ -24,6 +25,8 @@ class _AdminUploads extends State<AdminUploads> {
   TextEditingController priceText = TextEditingController();
   TextEditingController titleText = TextEditingController();
   TextEditingController shortText = TextEditingController();
+  TextEditingController category = TextEditingController();
+
   String tuteID = DateTime.now().millisecondsSinceEpoch.toString();
   bool uploading = false;
 
@@ -297,6 +300,7 @@ class _AdminUploads extends State<AdminUploads> {
     });
   }
 
+  String selCategory;
   adminUploadForm() {
     return Scaffold(
       appBar: AppBar(
@@ -498,6 +502,62 @@ class _AdminUploads extends State<AdminUploads> {
           Divider(
             color: Colors.deepPurpleAccent,
           ),
+          Container(
+            child: ExpansionTile(
+              maintainState: true,
+              title: Text("Select a Category"),
+              children: [
+                InkWell(
+                  onTap: (){
+                    setState(() {
+                      selCategory = 'Break Dance';
+                    });
+                    print(selCategory);
+                    Fluttertoast.showToast(msg: selCategory+ " selected");
+                  },
+                  child: ListTile(
+                    title: Text("Break Dance"),
+                  ),
+                ),
+                InkWell(
+                  onTap: (){
+                    setState(() {
+                      selCategory = 'Hip Hop';
+                    });
+                    print(selCategory);
+                    Fluttertoast.showToast(msg: selCategory+ " selected");
+                  },
+                  child: ListTile(
+                    title: Text("Hip Hop"),
+                  ),
+                ),
+                InkWell(
+                  onTap: (){
+                    setState(() {
+                      selCategory = 'Salsa';
+                    });
+                    print(selCategory);
+                    Fluttertoast.showToast(msg: selCategory+ " selected");
+                  },
+                  child: ListTile(
+                    title: Text("Salsa"),
+                  ),
+                ),
+                InkWell(
+                  onTap: (){
+                    setState(() {
+                      selCategory = 'Other';
+                    });
+                    print(selCategory);
+                    Fluttertoast.showToast(msg: selCategory+ " selected");
+                  },
+                  child: ListTile(
+                    title: Text("Other"),
+                  ),
+                ),
+              ],
+            ),
+          )
         ],
       ),
     );
@@ -559,6 +619,8 @@ class _AdminUploads extends State<AdminUploads> {
       "tutorial": downUrl2,
       "status": "available",
       "publishedDate": DateTime.now(),
+      "category":selCategory,
+
     });
 
     print("video: " + downUrl2);

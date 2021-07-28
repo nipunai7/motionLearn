@@ -27,6 +27,9 @@ class EcommerceApp
    static final String userPackage = 'userpkg';
    static final String items = 'items';
    static final String reviews = 'reviews';
+   static final String job = 'job';
+   static final String age = 'age';
+   static final String pref = 'preference';
 
    static final String addressID = 'addressID';
    static final String totalAmount = 'totalAmount';

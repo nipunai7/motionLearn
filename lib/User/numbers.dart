@@ -1,4 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:e_shop/Config/config.dart';
 import 'package:e_shop/User/user.dart';
+import 'package:e_shop/User/userPref.dart';
 import 'package:flutter/material.dart';
 
 class NumbersWidget extends StatelessWidget {
@@ -6,18 +9,20 @@ class NumbersWidget extends StatelessWidget {
   const NumbersWidget({Key key,this.user}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) => IntrinsicHeight(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            buildButton(context, user.totReports, 'Reports'),
-            divider(),
-            buildButton(context, user.totpurtutes, 'Purshases'),
-            divider(),
-            buildButton(context, user.totSpent, 'Total Spent')
-          ],
-        ),
-      );
+  Widget build(BuildContext context) {
+   return IntrinsicHeight(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          buildButton(context,getData().toString(), 'Reports'),
+          divider(),
+          buildButton(context, user.totpurtutes, 'Purshases'),
+          divider(),
+          buildButton(context, user.totSpent, 'Total Spent')
+        ],
+      ),
+    );
+  }
 
   Widget buildButton(BuildContext context, String value, String text) =>
       MaterialButton(

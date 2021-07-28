@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:e_shop/Config/config.dart';
 import 'package:e_shop/Models/item.dart';
 import 'package:e_shop/Store/product_page.dart';
@@ -20,7 +21,7 @@ class VideoPlay extends StatefulWidget {
 }
 
 class _VideoPlayState extends State<VideoPlay> {
-  String attempt="1";
+  String attempt;
   String uName=EcommerceApp.sharedPreferences.getString(EcommerceApp.userName);
   String uid=EcommerceApp.sharedPreferences.getString(EcommerceApp.userUID);
   String tuteName;
@@ -31,6 +32,7 @@ class _VideoPlayState extends State<VideoPlay> {
 
   @override
   void initState() {
+    getAttempt();
     super.initState();
     _controller = VideoPlayerController.network(widget.url)
       ..initialize().then((_) {
@@ -102,7 +104,9 @@ class _VideoPlayState extends State<VideoPlay> {
                           ))),
                     ),
                     ElevatedButton(
-                      onPressed: () {uploadDataToFirebase();},
+                      onPressed: () {
+                        Fluttertoast.showToast(msg: "Please remain on the page until we uplaod the video",toastLength: Toast.LENGTH_LONG);
+                        uploadDataToFirebase();},
                       style: ElevatedButton.styleFrom(
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(6.0)),
@@ -118,7 +122,7 @@ class _VideoPlayState extends State<VideoPlay> {
                           ))),
                     ),
                   ]),
-            )
+            ),
           ]),
         ),
         floatingActionButton: FloatingActionButton(
@@ -165,6 +169,7 @@ class _VideoPlayState extends State<VideoPlay> {
   }
 
   saveItemInfo(String downUrl1) async {
+    attempt  = await getAttempt();
     final response = await createReport(downUrl1,tuteID,refTuteRep,tuteName,attempt,uid,uName);
 
     if (response.statusCode == 200){
@@ -206,4 +211,18 @@ class _VideoPlayState extends State<VideoPlay> {
       }),
     );
   }
+
+  Future<String> getAttempt() async{
+    int count = 1;
+    tuteID = widget.itemModel.id;
+    await Firestore.instance.collection("users").document(uid).collection("Reports").document(tuteID).collection("attempts").getDocuments().then((value) => {
+      if (value.documents.length != 0){
+        count = value.documents.length + 1
+      }
+    });
+    print(count);
+    attempt = count.toString();
+    return count.toString();
+  }
+
 }

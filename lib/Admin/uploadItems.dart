@@ -19,9 +19,6 @@ class UploadPage extends StatefulWidget {
 
 class _UploadPageState extends State<UploadPage> {
   double _total;
-  List _tuteTitle = [];
-  List _qty = [];
-  List _price = [];
 
   bool get wantKeepAlive => true;
   File file, file2;
@@ -343,7 +340,6 @@ class _UploadPageState extends State<UploadPage> {
           stream: Firestore.instance
               .collection("Items")
               .orderBy("purchaseCount", descending: true)
-              .limit(4)
               .snapshots(),
           builder: (context, snapshot12) {
             if (!snapshot12.hasData) {
@@ -396,7 +392,6 @@ class _UploadPageState extends State<UploadPage> {
           stream: Firestore.instance
               .collection("users")
               .orderBy("totalSpent", descending: true)
-              .limit(4)
               .snapshots(),
           builder: (context, snapshot12) {
             if (!snapshot12.hasData) {

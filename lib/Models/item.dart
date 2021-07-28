@@ -13,6 +13,7 @@ class ItemModel {
   List reviews;
   String reportURL;
   int purchaseCount;
+  String category;
 
   ItemModel(
       {
@@ -26,7 +27,8 @@ class ItemModel {
         this.videoUrl,
         this.reviews,
         this.reportURL,
-        this.purchaseCount
+        this.purchaseCount,
+        this.category
         });
 
   ItemModel.fromJson(Map<String, dynamic> json) {
@@ -42,6 +44,7 @@ class ItemModel {
     reviews = json['reviews'];
     reportURL = json['report'];
     purchaseCount = json['purchaseCount'];
+    category = json['category'];
   }
 
   Map<String, dynamic> toJson() {
@@ -60,6 +63,7 @@ class ItemModel {
     data['reviews'] = this.reviews;
     data['report'] = this.reportURL;
     data['purchaseCount'] = this.purchaseCount;
+    data['category'] = this.category;
     return data;
   }
 }

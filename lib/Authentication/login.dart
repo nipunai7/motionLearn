@@ -193,6 +193,9 @@ class _LoginState extends State<Login> {
       await EcommerceApp.sharedPreferences
           .setStringList(EcommerceApp.userCartList, cartList);
       await EcommerceApp.sharedPreferences.setString("totalSpent", dataSnapShot.data[EcommerceApp.totalSpent]);
+      await EcommerceApp.sharedPreferences.setString(EcommerceApp.job, dataSnapShot.data['job']);
+      await EcommerceApp.sharedPreferences.setString(EcommerceApp.age, dataSnapShot.data['age']);
+      await EcommerceApp.sharedPreferences.setString(EcommerceApp.pref, dataSnapShot.data['preference']);
     });
   }
 }

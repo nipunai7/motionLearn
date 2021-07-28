@@ -6,6 +6,7 @@ import 'package:e_shop/Training/widget/advanced_overlay_widget.dart';
 import 'package:e_shop/Widgets/customTextField.dart';
 import 'package:e_shop/Widgets/myDrawer.dart';
 import 'package:e_shop/Models/item.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:e_shop/Store/storehome.dart';
@@ -27,7 +28,6 @@ class ProductPage extends StatefulWidget {
 
 class _ProductPageState extends State<ProductPage> {
   VideoPlayerController controller;
-  List<CameraDescription> cameras;
 
   TextEditingController reviewT = TextEditingController();
   int numOfItems = 1;
@@ -234,6 +234,7 @@ class _ProductPageState extends State<ProductPage> {
     if (bought == true) {
       return InkWell(
         onTap: () {
+          updateCat(widget.itemModel.category);
           Route route =
               MaterialPageRoute(builder: (c) => TrainingPage(widget.itemModel));
           Navigator.pushReplacement(context, route);
@@ -257,6 +258,20 @@ class _ProductPageState extends State<ProductPage> {
     } else {
       return Container();
     }
+  }
+
+  updateCat(String cat) async{
+    int count=0;
+    await Firestore.instance.collection("users").document(EcommerceApp.sharedPreferences.getString(EcommerceApp.userUID)).get().then((value) => {
+      count = value.data[cat]
+    });
+    count++;
+    await Firestore.instance.collection("users").document(EcommerceApp.sharedPreferences.getString(EcommerceApp.userUID)).updateData({
+      cat:count
+    });
+
+    print(cat+" "+count.toString());
+
   }
 
   Widget submitRev() {
