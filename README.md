@@ -1,5 +1,5 @@
 # Motion Learn
-**Learn What you see**
+**Learn What You See**
 
 Motion Learn is a Mobile Application that will help you to sharpen your dancing skills with the help of Machine Learning. I developed the app using flutter and currently fully compatible with android devices.
  
@@ -26,3 +26,5 @@ Flask API is hosted in a Google Cloud Platform as a daemon. It will start at eac
 - [x] Get comprehensive reports after submiting
 - [x] Admin dashboard
 - [x] Admin Income, Top clients, Trending tutorials reports
+
+Download the APK - https://nipunamunasinghe.com/projects/motionlearn/ML_1.2.apk
