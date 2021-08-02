@@ -1,4 +1,4 @@
-#Motion Learn
+# Motion Learn
 **Learn What you see**
 
 Motion Learn is a Mobile Application that will help you to sharpen your dancing skills with the help of Machine Learning. I developed the app using flutter and currently fully compatible with android devices.
