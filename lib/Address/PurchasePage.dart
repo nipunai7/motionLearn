@@ -74,48 +74,50 @@ class _PurchasePageState extends State<PurchasePage> {
   List itemPrice = [];
   double totalAmount2 = 0.0;
 
-  void startOneTimePayment(BuildContext context) async {
-    Map paymentObject = {
-      "sandbox": true, // true if using Sandbox Merchant ID
-      "merchant_id": "1218158", // Replace your Merchant ID
-      "merchant_secret": "4J9bbGToDbt4JH5rak2yc04uVyKj8RRa74Dzep5v6qfe",
-      "notify_url": "https://ent13zfovoz7d.x.pipedream.net/",
-      "order_id":
-          EcommerceApp.sharedPreferences.getString(EcommerceApp.latestOrder),
-      "items": "Purchase in Motion Learn",
-      "amount": widget.totalAmount,
-      "currency": "LKR",
-      "first_name":
-          EcommerceApp.sharedPreferences.getString(EcommerceApp.userName),
-      "last_name": "",
-      "email": EcommerceApp.sharedPreferences.getString(EcommerceApp.userEmail),
-      "phone": "",
-      "address": "",
-      "city": "",
-      "country": "Sri Lanka",
-      "delivery_address": "",
-      "delivery_city": "",
-      "delivery_country": "Sri Lanka",
-      "custom_1": "",
-      "custom_2": ""
-    };
-
-    PayHere.startPayment(paymentObject, (paymentId) {
-      addOrderDetails();
-      createInvoice();
-      print("One Time Payment Success. Payment Id: $paymentId");
-      showAlert(context, "Payment Success!", "Payment Id: $paymentId");
-    }, (error) {
-      print("One Time Payment Failed. Error: $error");
-      showAlert(context, "Payment Failed", "$error");
-    }, () {
-      print("One Time Payment Dismissed");
-      showAlert(context, "Payment Dismissed", "");
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
+    void startOneTimePayment(BuildContext context) async {
+      Map paymentObject = {
+        "sandbox": true, // true if using Sandbox Merchant ID
+        "merchant_id": "1218158", // Replace your Merchant ID
+        "merchant_secret": "4J9bbGToDbt4JH5rak2yc04uVyKj8RRa74Dzep5v6qfe",
+        "notify_url": "https://ent13zfovoz7d.x.pipedream.net/",
+        "order_id": DateTime.now().millisecondsSinceEpoch.toString() + "_order",
+        "items": "Purchase in Motion Learn",
+        "amount": widget.totalAmount,
+        "currency": "LKR",
+        "first_name":
+            EcommerceApp.sharedPreferences.getString(EcommerceApp.userName),
+        "last_name": " ",
+        "email":
+            EcommerceApp.sharedPreferences.getString(EcommerceApp.userEmail),
+        "phone": "0771234567",
+        "address": "No.1, Galle Road",
+        "city": "Colombo",
+        "country": "Sri Lanka",
+        "delivery_address": "No. 46, Galle road, Kalutara South",
+        "delivery_city": "Kalutara",
+        "delivery_country": "Sri Lanka",
+        "custom_1": "",
+        "custom_2": ""
+      };
+
+      PayHere.startPayment(paymentObject, (paymentId) async {
+        print("One Time Payment Success. Payment Id: $paymentId");
+        showAlert(context, "Payment Success!", "Payment Id: $paymentId");
+        await addOrderDetails();
+        await createInvoice();
+      }, (error) async {
+        await print("One Time Payment Failed. Error: $error");
+        await showAlert(context, "Payment Failed", "$error");
+        addOrderDetails();
+        createInvoice();
+      }, () {
+        print("One Time Payment Dismissed");
+        showAlert(context, "Payment Dismissed", "");
+      });
+    }
+
     return WillPopScope(
         onWillPop: () {
           // ignore: missing_return
@@ -124,8 +126,8 @@ class _PurchasePageState extends State<PurchasePage> {
         },
         child: Scaffold(
           floatingActionButton: FloatingActionButton.extended(
-            onPressed: () {
-              startOneTimePayment(context);
+            onPressed: () async {
+              await startOneTimePayment(context);
             },
             icon: Icon(Icons.confirmation_number),
             label: Text(
@@ -199,6 +201,11 @@ class _PurchasePageState extends State<PurchasePage> {
                                     SizedBox(
                                       height: 8.0,
                                     ),
+                                    SizedBox(
+                                      height: 4.0,
+                                    ),
+                                    Text(
+                                        "Payment gateway does not work within the released version of the app. Only works with the debugging version"),
                                   ]),
                                 )))
                       ]),

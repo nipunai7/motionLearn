@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:e_shop/Store/report.dart';
 import 'package:e_shop/User/reports.dart';
-import 'package:e_shop/User/user.dart';
+import 'package:e_shop/Models/user.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:e_shop/Store/product_page.dart';
 import 'package:e_shop/Counters/cartitemcounter.dart';
@@ -387,11 +387,6 @@ class _StoreHomeState extends State<StoreHome> {
             label: "Categories",
             backgroundColor: Colors.deepPurpleAccent,
           ),
-          // BottomNavigationBarItem(
-          //   icon: Icon(Icons.settings),
-          //   label: "Settings",
-          //   backgroundColor: Colors.deepPurple,
-          // )
         ],
         onTap: (index) {
           setState(() {
@@ -405,46 +400,9 @@ class _StoreHomeState extends State<StoreHome> {
 
 Widget sourceInfo(ItemModel model, BuildContext context,
     {Color background, removeCartFunction}) {
-  test() {
-    Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-            builder: (c) => ProductPage(
-                  itemModel: model,
-                  bought: false,
-                )));
-  }
-
   return InkWell(
     onTap: () async {
-      bool bought = false;
-      await Firestore.instance
-          .collection("users")
-          .where("items", arrayContainsAny: [model.shortInfo.trim()])
-          .getDocuments()
-          .then((value) async => {
-                print(value.documents.toString()),
-                if (value.documents.length == 0)
-                  {test()}
-                else
-                  {
-                    value.documents.forEach((element) async {
-                      if (EcommerceApp.sharedPreferences
-                              .getString(EcommerceApp.userUID) ==
-                          element.documentID) {
-                        print("Must be UID" + element.documentID);
-                        bought = true;
-                        Route route = MaterialPageRoute(
-                            builder: (c) => ProductPage(
-                                  itemModel: model,
-                                  bought: true,
-                                ));
-                        Navigator.pushReplacement(context, route);
-                      }
-                      print(bought);
-                    }),
-                  }
-              });
+      checkBought(model, context);
     },
     splashColor: Colors.purple,
     child: Padding(
@@ -505,57 +463,12 @@ Widget sourceInfo(ItemModel model, BuildContext context,
                   ),
                   Row(
                     children: [
-                      // Container(
-                      //   decoration: BoxDecoration(
-                      //     shape: BoxShape.rectangle,
-                      //     color: Colors.purple,
-                      //   ),
-                      //   alignment: Alignment.topLeft,
-                      //   width: 40.0,
-                      //   height: 43.0,
-                      //   child: Center(
-                      //     child: Column(
-                      //       mainAxisAlignment: MainAxisAlignment.center,
-                      //       children: [
-                      //         Text(
-                      //           "50%",
-                      //           style: TextStyle(
-                      //               fontSize: 15.0,
-                      //               color: Colors.white,
-                      //               fontWeight: FontWeight.normal),
-                      //         ),
-                      //         Text(
-                      //           "OFF",
-                      //           style: TextStyle(
-                      //               fontSize: 15.0,
-                      //               color: Colors.white,
-                      //               fontWeight: FontWeight.normal),
-                      //         ),
-                      //       ],
-                      //     ),
-                      //   ),
-                      // ),
                       SizedBox(
                         width: 0.0,
                       ),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          // Padding(
-                          //   padding: EdgeInsets.only(top: 0.0),
-                          //   child: Row(
-                          //     children: [
-                          //       Text(
-                          //         "Original Price: Rs." +
-                          //             (model.price * 2).toString(),
-                          //         style: TextStyle(
-                          //             fontSize: 14.0,
-                          //             color: Colors.grey,
-                          //             decoration: TextDecoration.lineThrough),
-                          //       )
-                          //     ],
-                          //   ),
-                          // ),
                           Padding(
                             padding: EdgeInsets.only(top: 0.0),
                             child: Row(
@@ -612,6 +525,44 @@ Widget sourceInfo(ItemModel model, BuildContext context,
       ),
     ),
   );
+}
+
+checkBought(ItemModel model, BuildContext context) async {
+  bool bought = false;
+  List temp2;
+  await Firestore.instance
+      .collection("users")
+      .document(EcommerceApp.sharedPreferences.getString(EcommerceApp.userUID))
+      .get()
+      .then(
+        (value) async => {
+          print(value.data['items']),
+          temp2 = value.data['items'],
+          temp2.forEach((element) {
+            if (model.shortInfo == element) {
+              print("Must be UID" + element);
+              bought = true;
+              Route route = MaterialPageRoute(
+                  builder: (c) => ProductPage(
+                        itemModel: model,
+                        bought: true,
+                      ));
+              Navigator.pushReplacement(context, route);
+            }
+          }),
+          if (!bought)
+            {
+              print("ihhhhhhhhhhhhh"),
+              Navigator.pushReplacement(context,
+                  MaterialPageRoute(builder: (context) {
+                return ProductPage(
+                  itemModel: model,
+                  bought: false,
+                );
+              }))
+            }
+        },
+      );
 }
 
 Widget buildName(User user) {
@@ -786,20 +737,25 @@ addItemtoCart(String tutoID, BuildContext context) async {
     Provider.of<CartItemCounter>(context, listen: false).displayResult();
   });
 
-  String tot = EcommerceApp.sharedPreferences.getString(EcommerceApp.totalAmount);
-  await Firestore.instance.collection("Items").where(tutoID, isEqualTo: "shortInfo").getDocuments().then((value) => {
-    value.documents.forEach((element) {
-      if (tot == null){
-        tot = '0';
-      }
+  String tot =
+      EcommerceApp.sharedPreferences.getString(EcommerceApp.totalAmount);
+  await Firestore.instance
+      .collection("Items")
+      .where(tutoID, isEqualTo: "shortInfo")
+      .getDocuments()
+      .then((value) => {
+            value.documents.forEach((element) {
+              if (tot == null) {
+                tot = '0';
+              }
 
-      double currentVal = double.parse(tot);
-      double itemPrice = double.parse(element.data['price']);
+              double currentVal = double.parse(tot);
+              double itemPrice = double.parse(element.data['price']);
 
-      currentVal += itemPrice;
+              currentVal += itemPrice;
 
-      EcommerceApp.sharedPreferences.setString(EcommerceApp.totalAmount,currentVal.toString());
-
-    })
-  });
+              EcommerceApp.sharedPreferences
+                  .setString(EcommerceApp.totalAmount, currentVal.toString());
+            })
+          });
 }

@@ -1,5 +1,5 @@
 import 'package:e_shop/Store/storehome.dart';
-import 'package:e_shop/User/user.dart';
+import 'package:e_shop/Models/user.dart';
 import 'package:e_shop/User/userPref.dart';
 import 'package:e_shop/User/widget.dart';
 import 'package:flutter/cupertino.dart';
@@ -70,8 +70,12 @@ class _ProfileState extends State<Profile> {
               ),
               Card(
                 child: Padding(
-                  padding: const EdgeInsets.only(top: 12.0,bottom: 12.0,left: 8.0),
-                  child: Text("Salsa",style: TextStyle(fontSize: 20.0),),
+                  padding:
+                      const EdgeInsets.only(top: 12.0, bottom: 12.0, left: 8.0),
+                  child: Text(
+                    "Salsa",
+                    style: TextStyle(fontSize: 20.0),
+                  ),
                 ),
               ),
               Card(

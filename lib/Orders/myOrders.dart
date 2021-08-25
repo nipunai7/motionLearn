@@ -14,53 +14,70 @@ class _MyOrdersState extends State<MyOrders> {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: (){
+      onWillPop: () {
         // ignore: missing_return
         Route route = MaterialPageRoute(builder: (c) => StoreHome());
         Navigator.pushReplacement(context, route);
       },
       child: Scaffold(
-
         backgroundColor: Colors.deepPurple,
         appBar: AppBar(
-          iconTheme: IconThemeData(
-              color: Colors.white
-          ),
+          iconTheme: IconThemeData(color: Colors.white),
           backgroundColor: Colors.deepPurple,
           centerTitle: true,
-          title: Text("Purchased Tutorials",style: TextStyle(color: Colors.white,fontSize: 18.0),),
-          leading: IconButton(
-                onPressed: (){
-                  Route route = MaterialPageRoute(builder: (c) => StoreHome());
-                  Navigator.pushReplacement(context, route);
-                },
-                icon: Icon(Icons.arrow_back,color: Colors.white,)
+          title: Text(
+            "Purchased Tutorials",
+            style: TextStyle(color: Colors.white, fontSize: 18.0),
           ),
+          leading: IconButton(
+              onPressed: () {
+                Route route = MaterialPageRoute(builder: (c) => StoreHome());
+                Navigator.pushReplacement(context, route);
+              },
+              icon: Icon(
+                Icons.arrow_back,
+                color: Colors.white,
+              )),
         ),
         body: StreamBuilder<QuerySnapshot>(
-          stream: EcommerceApp.firestore.collection(EcommerceApp.collectionUser).document(EcommerceApp.sharedPreferences.getString(EcommerceApp.userUID)).collection(EcommerceApp.collectionOrders).snapshots(),
-          builder: (c, snapshots){
+          stream: EcommerceApp.firestore
+              .collection(EcommerceApp.collectionUser)
+              .document(EcommerceApp.sharedPreferences
+                  .getString(EcommerceApp.userUID))
+              .collection(EcommerceApp.collectionOrders)
+              .snapshots(),
+          builder: (c, snapshots) {
             return snapshots.hasData
-                ?ListView.builder(
-              itemCount: snapshots.data.documents.length,
-              itemBuilder: (c, index){
-                return FutureBuilder<QuerySnapshot>(
-                  future: Firestore.instance.collection("Items").where("shortInfo",whereIn: snapshots.data.documents[index].data[EcommerceApp.productID]).getDocuments(),
-                  builder: (c, snap){
-                    return snap.hasData
-                         ?
-                    //Center(child: Text("We do have data"))
-                    OrderCard(
-                      itemCount: snap.data.documents.length,
-                      data: snap.data.documents,
-                      orderID: snapshots.data.documents[index].documentID,
-                    )
-                        :Center(child: circularProgress(),);
-                  },
-                );
-              },
-            )
-                :Center(child: circularProgress(),);
+                ? ListView.builder(
+                    itemCount: snapshots.data.documents.length,
+                    itemBuilder: (c, index) {
+                      return FutureBuilder<QuerySnapshot>(
+                        future: Firestore.instance
+                            .collection("Items")
+                            .where("shortInfo",
+                                whereIn: snapshots.data.documents[index]
+                                    .data[EcommerceApp.productID])
+                            .getDocuments(),
+                        builder: (c, snap) {
+                          return snap.hasData
+                              ?
+                              //Center(child: Text("We do have data"))
+                              OrderCard(
+                                  itemCount: snap.data.documents.length,
+                                  data: snap.data.documents,
+                                  orderID: snapshots
+                                      .data.documents[index].documentID,
+                                )
+                              : Center(
+                                  child: circularProgress(),
+                                );
+                        },
+                      );
+                    },
+                  )
+                : Center(
+                    child: circularProgress(),
+                  );
           },
         ),
       ),

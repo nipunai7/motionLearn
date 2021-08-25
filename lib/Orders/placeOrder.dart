@@ -8,25 +8,25 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 
 class PaymentPage extends StatefulWidget {
-
   final double totalAmount;
 
-  PaymentPage({Key key,this.totalAmount,}) : super (key: key);
+  PaymentPage({
+    Key key,
+    this.totalAmount,
+  }) : super(key: key);
+
   @override
   _PaymentPageState createState() => _PaymentPageState();
 }
-
-
-
 
 class _PaymentPageState extends State<PaymentPage> {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-        onWillPop: () {
-          Route route = MaterialPageRoute(builder: (c) => CartPage());
-          Navigator.pushReplacement(context, route);
-        },
+      onWillPop: () {
+        Route route = MaterialPageRoute(builder: (c) => CartPage());
+        Navigator.pushReplacement(context, route);
+      },
       child: Material(
         child: Container(
           decoration: BoxDecoration(
@@ -45,15 +45,15 @@ class _PaymentPageState extends State<PaymentPage> {
           ),
         ),
       ),
-
     );
   }
 
-  addOrderDetails(){
+  addOrderDetails() {
     writeOrderUser({
       EcommerceApp.totalAmount: widget.totalAmount,
-      "OrderBy" : EcommerceApp.sharedPreferences.getString(EcommerceApp.userUID),
-      EcommerceApp.productID: EcommerceApp.sharedPreferences.getStringList(EcommerceApp.userCartList),
+      "OrderBy": EcommerceApp.sharedPreferences.getString(EcommerceApp.userUID),
+      EcommerceApp.productID: EcommerceApp.sharedPreferences
+          .getStringList(EcommerceApp.userCartList),
       EcommerceApp.paymentDetails: "Payment Confirmed",
       EcommerceApp.orderTime: DateTime.now().millisecondsSinceEpoch.toString(),
       EcommerceApp.isSuccess: true,
@@ -61,32 +61,51 @@ class _PaymentPageState extends State<PaymentPage> {
 
     writeOrderAdmin({
       EcommerceApp.totalAmount: widget.totalAmount,
-      "OrderBy" : EcommerceApp.sharedPreferences.getString(EcommerceApp.userUID),
-      EcommerceApp.productID: EcommerceApp.sharedPreferences.getStringList(EcommerceApp.userCartList),
+      "OrderBy": EcommerceApp.sharedPreferences.getString(EcommerceApp.userUID),
+      EcommerceApp.productID: EcommerceApp.sharedPreferences
+          .getStringList(EcommerceApp.userCartList),
       EcommerceApp.paymentDetails: "Payment Confirmed",
       EcommerceApp.orderTime: DateTime.now().millisecondsSinceEpoch.toString(),
       EcommerceApp.isSuccess: true,
-    }).whenComplete(() => {
-      emptyCart()
-    });
+    }).whenComplete(() => {emptyCart()});
   }
 
-  Future writeOrderUser(Map<String, dynamic> data) async{
-    await EcommerceApp.firestore.collection(EcommerceApp.collectionUser).document(EcommerceApp.sharedPreferences.getString(EcommerceApp.userUID)).collection(EcommerceApp.collectionOrders).document(EcommerceApp.sharedPreferences.getString(EcommerceApp.userUID)+ data['Order Time:']).setData(data);
+  Future writeOrderUser(Map<String, dynamic> data) async {
+    await EcommerceApp.firestore
+        .collection(EcommerceApp.collectionUser)
+        .document(
+            EcommerceApp.sharedPreferences.getString(EcommerceApp.userUID))
+        .collection(EcommerceApp.collectionOrders)
+        .document(
+            EcommerceApp.sharedPreferences.getString(EcommerceApp.userUID) +
+                data['Order Time:'])
+        .setData(data);
   }
 
-  Future writeOrderAdmin(Map<String, dynamic> data) async{
-    await EcommerceApp.firestore..collection(EcommerceApp.collectionOrders).document(EcommerceApp.sharedPreferences.getString(EcommerceApp.userUID)+ data['Order Time:']).setData(data);
+  Future writeOrderAdmin(Map<String, dynamic> data) async {
+    await EcommerceApp.firestore
+      ..collection(EcommerceApp.collectionOrders)
+          .document(
+              EcommerceApp.sharedPreferences.getString(EcommerceApp.userUID) +
+                  data['Order Time:'])
+          .setData(data);
   }
 
-  emptyCart(){
-    EcommerceApp.sharedPreferences.setStringList(EcommerceApp.userCartList, ["garbageValue"]);
-    List temp = EcommerceApp.sharedPreferences.getStringList(EcommerceApp.userCartList);
+  emptyCart() {
+    EcommerceApp.sharedPreferences
+        .setStringList(EcommerceApp.userCartList, ["garbageValue"]);
+    List temp =
+        EcommerceApp.sharedPreferences.getStringList(EcommerceApp.userCartList);
 
-    Firestore.instance.collection("users").document(EcommerceApp.sharedPreferences.getString(EcommerceApp.userUID)).updateData({
+    Firestore.instance
+        .collection("users")
+        .document(
+            EcommerceApp.sharedPreferences.getString(EcommerceApp.userUID))
+        .updateData({
       EcommerceApp.userCartList: temp,
     }).then((value) {
-      EcommerceApp.sharedPreferences.setStringList(EcommerceApp.userCartList,temp);
+      EcommerceApp.sharedPreferences
+          .setStringList(EcommerceApp.userCartList, temp);
       Provider.of<CartItemCounter>(context, listen: false).displayResult();
     });
     Fluttertoast.showToast(msg: "Purchase Complete, Happy Learning !!!");

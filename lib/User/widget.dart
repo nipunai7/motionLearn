@@ -14,10 +14,7 @@ class Profile_Widget extends StatelessWidget {
     return Center(
       child: Stack(children: [
         buildImage(),
-        Positioned(
-          bottom: 0,
-          right: 4,
-          child: buildedit(Colors.deepPurple)),
+        Positioned(bottom: 0, right: 4, child: buildedit(Colors.deepPurple)),
       ]),
     );
   }
@@ -41,23 +38,22 @@ class Profile_Widget extends StatelessWidget {
     );
   }
 
-  Widget buildedit(Color color){
+  Widget buildedit(Color color) {
     return buildCircle(
       color: Colors.white,
-      all:3,
+      all: 3,
       child: buildCircle(
-        color: color,
-        all:8,
-        child: Icon(Icons.edit,size: 20.0,color: Colors.white,)),
+          color: color,
+          all: 8,
+          child: Icon(
+            Icons.edit,
+            size: 20.0,
+            color: Colors.white,
+          )),
     );
   }
 
-  Widget buildCircle({
-  Widget child,
-    double all,
-    Color color
-}) =>
-      ClipOval(
+  Widget buildCircle({Widget child, double all, Color color}) => ClipOval(
         child: Container(
           padding: EdgeInsets.all(all),
           child: child,

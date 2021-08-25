@@ -196,7 +196,7 @@ class _VideoPlayState extends State<VideoPlay> {
 
   Future<http.Response> createReport(String video,String tuteID,String refTuteRep,String tuteName, String attempt, String uid, String uName) {
     return http.post(
-      Uri.parse('http://34.126.164.58/users'),
+      Uri.parse('http://35.247.138.56/users'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },

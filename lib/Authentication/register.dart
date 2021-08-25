@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:age/age.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:e_shop/Widgets/customTextField.dart';
 import 'package:e_shop/DialogBox/errorDialog.dart';
@@ -6,7 +7,9 @@ import 'package:e_shop/DialogBox/loadingDialog.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:intl/intl.dart';
 import '../Store/storehome.dart';
 import 'package:e_shop/Config/config.dart';
 
@@ -20,13 +23,16 @@ class _RegisterState extends State<Register> {
   final TextEditingController _passtextcontroller = TextEditingController();
   final TextEditingController _emailextcontroller = TextEditingController();
   final TextEditingController _cpasstextcontroller = TextEditingController();
-  final TextEditingController _userpackagetextcontroller = TextEditingController();
+  final TextEditingController _userpackagetextcontroller =
+      TextEditingController();
   final TextEditingController _userJob = TextEditingController();
   final TextEditingController _userAge = TextEditingController();
   final TextEditingController _preference = TextEditingController();
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
   String userImgUrl = "";
   File _imageFile;
+  DateTime _datetime;
+  AgeDuration age1;
 
   @override
   Widget build(BuildContext context) {
@@ -87,12 +93,34 @@ class _RegisterState extends State<Register> {
                     hintText: "Password",
                     isObsecure: true,
                   ),
-                  CustomTextField(
-                    controller: _userAge,
-                    data: Icons.cake_rounded,
-                    hintText: "Your age",
-                    isObsecure: false,
-                  ),
+                  // CustomTextField(
+                  //   controller: _userAge,
+                  //   data: Icons.cake_rounded,
+                  //   hintText: _datetime == null
+                  //       ? 'No date selected'
+                  //        : DateFormat('dd-MMM-yyyy').format(_datetime).toString(),
+                  //   isObsecure: false,
+                  // ),
+                  // ElevatedButton(
+                  //   style: ElevatedButton.styleFrom(
+                  //     primary: Colors.white
+                  //   ),
+                  //   child: Text("Pick a Date",style: TextStyle(color: Colors.deepPurple),),
+                  //   onPressed: () {
+                  //     showDatePicker(
+                  //             context: context,
+                  //             initialDate: DateTime.now(),
+                  //             firstDate: DateTime(1950),
+                  //             lastDate: DateTime.now())
+                  //         .then((value) {
+                  //       setState(()  {
+                  //          _datetime = value;
+                  //          age1 = Age.dateDifference(fromDate: value, toDate: DateTime.now());
+                  //          Fluttertoast.showToast(msg: "Your age: "+ age1.toString(),toastLength: Toast.LENGTH_LONG,gravity: ToastGravity.CENTER);
+                  //       });
+                  //     });
+                  //   },
+                  // ),
                   CustomTextField(
                     controller: _userJob,
                     data: Icons.work_rounded,
@@ -102,7 +130,7 @@ class _RegisterState extends State<Register> {
                   CustomTextField(
                     controller: _preference,
                     data: Icons.live_tv_rounded,
-                    hintText: "Your preferred categories",
+                    hintText: "Your preferred dancing categories",
                     isObsecure: false,
                   ),
                   CustomTextField(
@@ -253,15 +281,14 @@ class _RegisterState extends State<Register> {
       "userpkg": _userpackagetextcontroller.text.trim(),
       EcommerceApp.userCartList: ["garbageValue"],
       EcommerceApp.items: ["garbageValue"],
-      "totalSpent":"0",
-      "job":_userJob.text.trim(),
-      "age":_userAge.text.trim(),
+      "totalSpent": "0",
+      "job": _userJob.text.trim(),
+      "age": _userAge.text.trim(),
       "preference": _preference.text.trim(),
-      "hiphop":0,
-      "breakdance":0,
-      "salsa":0,
-      "other":0
-
+      "hiphop": 0,
+      "breakdance": 0,
+      "salsa": 0,
+      "other": 0
     });
 
     await EcommerceApp.sharedPreferences.setString("uid", fUser.uid);
@@ -278,8 +305,29 @@ class _RegisterState extends State<Register> {
     await EcommerceApp.sharedPreferences
         .setString("jdate", DateTime.now().toString());
     await EcommerceApp.sharedPreferences.setString("totalSpent", '0');
-    await EcommerceApp.sharedPreferences.setString(EcommerceApp.pref, _preference.text.trim());
-    await EcommerceApp.sharedPreferences.setString(EcommerceApp.job, _userJob.text.trim());
-    await EcommerceApp.sharedPreferences.setString(EcommerceApp.age, _userAge.text.trim());
+    await EcommerceApp.sharedPreferences
+        .setString(EcommerceApp.pref, _preference.text.trim());
+    await EcommerceApp.sharedPreferences
+        .setString(EcommerceApp.job, _userJob.text.trim());
+    await EcommerceApp.sharedPreferences
+        .setString(EcommerceApp.age, _userAge.text.trim());
+  }
+
+  calculateAge(DateTime birthDate) {
+    DateTime currentDate = DateTime.now();
+    int age = currentDate.year - birthDate.year;
+    int month1 = currentDate.month;
+    int month2 = birthDate.month;
+    if (month2 > month1) {
+      age--;
+    } else if (month1 == month2) {
+      int day1 = currentDate.day;
+      int day2 = birthDate.day;
+      if (day2 > day1) {
+        age--;
+      }
+    }
+    Fluttertoast.showToast(msg: "Your Age is: ");
+    return age;
   }
 }

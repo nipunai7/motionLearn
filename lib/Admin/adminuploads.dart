@@ -34,7 +34,7 @@ class _AdminUploads extends State<AdminUploads> {
     return file == null ? displayitems() : adminUploadForm();
   }
 
-  displayitems(){
+  displayitems() {
     return WillPopScope(
       onWillPop: () {
         Route route = MaterialPageRoute(builder: (c) => UploadPage());
@@ -189,6 +189,7 @@ class _AdminUploads extends State<AdminUploads> {
       ),
     );
   }
+
   takeImage(mContext) {
     return showDialog(
         context: mContext,
@@ -301,6 +302,7 @@ class _AdminUploads extends State<AdminUploads> {
   }
 
   String selCategory;
+
   adminUploadForm() {
     return Scaffold(
       appBar: AppBar(
@@ -508,48 +510,48 @@ class _AdminUploads extends State<AdminUploads> {
               title: Text("Select a Category"),
               children: [
                 InkWell(
-                  onTap: (){
+                  onTap: () {
                     setState(() {
                       selCategory = 'Break Dance';
                     });
                     print(selCategory);
-                    Fluttertoast.showToast(msg: selCategory+ " selected");
+                    Fluttertoast.showToast(msg: selCategory + " selected");
                   },
                   child: ListTile(
                     title: Text("Break Dance"),
                   ),
                 ),
                 InkWell(
-                  onTap: (){
+                  onTap: () {
                     setState(() {
                       selCategory = 'Hip Hop';
                     });
                     print(selCategory);
-                    Fluttertoast.showToast(msg: selCategory+ " selected");
+                    Fluttertoast.showToast(msg: selCategory + " selected");
                   },
                   child: ListTile(
                     title: Text("Hip Hop"),
                   ),
                 ),
                 InkWell(
-                  onTap: (){
+                  onTap: () {
                     setState(() {
                       selCategory = 'Salsa';
                     });
                     print(selCategory);
-                    Fluttertoast.showToast(msg: selCategory+ " selected");
+                    Fluttertoast.showToast(msg: selCategory + " selected");
                   },
                   child: ListTile(
                     title: Text("Salsa"),
                   ),
                 ),
                 InkWell(
-                  onTap: (){
+                  onTap: () {
                     setState(() {
                       selCategory = 'Other';
                     });
                     print(selCategory);
-                    Fluttertoast.showToast(msg: selCategory+ " selected");
+                    Fluttertoast.showToast(msg: selCategory + " selected");
                   },
                   child: ListTile(
                     title: Text("Other"),
@@ -586,9 +588,9 @@ class _AdminUploads extends State<AdminUploads> {
 
   Future<String> uploadImage1(image1) async {
     final StorageReference storageReference =
-    FirebaseStorage.instance.ref().child("Items");
+        FirebaseStorage.instance.ref().child("Items");
     StorageUploadTask uploadTask1 =
-    storageReference.child("frontpic_$tuteID.jpg").putFile(image1);
+        storageReference.child("frontpic_$tuteID.jpg").putFile(image1);
     StorageTaskSnapshot taskSnapshot1 = await uploadTask1.onComplete;
     String downloadUrl1 = await taskSnapshot1.ref.getDownloadURL();
 
@@ -597,9 +599,9 @@ class _AdminUploads extends State<AdminUploads> {
 
   Future<String> uploadImage2(image2) async {
     final StorageReference storageReference =
-    FirebaseStorage.instance.ref().child("Items");
+        FirebaseStorage.instance.ref().child("Items");
     StorageUploadTask uploadTask2 =
-    storageReference.child("tutorial_$tuteID.mp4").putFile(image2);
+        storageReference.child("tutorial_$tuteID.mp4").putFile(image2);
     StorageTaskSnapshot taskSnapshot2 = await uploadTask2.onComplete;
     String downloadUrl2 = await taskSnapshot2.ref.getDownloadURL();
     return downloadUrl2;
@@ -619,8 +621,7 @@ class _AdminUploads extends State<AdminUploads> {
       "tutorial": downUrl2,
       "status": "available",
       "publishedDate": DateTime.now(),
-      "category":selCategory,
-
+      "category": selCategory,
     });
 
     print("video: " + downUrl2);

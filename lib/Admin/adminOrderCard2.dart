@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 
 import '../Store/storehome.dart';
 
+int counter = 0;
 
-int counter=0;
 class AdminOrderCard2 extends StatelessWidget {
   final int itemCount;
   final List<DocumentSnapshot> data;
@@ -15,7 +15,7 @@ class AdminOrderCard2 extends StatelessWidget {
 
   AdminOrderCard2(
       {Key key, this.itemCount, this.data, this.orderBy, this.orderID})
-      : super (key: key);
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -42,14 +42,14 @@ class AdminOrderCard2 extends StatelessWidget {
 
   Widget sourceInfo7(ItemModel model, BuildContext context,
       {Color background}) {
-    width = MediaQuery
-        .of(context)
-        .size
-        .width;
+    width = MediaQuery.of(context).size.width;
 
     return InkWell(
       onTap: () {
-        Route route = MaterialPageRoute(builder: (c) =>  ProductAdmin(itemModel: model,));
+        Route route = MaterialPageRoute(
+            builder: (c) => ProductAdmin(
+                  itemModel: model,
+                ));
         Navigator.pushReplacement(context, route);
       },
       child: Container(
@@ -58,36 +58,51 @@ class AdminOrderCard2 extends StatelessWidget {
         width: width,
         child: Row(
           children: [
-            Image.network(model.thumbnailUrl, width: 150.0,),
-            SizedBox(width: 10.0,),
+            Image.network(
+              model.thumbnailUrl,
+              width: 150.0,
+            ),
+            SizedBox(
+              width: 10.0,
+            ),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(height: 8.0,),
+                  SizedBox(
+                    height: 8.0,
+                  ),
                   Container(
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       children: [
-                        Expanded(child: Text(model.title, style: TextStyle(
-                            color: Colors.deepPurple, fontSize: 20.0),
-                        ),
+                        Expanded(
+                          child: Text(
+                            model.title,
+                            style: TextStyle(
+                                color: Colors.deepPurple, fontSize: 20.0),
+                          ),
                         ),
                       ],
                     ),
                   ),
-                  SizedBox(height: 24.0,),
+                  SizedBox(
+                    height: 24.0,
+                  ),
                   Row(
                     children: [
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Padding(padding: EdgeInsets.only(top: 5.0),
+                          Padding(
+                            padding: EdgeInsets.only(top: 5.0),
                             child: Row(
                               children: [
-                                Text("Price: Rs." + model.price.toString(),
-                                  style: TextStyle(fontSize: 18.0,
-                                      color: Colors.deepPurple),)
+                                Text(
+                                  "Price: Rs." + model.price.toString(),
+                                  style: TextStyle(
+                                      fontSize: 18.0, color: Colors.deepPurple),
+                                )
                               ],
                             ),
                           ),
@@ -95,15 +110,12 @@ class AdminOrderCard2 extends StatelessWidget {
                       ),
                     ],
                   ),
-                  Flexible(child: Container(
-
-                  ),
+                  Flexible(
+                    child: Container(),
                   ),
                   Divider(
                     height: 6.0,
                     color: Colors.deepPurple,
-
-
                   ),
                 ],
               ),

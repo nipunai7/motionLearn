@@ -16,20 +16,18 @@ class ItemModel {
   String category;
 
   ItemModel(
-      {
-        this.id,
-        this.title,
-        this.shortInfo,
-        this.publishedDate,
-        this.thumbnailUrl,
-        this.longDescription,
-        this.status,
-        this.videoUrl,
-        this.reviews,
-        this.reportURL,
-        this.purchaseCount,
-        this.category
-        });
+      {this.id,
+      this.title,
+      this.shortInfo,
+      this.publishedDate,
+      this.thumbnailUrl,
+      this.longDescription,
+      this.status,
+      this.videoUrl,
+      this.reviews,
+      this.reportURL,
+      this.purchaseCount,
+      this.category});
 
   ItemModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];

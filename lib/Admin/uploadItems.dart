@@ -834,7 +834,7 @@ class _UploadPageState extends State<UploadPage> {
 
   Future<http.Response> createReport(String video, String tuteID) {
     return http.post(
-      Uri.parse('http://34.126.164.58/admin'),
+      Uri.parse('http://35.247.138.56/admin'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },

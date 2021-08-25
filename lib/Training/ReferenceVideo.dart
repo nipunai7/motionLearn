@@ -15,7 +15,7 @@ class _ReferenceVideoState extends State<ReferenceVideo> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    
+
     controller = VideoPlayerController.network(
         'https://firebasestorage.googleapis.com/v0/b/motion-learn.appspot.com/o/Items%2Ftutorial_1623178249763.mp4?alt=media&token=22613cc6-9ab6-46db-b6a8-4aec4da34a7a')
       ..addListener(() => setState(() {}))
@@ -30,11 +30,10 @@ class _ReferenceVideoState extends State<ReferenceVideo> {
     super.dispose();
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-          extendBodyBehindAppBar: true,
+      extendBodyBehindAppBar: true,
     );
   }
 }

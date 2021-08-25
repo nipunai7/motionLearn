@@ -211,19 +211,28 @@ class _ReportViewState extends State<ReportView> {
             (value) => {print(value.data), count3 = value.data['totalSpent']});
 
     String job1;
-    await Firestore.instance.collection("users").document(EcommerceApp.sharedPreferences.getString(EcommerceApp.userUID)).get().then((value) => {
-      job1 = value.data['job']
-    });
+    await Firestore.instance
+        .collection("users")
+        .document(
+            EcommerceApp.sharedPreferences.getString(EcommerceApp.userUID))
+        .get()
+        .then((value) => {job1 = value.data['job']});
 
     int age1;
-    await Firestore.instance.collection("users").document(EcommerceApp.sharedPreferences.getString(EcommerceApp.userUID)).get().then((value) => {
-      age1 = value.data['age']
-    });
+    await Firestore.instance
+        .collection("users")
+        .document(
+            EcommerceApp.sharedPreferences.getString(EcommerceApp.userUID))
+        .get()
+        .then((value) => {age1 = int.parse(value.data['age'])});
 
     String pref1;
-    await Firestore.instance.collection("users").document(EcommerceApp.sharedPreferences.getString(EcommerceApp.userUID)).get().then((value) => {
-      pref1 = value.data['preference']
-    });
+    await Firestore.instance
+        .collection("users")
+        .document(
+            EcommerceApp.sharedPreferences.getString(EcommerceApp.userUID))
+        .get()
+        .then((value) => {pref1 = value.data['preference']});
 
     // List cat1 = [];
     // List cats = ["Salsa","Break Dance","Hiphop","Other"];

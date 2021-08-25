@@ -108,9 +108,7 @@ class _ReportPageState extends State<ReportPage> {
         .toList();
 
     return WillPopScope(
-      onWillPop: () {
-
-      },
+      onWillPop: () {},
       child: Scaffold(
         appBar: AppBar(
           toolbarHeight: 30.0,
@@ -398,35 +396,35 @@ class _ReportPageState extends State<ReportPage> {
   }
 
   Widget buildVideo() => OrientationBuilder(
-    builder: (context, orientation) {
-      final isPortrait = orientation == Orientation.portrait;
+        builder: (context, orientation) {
+          final isPortrait = orientation == Orientation.portrait;
 
-      setOrientation(isPortrait);
+          setOrientation(isPortrait);
 
-      return Stack(
-        fit: isPortrait ? StackFit.loose : StackFit.expand,
-        children: <Widget>[
-          buildVideoPlayer(),
-          Positioned.fill(
-            child: AdvancedOverlayWidget(
-              controller: controller,
-              onClickedFullScreen: () {
-                target = isPortrait
-                    ? Orientation.landscape
-                    : Orientation.portrait;
+          return Stack(
+            fit: isPortrait ? StackFit.loose : StackFit.expand,
+            children: <Widget>[
+              buildVideoPlayer(),
+              Positioned.fill(
+                child: AdvancedOverlayWidget(
+                  controller: controller,
+                  onClickedFullScreen: () {
+                    target = isPortrait
+                        ? Orientation.landscape
+                        : Orientation.portrait;
 
-                // if (isPortrait) {
-                //   AutoOrientation.landscapeRightMode();
-                // } else {
-                //   AutoOrientation.portraitUpMode();
-                // }
-              },
-            ),
-          ),
-        ],
+                    // if (isPortrait) {
+                    //   AutoOrientation.landscapeRightMode();
+                    // } else {
+                    //   AutoOrientation.portraitUpMode();
+                    // }
+                  },
+                ),
+              ),
+            ],
+          );
+        },
       );
-    },
-  );
 
   Widget buildVideoPlayer() {
     final video = AspectRatio(

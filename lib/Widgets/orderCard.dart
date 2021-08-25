@@ -5,24 +5,26 @@ import 'package:flutter/material.dart';
 import '../Store/storehome.dart';
 
 int counter = 0;
+
 class OrderCard extends StatelessWidget {
-  
   final int itemCount;
   final List<DocumentSnapshot> data;
   final String orderID;
-  
-  OrderCard({Key key,this.itemCount,this.data,this.orderID}) : super(key:key);
+
+  OrderCard({Key key, this.itemCount, this.data, this.orderID})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return  InkWell(
+    return InkWell(
       onTap: () {
-        print (orderID);
+        print(orderID);
         Route route;
-       // if (counter == 0){
-       //   counter = counter + 1;
-          route = MaterialPageRoute(builder: (c) => OrderDetails(orderID: orderID));
-       // }
+        // if (counter == 0){
+        //   counter = counter + 1;
+        route =
+            MaterialPageRoute(builder: (c) => OrderDetails(orderID: orderID));
+        // }
         Navigator.pushReplacement(context, route);
       },
       child: Container(
@@ -36,9 +38,9 @@ class OrderCard extends StatelessWidget {
         child: ListView.builder(
           itemCount: itemCount,
           physics: NeverScrollableScrollPhysics(),
-          itemBuilder: (c,index){
-              ItemModel model = ItemModel.fromJson(data[index].data);
-              return sourceInfo3(model, context);
+          itemBuilder: (c, index) {
+            ItemModel model = ItemModel.fromJson(data[index].data);
+            return sourceInfo3(model, context);
           },
         ),
       ),
@@ -46,12 +48,8 @@ class OrderCard extends StatelessWidget {
   }
 }
 
-
-
-Widget sourceInfo3(ItemModel model, BuildContext context,
-    {Color background})
-{
-  width =  MediaQuery.of(context).size.width;
+Widget sourceInfo3(ItemModel model, BuildContext context, {Color background}) {
+  width = MediaQuery.of(context).size.width;
 
   return Container(
     color: Colors.white,
@@ -59,63 +57,80 @@ Widget sourceInfo3(ItemModel model, BuildContext context,
     width: width,
     child: Row(
       children: [
-        Image.network(model.thumbnailUrl,width: 150.0,),
-        SizedBox(width: 10.0,),
+        Image.network(
+          model.thumbnailUrl,
+          width: 150.0,
+        ),
+        SizedBox(
+          width: 10.0,
+        ),
         Expanded(
           child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(height: 8.0,),
-            Container(
-              child: Row(
-                mainAxisSize:MainAxisSize.max,
-                children: [
-                  Expanded(child: Text(model.title,style: TextStyle(color: Colors.deepPurple,fontSize: 20.0),
-                  ),
-                  ),
-                ],
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(
+                height: 8.0,
               ),
-            ),
-            SizedBox(height: 0.0,),
-            // Container(
-            //   child: Row(
-            //     mainAxisSize:MainAxisSize.max,
-            //     children: [
-            //       Expanded(child: Text(model.shortInfo,style: TextStyle(color: Colors.black54,fontSize: 16.0),
-            //       ),
-            //       ),
-            //     ],
-            //   ),
-            // ),
-            SizedBox(height: 24.0,),
-            Row(
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+              Container(
+                child: Row(
+                  mainAxisSize: MainAxisSize.max,
                   children: [
-                    Padding(padding: EdgeInsets.only(top: 5.0),
-                      child: Row(
-                        children: [
-                          Text("Price: Rs."+ model.price.toString(),style: TextStyle(fontSize: 18.0,color: Colors.deepPurple),)
-                        ],
+                    Expanded(
+                      child: Text(
+                        model.title,
+                        style:
+                            TextStyle(color: Colors.deepPurple, fontSize: 20.0),
                       ),
                     ),
                   ],
                 ),
-              ],
-            ),
-            Flexible(child: Container(
-
-            ),
-            ),
-            Divider(
-              height: 6.0,
-              color: Colors.deepPurple,
-
-
-            ),
-          ],
-        ),
+              ),
+              SizedBox(
+                height: 0.0,
+              ),
+              // Container(
+              //   child: Row(
+              //     mainAxisSize:MainAxisSize.max,
+              //     children: [
+              //       Expanded(child: Text(model.shortInfo,style: TextStyle(color: Colors.black54,fontSize: 16.0),
+              //       ),
+              //       ),
+              //     ],
+              //   ),
+              // ),
+              SizedBox(
+                height: 24.0,
+              ),
+              Row(
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.only(top: 5.0),
+                        child: Row(
+                          children: [
+                            Text(
+                              "Price: Rs." + model.price.toString(),
+                              style: TextStyle(
+                                  fontSize: 18.0, color: Colors.deepPurple),
+                            )
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              Flexible(
+                child: Container(),
+              ),
+              Divider(
+                height: 6.0,
+                color: Colors.deepPurple,
+              ),
+            ],
+          ),
         ),
       ],
     ),

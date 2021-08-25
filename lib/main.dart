@@ -29,20 +29,19 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-        providers: [
-          ChangeNotifierProvider(create: (c) => CartItemCounter()),
-          ChangeNotifierProvider(create: (c) => BookQuantity()),
-          ChangeNotifierProvider(create: (c) => AddressChanger()),
-          ChangeNotifierProvider(create: (c) => TotalAmount()),
-        ],
-        child: MaterialApp(
-            title: 'Motion Learn',
-            debugShowCheckedModeBanner: false,
-            theme: ThemeData(
-              primaryColor: Colors.green,
-            ),
-            home: SplashScreen()
-        ),
+      providers: [
+        ChangeNotifierProvider(create: (c) => CartItemCounter()),
+        ChangeNotifierProvider(create: (c) => BookQuantity()),
+        ChangeNotifierProvider(create: (c) => AddressChanger()),
+        ChangeNotifierProvider(create: (c) => TotalAmount()),
+      ],
+      child: MaterialApp(
+          title: 'Motion Learn',
+          debugShowCheckedModeBanner: false,
+          theme: ThemeData(
+            primaryColor: Colors.green,
+          ),
+          home: SplashScreen()),
     );
   }
 }
@@ -60,17 +59,16 @@ class _SplashScreenState extends State<SplashScreen> {
     displaySplash();
   }
 
-  displaySplash(){
-    Timer(Duration(seconds: 2),() async {
-     if(await EcommerceApp.auth.currentUser() != null){
-       Route route = MaterialPageRoute(builder: (_) => StoreHome());
-       Navigator.pushReplacement(context, route);
-     }else if(await EcommerceApp.auth.currentUser() == null){
-      Route route = MaterialPageRoute(builder: (_) => AuthenticScreen());
-      Navigator.pushReplacement(context, route);
+  displaySplash() {
+    Timer(Duration(seconds: 2), () async {
+      if (await EcommerceApp.auth.currentUser() != null) {
+        Route route = MaterialPageRoute(builder: (_) => StoreHome());
+        Navigator.pushReplacement(context, route);
+      } else if (await EcommerceApp.auth.currentUser() == null) {
+        Route route = MaterialPageRoute(builder: (_) => AuthenticScreen());
+        Navigator.pushReplacement(context, route);
       }
-    }
-    );
+    });
   }
 
   @override
@@ -79,10 +77,10 @@ class _SplashScreenState extends State<SplashScreen> {
       child: Container(
         decoration: new BoxDecoration(
           gradient: new LinearGradient(
-            colors: [Colors.white,Colors.white ],
+            colors: [Colors.white, Colors.white],
             begin: const FractionalOffset(0.0, 0.0),
             end: const FractionalOffset(1.0, 0.0),
-            stops: [0.0,1.0],
+            stops: [0.0, 1.0],
             tileMode: TileMode.clamp,
           ),
         ),
@@ -91,8 +89,16 @@ class _SplashScreenState extends State<SplashScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Image.asset("images/test.png"),
-              SizedBox(height: 20.0,),
-              Text("Motion Learn", style: TextStyle(color: Colors.deepPurple,fontSize: 50,fontFamily: "Signatra"),),
+              SizedBox(
+                height: 20.0,
+              ),
+              Text(
+                "Motion Learn",
+                style: TextStyle(
+                    color: Colors.deepPurple,
+                    fontSize: 50,
+                    fontFamily: "Signatra"),
+              ),
             ],
           ),
         ),

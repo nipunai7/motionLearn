@@ -131,7 +131,8 @@ class _ProductPageState extends State<ProductPage> {
                             height: 2.0,
                           ),
                           Text(
-                            "Break Dance",style: TextStyle(color: Colors.black45),
+                            "Break Dance",
+                            style: TextStyle(color: Colors.black45),
                           ),
                           SizedBox(
                             height: 10.0,
@@ -260,18 +261,22 @@ class _ProductPageState extends State<ProductPage> {
     }
   }
 
-  updateCat(String cat) async{
-    int count=0;
-    await Firestore.instance.collection("users").document(EcommerceApp.sharedPreferences.getString(EcommerceApp.userUID)).get().then((value) => {
-      count = value.data[cat]
-    });
+  updateCat(String cat) async {
+    int count = 0;
+    await Firestore.instance
+        .collection("users")
+        .document(
+            EcommerceApp.sharedPreferences.getString(EcommerceApp.userUID))
+        .get()
+        .then((value) => {count = value.data[cat]});
     count++;
-    await Firestore.instance.collection("users").document(EcommerceApp.sharedPreferences.getString(EcommerceApp.userUID)).updateData({
-      cat:count
-    });
+    await Firestore.instance
+        .collection("users")
+        .document(
+            EcommerceApp.sharedPreferences.getString(EcommerceApp.userUID))
+        .updateData({cat: count});
 
-    print(cat+" "+count.toString());
-
+    print(cat + " " + count.toString());
   }
 
   Widget submitRev() {

@@ -8,48 +8,52 @@ import 'package:e_shop/Widgets/myDrawer2.dart';
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 
-
 class ProductAdmin extends StatefulWidget {
   final ItemModel itemModel;
+
   ProductAdmin({this.itemModel});
 
   @override
   _ProductAdminState createState() => _ProductAdminState();
 }
 
-
 class _ProductAdminState extends State<ProductAdmin> {
   int numOfItems = 1;
 
   @override
-  Widget build(BuildContext context)
-  {
+  Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;
-    return WillPopScope(onWillPop: (){
-      Route route = MaterialPageRoute(builder: (c) => AdminUploads());
-      Navigator.pushReplacement(context, route);
-    },
-
+    return WillPopScope(
+      onWillPop: () {
+        Route route = MaterialPageRoute(builder: (c) => AdminUploads());
+        Navigator.pushReplacement(context, route);
+      },
       child: Scaffold(
         appBar: AppBar(
-          iconTheme: IconThemeData(
-              color: Colors.white
-          ),
+          iconTheme: IconThemeData(color: Colors.white),
           backgroundColor: Colors.deepPurple,
           centerTitle: true,
-          title: Text("Manage Tutorial",style: TextStyle(color: Colors.white,fontSize: 18.0),),
+          title: Text(
+            "Manage Tutorial",
+            style: TextStyle(color: Colors.white, fontSize: 18.0),
+          ),
           leading: IconButton(
-              onPressed: (){
+              onPressed: () {
                 Route route = MaterialPageRoute(builder: (c) => AdminUploads());
                 Navigator.pushReplacement(context, route);
               },
-              icon: Icon(Icons.arrow_back,color: Colors.white,)
-          ),
+              icon: Icon(
+                Icons.arrow_back,
+                color: Colors.white,
+              )),
           actions: [
             TextButton(
-              child: Icon(Icons.delete_forever,color: Colors.white,),
+              child: Icon(
+                Icons.delete_forever,
+                color: Colors.white,
+              ),
               onPressed: () {
-               deleteTuto();
+                deleteTuto();
               },
             ),
           ],
@@ -71,7 +75,10 @@ class _ProductAdminState extends State<ProductAdmin> {
                       ),
                       Container(
                         color: Colors.deepPurpleAccent,
-                        child: SizedBox(height: 1.0,width: double.infinity,),
+                        child: SizedBox(
+                          height: 1.0,
+                          width: double.infinity,
+                        ),
                       )
                     ],
                   ),
@@ -81,75 +88,98 @@ class _ProductAdminState extends State<ProductAdmin> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(widget.itemModel.title,style: boldTextStyle,),
-                          SizedBox(height: 10.0,),
-                          Text(widget.itemModel.longDescription,),
-                          SizedBox(height: 10.0,),
-                          Text("Rs."+ widget.itemModel.price.toString(),style: boldTextStyle,),
-                          SizedBox(height: 10.0,),
+                          Text(
+                            widget.itemModel.title,
+                            style: boldTextStyle,
+                          ),
+                          SizedBox(
+                            height: 10.0,
+                          ),
+                          Text(
+                            widget.itemModel.longDescription,
+                          ),
+                          SizedBox(
+                            height: 10.0,
+                          ),
+                          Text(
+                            "Rs." + widget.itemModel.price.toString(),
+                            style: boldTextStyle,
+                          ),
+                          SizedBox(
+                            height: 10.0,
+                          ),
                         ],
                       ),
                     ),
                   ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Align(
-                              alignment: Alignment.centerLeft,
-                              child: Padding(
-                                  padding: EdgeInsets.only(top: 8.0,bottom: 16.0),
-                                  child: Center(
-                                    child: InkWell(
-                                      onTap: () {
-                                        Route route = MaterialPageRoute(builder: (c) => ProductEdit(itemModel: widget.itemModel,));
-                                        Navigator.pushReplacement(context, route);
-                                      },
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                          color: Colors.deepPurple,
-                                        ),
-                                        width: 150,
-                                        height: 50.0,
-                                        child: Center(
-                                          child: Text("Edit Tutorial",style: TextStyle(color: Colors.white,),
-                                          ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Align(
+                          alignment: Alignment.centerLeft,
+                          child: Padding(
+                              padding: EdgeInsets.only(top: 8.0, bottom: 16.0),
+                              child: Center(
+                                child: InkWell(
+                                  onTap: () {
+                                    Route route = MaterialPageRoute(
+                                        builder: (c) => ProductEdit(
+                                              itemModel: widget.itemModel,
+                                            ));
+                                    Navigator.pushReplacement(context, route);
+                                  },
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      color: Colors.deepPurple,
+                                    ),
+                                    width: 150,
+                                    height: 50.0,
+                                    child: Center(
+                                      child: Text(
+                                        "Edit Tutorial",
+                                        style: TextStyle(
+                                          color: Colors.white,
                                         ),
                                       ),
                                     ),
-                                  )
-                              )
-                          ),
-                          Align(
-                              alignment: Alignment.centerRight,
-                              child: Padding(
-                                  padding: EdgeInsets.only(top: 8.0,bottom: 16.0),
-                                  child: Center(
-                                    child: InkWell(
-                                      onTap: ()=> deleteTuto(),
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                          color: Colors.deepPurple,
-                                        ),
-                                        width: 150,
-                                        height: 50.0,
-                                        child: Center(
-                                          child: Text("Delete Tutorial",style: TextStyle(color: Colors.white,),
-                                          ),
+                                  ),
+                                ),
+                              ))),
+                      Align(
+                          alignment: Alignment.centerRight,
+                          child: Padding(
+                              padding: EdgeInsets.only(top: 8.0, bottom: 16.0),
+                              child: Center(
+                                child: InkWell(
+                                  onTap: () => deleteTuto(),
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      color: Colors.deepPurple,
+                                    ),
+                                    width: 150,
+                                    height: 50.0,
+                                    child: Center(
+                                      child: Text(
+                                        "Delete Tutorial",
+                                        style: TextStyle(
+                                          color: Colors.white,
                                         ),
                                       ),
                                     ),
-                                  )
-                              )
-                          ),
-                        ],
-                      ),
+                                  ),
+                                ),
+                              ))),
+                    ],
+                  ),
                   Container(
                     height: 200.0,
                     width: MediaQuery.of(context).size.width,
                     child: ListView(
                       children: <Widget>[
                         ChewiListItem(
-                          videoPlayerController: VideoPlayerController.network(widget.itemModel.videoUrl,),
+                          videoPlayerController: VideoPlayerController.network(
+                            widget.itemModel.videoUrl,
+                          ),
                         ),
                       ],
                     ),
@@ -160,21 +190,26 @@ class _ProductAdminState extends State<ProductAdmin> {
           ],
         ),
       ),
-
     );
   }
 
-  deleteTuto(){
-    Firestore.instance.collection("Items").where("tutorial", isEqualTo: widget.itemModel.videoUrl).getDocuments().then((value) => {
-      value.documents.forEach((element) {
-        Firestore.instance.collection("Items").document(element.documentID).delete();
-      })
-    });
+  deleteTuto() {
+    Firestore.instance
+        .collection("Items")
+        .where("tutorial", isEqualTo: widget.itemModel.videoUrl)
+        .getDocuments()
+        .then((value) => {
+              value.documents.forEach((element) {
+                Firestore.instance
+                    .collection("Items")
+                    .document(element.documentID)
+                    .delete();
+              })
+            });
 
     Route route = MaterialPageRoute(builder: (c) => AdminShiftOrders());
     Navigator.pushReplacement(context, route);
   }
-
 }
 
 const boldTextStyle = TextStyle(fontWeight: FontWeight.bold, fontSize: 20);

@@ -1,26 +1,24 @@
 import 'package:flutter/material.dart';
 
-class CustomTextField2 extends StatelessWidget
-{
+class CustomTextField2 extends StatelessWidget {
   final TextEditingController controller;
   final IconData data;
   final String hintText;
   bool isObsecure = true;
   final String value;
 
-
-
   CustomTextField2(
-      {Key key, this.controller, this.data, this.hintText,this.isObsecure,this.value}
-      ) : super(key: key);
-
-
+      {Key key,
+      this.controller,
+      this.data,
+      this.hintText,
+      this.isObsecure,
+      this.value})
+      : super(key: key);
 
   @override
-  Widget build(BuildContext context)
-  {
-    return Container
-    (
+  Widget build(BuildContext context) {
+    return Container(
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.all(Radius.circular(10.0)),

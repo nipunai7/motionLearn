@@ -24,27 +24,28 @@ dependencies:
   intl:
   video_player: ^2.1.4
   chewie: ^1.2.0
-#  paypal: ^0.0.4
-#  #flutter_braintree: ^1.2.1
+  #  paypal: ^0.0.4
+  #  #flutter_braintree: ^1.2.1
   http_auth: ^1.0.0
   webview_flutter: ^2.0.8
   pdf: ^2.1.0
   open_file: ^3.2.1
   camera: ^0.5.8+7
-#  tflite:  ^1.1.1
+  #  tflite:  ^1.1.1
   pip_view: ^0.9.5
-  payhere_mobilesdk_flutter: ^1.0.3
-#  file_picker:
+  payhere_mobilesdk_flutter: 1.0.2
+  #  file_picker:
   wakelock:
-#  auto_orientation:
+  #  auto_orientation:
   native_device_orientation:
   xfile: ^1.1.0
-#  cloud_functions:
-#  firebase_analytics:
-#  firebase_core:
+  #  cloud_functions:
+  #  firebase_analytics:
+  #  firebase_core:
   url_launcher:
   syncfusion_flutter_charts: ^19.2.48
   loading_animations: ^2.2.0
+  age: ^0.0.1
 
 
 
